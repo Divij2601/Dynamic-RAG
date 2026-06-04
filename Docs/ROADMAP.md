@@ -1,552 +1,682 @@
 # Dynamic-RAG — Roadmap
 
-## 1. Purpose of This Roadmap
+## 1. Purpose
 
-This document defines the implementation sequence for **Dynamic-RAG**, a production-oriented adaptive multi-agent retrieval-augmented generation system.
+This roadmap defines the implementation sequence for **Dynamic-RAG**, an evaluation-first, production-grade adaptive retrieval-augmented generation system.
 
-The roadmap is intentionally ordered to reduce architectural drift, prevent unnecessary complexity, and ensure that every stage of the project produces a working system. The guiding principle is:
+The project is intentionally structured to prioritize:
+- measurable retrieval quality,
+- faithful generation,
+- observable system behavior,
+- reproducible benchmarking,
+- accountable response generation,
+- stable production deployment.
 
-> **Build the core knowledge pipeline first, then add adaptivity, then add verification, then harden for production.**
+This is not a feature list. It is a build order.
 
-This roadmap is designed to support both hands-on implementation and agentic coding workflows. Each phase includes:
-- objective,
-- scope,
-- deliverables,
-- dependencies,
-- completion criteria.
+The central rule is:
 
----
-
-## 2. Development Philosophy
-
-Dynamic-RAG should be built in layers, not all at once.
-
-### Core principles
-1. **Working software first**
-   - Every phase should produce something runnable.
-
-2. **Small, testable increments**
-   - Each milestone should be independently verifiable.
-
-3. **Architecture before optimization**
-   - Do not optimize before the pipeline exists.
-
-4. **Retrieval before orchestration**
-   - The system must retrieve correctly before it routes intelligently.
-
-5. **Verification before scale**
-   - Groundedness and faithfulness matter before performance tuning.
-
-6. **Observability before release**
-   - The system must be traceable before it is treated as production-ready.
+> **Do not add advanced orchestration before the system can prove that retrieval, grounding, and operational behavior are measurable.**
 
 ---
 
-## 3. Project Release Strategy
+## 2. Project Identity
 
-The project should be developed through explicit version gates.
+Dynamic-RAG is a system designed to answer questions by selecting the best available reasoning path and proving that the chosen path performed well.
 
-### Version 0.1 — Skeleton
-A runnable backend, basic structure, and environment setup.
+Its identity is defined by four principles:
 
-### Version 0.2 — Ingestion and Indexing
-Documents can be uploaded, parsed, chunked, embedded, and stored.
+1. **Adaptive**
+   - Route each query through the lightest correct path.
 
-### Version 0.3 — Retrieval MVP
-The system can retrieve relevant chunks and answer document-grounded questions.
+2. **Grounded**
+   - Use evidence whenever evidence is available.
 
-### Version 0.4 — Adaptive Routing
-The planner routes queries to retrieval, general reasoning, or web research.
+3. **Observable**
+   - Expose route decisions, latency, cost, and failure modes.
 
-### Version 0.5 — Verification Layer
-The critic evaluates answers and triggers retries when needed.
+4. **Accountable**
+   - Measure retrieval quality, generation faithfulness, and system robustness.
 
-### Version 0.6 — Memory and Session Intelligence
-The system uses session memory and optional semantic memory.
-
-### Version 0.7 — Observability and Evaluation
-Tracing, metrics, and offline test harnesses are in place.
-
-### Version 1.0 — Production-Ready Release
-The system is stable, reproducible, documented, and deployable.
+This means the project is not merely a chatbot.
+It is an engineered knowledge system with built-in evaluation hooks.
 
 ---
 
-## 4. Roadmap Phases
+## 3. Roadmap Philosophy
 
-# Phase 0 — Project Definition and Repository Foundation
+The roadmap follows five engineering rules:
+
+### Rule 1 — Build the measurable core first
+If a subsystem cannot be measured, it cannot be trusted.
+
+### Rule 2 — Add complexity only after the base path works
+Retrieval before orchestration. Verification before scale. Observability before release.
+
+### Rule 3 — Every phase must end in a runnable increment
+No phase should produce only design artifacts.
+
+### Rule 4 — Evaluation is part of development
+Metrics and benchmarks are not final-stage extras.
+
+### Rule 5 — Each layer must be independently testable
+Retrieval, generation, critic behavior, and routing must all be debugged separately.
+
+---
+
+## 4. Release Strategy
+
+Dynamic-RAG should progress through capability-driven versions.
+
+### v0.1 — Runtime Foundation
+Backend skeleton, config, logging, health checks.
+
+### v0.2 — Observable Ingestion
+Document parsing, chunking, metadata, indexing, traceable ingestion.
+
+### v0.3 — Measurable Retrieval
+Hybrid retrieval, reranking, retrieval metrics, benchmark support.
+
+### v0.4 — Grounded Generation
+Evidence-based answering, source attachment, answer evaluation.
+
+### v0.5 — Verification Layer
+Critic agent, retry controller, faithfulness gating, abstention logic.
+
+### v0.6 — Adaptive Routing
+Planner agent, route selection, query complexity analysis, web fallback.
+
+### v0.7 — Memory and Session Intelligence
+Short-term memory, long-term memory, session continuity.
+
+### v0.8 — Observability and Benchmarking
+Full traces, dashboards, offline benchmarks, regression tracking.
+
+### v0.9 — UI Integration
+End-to-end user interaction with visible sources and statuses.
+
+### v1.0 — Production-Ready Stable Release
+Deployment readiness, error handling, persistence safety, reproducibility.
+
+---
+
+## 5. Phase Plan
+
+# Phase 0 — Project Definition Lock
 
 ## Objective
-Establish the non-code foundation of the project so implementation decisions are consistent.
-
-## Work Items
-- finalize the project name and identity as **Dynamic-RAG**,
-- define the system architecture,
-- define the implementation roadmap,
-- define the system design document,
-- decide the initial technology stack,
-- prepare the repository structure,
-- define environment variable requirements.
+Finalize the identity and implementation standards for the project before code expansion.
 
 ## Deliverables
 - `PROJECT_ARCHITECTURE.md`
 - `ROADMAP.md`
 - `SYSTEM_DESIGN.md`
-- initial folder structure
+- `EVALUATION_AND_OBSERVABILITY.md`
+- repo naming consistency
+- final folder structure
+- `.env.example`
 - `.gitignore`
-- `README.md` skeleton
 
-## Completion Criteria
-- the repository has an agreed project identity,
-- the target architecture is documented,
-- the implementation order is clearly defined,
-- the codebase structure is ready for development.
+## Exit Criteria
+- the system name is standardized as Dynamic-RAG,
+- architecture and roadmap are aligned,
+- evaluation-first positioning is explicit.
 
 ---
 
-# Phase 1 — Backend Skeleton and Runtime Foundation
+# Phase 1 — Runtime Foundation
 
 ## Objective
-Create a minimal application shell that can run locally and accept requests.
+Create a minimal backend that can run locally and expose stable health endpoints.
 
 ## Work Items
-- create FastAPI application entrypoint,
-- create health check endpoint,
-- define base configuration system,
-- establish environment loading,
-- create logging setup,
-- define base request and response schemas,
-- verify local server startup.
+- FastAPI application bootstrap,
+- config loader,
+- environment variable parsing,
+- logging framework,
+- health endpoint,
+- base schemas,
+- error-handling scaffold,
+- request ID generation.
 
 ## Deliverables
-- FastAPI app running locally,
-- `/health` or `/` endpoint,
-- configuration module,
-- project logging utility,
-- base Pydantic models.
+- running API server,
+- `/health` endpoint,
+- config module,
+- logging module,
+- basic request/response models.
 
-## Completion Criteria
-- the backend starts without errors,
-- the API documentation is accessible,
-- configuration values load from `.env`,
-- the repository has a working runtime baseline.
+## Exit Criteria
+- the backend starts successfully,
+- configuration is loaded from environment,
+- the app returns predictable health responses.
+
+## Evaluation Gate
+- request logging is enabled,
+- basic traces can be emitted,
+- startup failure modes are visible.
 
 ---
 
-# Phase 2 — Data Ingestion Pipeline
+# Phase 2 — Observability Backbone
 
 ## Objective
-Transform uploaded documents into indexed knowledge assets.
+Make the system measurable before adding any intelligence layers.
 
 ## Work Items
-- implement document loader,
-- implement text extraction,
-- implement chunking strategy,
-- implement metadata generation,
-- implement embedding generation,
-- implement persistence into vector store,
-- validate document ingestion on supported formats.
+- structured request logging,
+- request/session IDs,
+- trace object design,
+- timing utilities,
+- token/cost accounting hooks,
+- metrics schema,
+- trace persistence model.
 
-## Supported File Types for Initial Release
+## Deliverables
+- trace logging module,
+- metrics data model,
+- trace repository,
+- basic system metrics endpoint.
+
+## Exit Criteria
+- every request can be traced,
+- latency and cost fields exist in the system model,
+- logs are queryable.
+
+## Evaluation Gate
+- tracing works for health and test requests,
+- trace records persist correctly,
+- observability data is stable enough for later metrics.
+
+---
+
+# Phase 3 — Document Ingestion and Indexing
+
+## Objective
+Convert source files into searchable, versioned, metadata-rich knowledge units.
+
+## Work Items
+- file loader,
+- text extraction,
+- cleaning and normalization,
+- chunking,
+- metadata generation,
+- embedding generation,
+- Qdrant indexing,
+- raw file persistence,
+- ingestion status tracking.
+
+## Supported Inputs
 - PDF
 - TXT
 
 ## Deliverables
-- document ingestion module,
-- chunking module,
-- embedding module,
-- indexer module,
-- persistent document records,
-- ingestion test cases.
+- ingestion pipeline,
+- chunk schema,
+- indexing pipeline,
+- document records,
+- source metadata model.
 
-## Completion Criteria
-- a document can be uploaded,
-- the document is parsed successfully,
-- chunks are created with metadata,
-- embeddings are stored,
-- chunks can be retrieved later.
+## Exit Criteria
+- a document can be uploaded and stored,
+- chunks are indexed into Qdrant,
+- metadata is retained,
+- document versioning is possible.
 
----
-
-# Phase 3 — Vector Store and Knowledge Persistence
-
-## Objective
-Introduce durable searchable storage for document embeddings and metadata.
-
-## Work Items
-- configure Qdrant as the primary vector database,
-- define collection schema,
-- define payload schema,
-- support document versioning metadata,
-- support source and page references,
-- verify insert, search, update, and delete flows.
-
-## Deliverables
-- Qdrant connection module,
-- collection initialization logic,
-- vector schema definition,
-- payload schema definition,
-- indexing and retrieval tests.
-
-## Completion Criteria
-- vectors persist across restarts,
-- retrieval returns expected chunk candidates,
-- metadata can be filtered,
-- source references are recoverable.
+## Evaluation Gate
+- ingestion produces deterministic chunk outputs,
+- indexed chunks are retrievable,
+- source-page mapping is preserved.
 
 ---
 
 # Phase 4 — Retrieval MVP
 
 ## Objective
-Build a dependable document-grounded retrieval system.
+Build a retrieval system that can find the correct evidence efficiently.
 
 ## Work Items
-- implement dense retrieval,
-- implement lexical retrieval,
-- implement hybrid scoring,
-- implement candidate merging,
-- implement reranking,
-- implement retrieval result serialization.
+- dense search,
+- sparse search,
+- hybrid fusion,
+- candidate merging,
+- reranking,
+- metadata filtering,
+- evidence normalization,
+- retrieval latency tracking.
 
 ## Deliverables
-- retrieval service,
-- sparse retriever,
-- dense retriever,
-- hybrid fusion logic,
-- reranker module,
-- retrieval diagnostics.
+- retriever service,
+- hybrid retrieval pipeline,
+- reranker integration,
+- evidence object schema,
+- retrieval metrics calculator.
 
-## Completion Criteria
+## Exit Criteria
 - a query returns relevant evidence,
-- retrieval quality is measurably better than naive vector search alone,
-- results are reproducible and testable.
+- retrieval output is inspectable,
+- top-k results are stable.
+
+## Evaluation Gate
+- Recall@K is measurable,
+- MRR is measurable,
+- Context Precision is measurable,
+- Hit Rate is measurable,
+- retrieval latency is recorded.
 
 ---
 
-# Phase 5 — Answer Generation
+# Phase 5 — Retrieval Evaluation Layer
 
 ## Objective
-Generate grounded answers from retrieved evidence.
+Make retrieval quality a first-class engineering concern.
 
 ## Work Items
-- integrate LLM provider,
-- create generation prompt templates,
-- pass query plus evidence to the generator,
-- enforce response structure,
-- expose source-aware responses.
+- offline retrieval benchmarks,
+- gold chunk mapping,
+- context recall calculation,
+- context precision calculation,
+- NDCG calculation,
+- retrieval regression tests,
+- noise robustness tests.
+
+## Deliverables
+- evaluation datasets,
+- retrieval benchmark runner,
+- retrieval report generator,
+- regression comparison scripts.
+
+## Exit Criteria
+- retrieval quality can be scored across datasets,
+- retrieval regressions are detectable,
+- noisy-context failure modes are visible.
+
+## Evaluation Gate
+- retrieval scores are recorded before proceeding to large-scale generation work,
+- low-quality retrieval blocks downstream progress.
+
+---
+
+# Phase 6 — Grounded Answer Generation
+
+## Objective
+Generate answers from retrieved evidence with controlled prompting and source awareness.
+
+## Work Items
+- generation prompt templates,
+- evidence-aware answer construction,
+- source formatting,
+- confidence output,
+- abstention-ready response style.
 
 ## Deliverables
 - generation module,
-- prompt templates,
-- response formatting contract,
-- example end-to-end answer flow.
+- structured answer schema,
+- source-aware response format,
+- evidence-to-answer linking.
 
-## Completion Criteria
-- the system can answer document-based questions,
-- answers are based on retrieved evidence,
-- generation can be tested independently.
+## Exit Criteria
+- the system can answer grounded document questions,
+- generated answers reference evidence instead of free-form guessing.
 
----
-
-# Phase 6 — Adaptive Query Planning
-
-## Objective
-Add intelligent routing so the system chooses the correct execution path per query.
-
-## Work Items
-- implement query planner agent,
-- determine intent classification,
-- determine complexity score,
-- detect freshness requirements,
-- detect whether retrieval is necessary,
-- detect whether web research is necessary,
-- support route confidence output.
-
-## Supported Routes
-- direct reasoning
-- internal retrieval
-- web research
-- hybrid evidence gathering
-- abstain / fallback
-
-## Deliverables
-- planner module,
-- structured route schema,
-- route decision rules,
-- LangGraph orchestration skeleton.
-
-## Completion Criteria
-- the system can route different query types differently,
-- routing decisions are structured and logged,
-- retrieval is not invoked unnecessarily.
+## Evaluation Gate
+- answer relevance is measurable,
+- response completeness is measurable,
+- groundedness is measurable.
 
 ---
 
-# Phase 7 — Web Research Path
+# Phase 7 — Generation Evaluation Layer
 
 ## Objective
-Enable the system to gather fresh external information when internal documents are insufficient.
+Measure whether the generated answer is faithful, relevant, and complete.
 
 ## Work Items
-- integrate search provider,
-- implement search query formatting,
-- collect search snippets or web results,
-- normalize external evidence,
-- connect web evidence to generation.
+- claim decomposition,
+- faithfulness scoring,
+- citation accuracy scoring,
+- answer relevance scoring,
+- completeness evaluation,
+- noise robustness evaluation,
+- counterfactual robustness evaluation.
 
 ## Deliverables
-- web research agent,
-- external evidence schema,
-- search result normalization logic,
-- web-grounded answer path.
+- generation benchmark suite,
+- critic-compatible scoring functions,
+- generation quality reports,
+- answer-level regression tests.
 
-## Completion Criteria
-- freshness-sensitive questions can use web results,
-- the system keeps web evidence separate from internal document evidence,
-- external sources can be traced.
+## Exit Criteria
+- the system can distinguish faithful from unfaithful answers,
+- generation regressions are visible,
+- unsupported answers trigger measurable failures.
+
+## Evaluation Gate
+- faithfulness must reach a defined minimum threshold before later phases are expanded,
+- unsupported claims must be detectable.
 
 ---
 
 # Phase 8 — Verification and Critic Layer
 
 ## Objective
-Reduce unsupported answers and enforce grounded response quality.
+Prevent weak or unsupported answers from being returned.
 
 ## Work Items
-- implement critic agent,
-- score answer faithfulness,
-- score support coverage,
-- identify unsupported claims,
-- trigger retry or rewrite when needed,
-- support answer abstention if confidence is too low.
+- critic agent,
+- answer validation,
+- issue classification,
+- retry controller,
+- rewrite loop,
+- abstention logic.
 
 ## Deliverables
-- verification module,
-- retry controller,
-- rejection reason schema,
-- faithfulness test cases.
+- critic module,
+- verification schema,
+- retry policy,
+- abstain/fallback response path.
 
-## Completion Criteria
-- the system detects weak answers,
-- unsupported outputs are not silently returned,
-- retry loops are bounded and controlled.
+## Exit Criteria
+- answers are checked before release,
+- low-confidence outputs can be rejected,
+- the system can retry or abstain safely.
+
+## Evaluation Gate
+- faithfulness gating is active,
+- rejection rate is measurable,
+- retry loops are bounded.
 
 ---
 
-# Phase 9 — Memory System
+# Phase 9 — Adaptive Query Planning
 
 ## Objective
-Add conversational continuity and long-term context management.
+Route each query through the best available execution path.
 
 ## Work Items
-- store session turns,
-- retrieve recent conversation context,
-- summarize longer sessions,
-- add semantic memory for stable preferences and recurring context,
-- separate short-term memory from knowledge base retrieval.
+- planner agent,
+- complexity detection,
+- intent classification,
+- freshness detection,
+- route selection,
+- subquery generation,
+- confidence estimation.
+
+## Supported Routes
+- direct reasoning
+- internal retrieval
+- web research
+- hybrid retrieval
+- abstain path
 
 ## Deliverables
-- session memory store,
-- memory retrieval module,
-- summarization logic,
+- planner module,
+- structured route object,
+- route decision policy,
+- orchestration graph integration.
+
+## Exit Criteria
+- different query types follow different routes,
+- routing decisions are structured and logged,
+- retrieval is avoided when unnecessary.
+
+## Evaluation Gate
+- route accuracy is measurable,
+- route confusion is visible,
+- planner mistakes can be diagnosed.
+
+---
+
+# Phase 10 — Web Research Path
+
+## Objective
+Support queries that depend on fresh or external information.
+
+## Work Items
+- external search integration,
+- search query formulation,
+- snippet normalization,
+- result ranking,
+- source trace preservation,
+- web evidence passing to generator.
+
+## Deliverables
+- web research agent,
+- external evidence model,
+- web-grounded answering path,
+- web source metadata support.
+
+## Exit Criteria
+- freshness-sensitive queries can be answered with web evidence,
+- web and internal evidence remain distinguishable.
+
+## Evaluation Gate
+- external source correctness is verifiable,
+- web path latency and cost are measured.
+
+---
+
+# Phase 11 — Memory System
+
+## Objective
+Add conversational continuity and reusable long-term context.
+
+## Work Items
+- session history storage,
+- short-term memory retrieval,
+- semantic memory storage,
+- memory summarization,
+- memory filtering,
 - memory injection policy.
 
-## Completion Criteria
-- the assistant remembers relevant conversation state,
-- memory does not pollute retrieval results,
-- memory use is selective and controlled.
+## Deliverables
+- MongoDB session store,
+- memory retrieval module,
+- semantic memory schema,
+- memory summarizer.
+
+## Exit Criteria
+- follow-up questions preserve context,
+- memory remains separate from document retrieval.
+
+## Evaluation Gate
+- memory usefulness is measurable,
+- irrelevant memory injection is minimized.
 
 ---
 
-# Phase 10 — Observability and Evaluation
+# Phase 12 — System-Level Evaluation
 
 ## Objective
-Make the system measurable, debuggable, and testable at scale.
+Measure production behavior across the full stack.
 
 ## Work Items
-- add structured request logs,
-- add tracing for each graph node,
-- record latency and token usage,
-- store route decisions,
-- define offline evaluation datasets,
-- implement regression testing for retrieval and generation,
-- integrate external tracing tools if needed.
+- end-to-end accuracy evaluation,
+- rejection-rate analysis,
+- latency percentiles,
+- cost-per-query analysis,
+- retry-frequency analysis,
+- system robustness tests,
+- benchmark report generation.
 
 ## Deliverables
-- logging framework,
-- tracing hooks,
-- evaluation harness,
-- benchmark dataset format,
-- system metrics endpoints.
+- system benchmark runner,
+- observability dashboard data,
+- cross-version comparison reports,
+- failure analysis summaries.
 
-## Completion Criteria
-- every request path is traceable,
-- core metrics are visible,
-- quality regressions can be detected.
+## Exit Criteria
+- full pipeline performance is measurable,
+- bottlenecks are visible,
+- production risks are surfaced.
+
+## Evaluation Gate
+- end-to-end metrics meet release thresholds,
+- system-level regressions are blocked.
 
 ---
 
-# Phase 11 — UI Integration
+# Phase 13 — UI Integration
 
 ## Objective
-Provide a user-facing interface for interacting with the system.
+Expose the system through a usable interface without weakening backend discipline.
 
 ## Work Items
-- implement chat UI,
-- implement document upload UI,
-- display sources and metadata,
-- show route type or confidence when useful,
-- display error or retry states cleanly.
+- chat UI,
+- document upload UI,
+- source display,
+- route status display,
+- confidence or trace display,
+- error visibility.
 
 ## Deliverables
 - Streamlit or equivalent frontend,
-- document upload workflow,
-- chat interface,
-- answer and source rendering.
+- upload workflow,
+- interactive chat,
+- answer presentation with sources.
 
-## Completion Criteria
-- users can upload files and ask questions end to end,
-- the UI clearly reflects the result of the backend system,
-- the UI does not bypass backend logic.
+## Exit Criteria
+- users can upload documents and ask questions end to end,
+- backend routing and verification remain the source of truth.
 
 ---
 
-# Phase 12 — Hardening and Production Readiness
+# Phase 14 — Hardening and Production Readiness
 
 ## Objective
-Prepare the system for stable deployment and repeated use.
+Prepare the system for stable repeatable usage.
 
 ## Work Items
-- improve error handling,
-- add request validation,
-- add rate limiting hooks,
-- add authentication hooks if needed,
-- add configuration profiles,
-- support environment-based deployment,
-- verify container compatibility,
-- test restart safety,
-- test persistence safety.
+- containerization,
+- deployment config,
+- secret handling,
+- rate limiting hooks,
+- timeout handling,
+- restart safety,
+- persistence verification,
+- test coverage improvements,
+- final documentation.
 
 ## Deliverables
-- deployment-ready service configuration,
+- deployment-ready service,
 - environment profiles,
-- containerization support,
+- operational runbook,
 - release checklist,
-- deployment notes.
+- stable version tag.
 
-## Completion Criteria
-- the system can run reliably across restarts,
-- the system behaves predictably under failure,
-- the codebase is ready for deployment or demo use.
-
----
-
-## 5. Milestone Matrix
-
-| Milestone | Output | Status Gate |
-|---|---|---|
-| M1 | Backend skeleton | API starts successfully |
-| M2 | Ingestion pipeline | Documents can be indexed |
-| M3 | Vector persistence | Search survives restarts |
-| M4 | Retrieval MVP | Relevant chunks are retrieved |
-| M5 | Answer generation | Grounded answers are produced |
-| M6 | Adaptive planning | Queries are routed intelligently |
-| M7 | Web research | Fresh context can be fetched |
-| M8 | Verification | Hallucinations are checked |
-| M9 | Memory | Session continuity works |
-| M10 | Observability | System is measurable |
-| M11 | UI integration | End-to-end interaction exists |
-| M12 | Hardening | Production readiness achieved |
+## Exit Criteria
+- the system survives restart,
+- retrieval persists correctly,
+- evaluation artifacts remain available,
+- the project can be demonstrated reliably.
 
 ---
 
-## 6. Engineering Priorities
+## 6. Mandatory Evaluation Gates
 
-The implementation order must follow the following priority stack:
+Dynamic-RAG must not progress blindly between phases.
 
-### Priority 1
-Core functionality:
-- ingestion,
-- retrieval,
-- generation.
+### Gate A — Retrieval Gate
+Required before expanding generation complexity.
 
-### Priority 2
-Adaptive behavior:
-- planner,
-- routing,
-- web research.
+Minimum requirements:
+- retrieval metrics are measurable,
+- retrieval regressions are visible,
+- noisy retrieval behavior is understood.
 
-### Priority 3
-Reliability:
-- verification,
-- retry,
-- memory.
+### Gate B — Faithfulness Gate
+Required before adding richer orchestration.
 
-### Priority 4
-Production readiness:
-- observability,
-- evaluation,
-- hardening,
-- UI polish.
+Minimum requirements:
+- answer claims are checked against evidence,
+- unsupported claims are detected,
+- retry or abstention works.
 
-This order prevents premature complexity.
+### Gate C — Route Gate
+Required before large-scale memory expansion.
 
----
+Minimum requirements:
+- planner decisions are stable,
+- route selection is traceable,
+- query types are classified correctly.
 
-## 7. Non-Negotiable Build Rules
+### Gate D — Production Gate
+Required before release.
 
-1. Do not build all agents before the retrieval pipeline works.
-2. Do not optimize before a basic working answer path exists.
-3. Do not hide route decisions inside the prompt.
-4. Do not skip verification.
-5. Do not use process memory as the only storage mechanism.
-6. Do not rely on undocumented behavior.
-7. Do not merge major features without tests.
-8. Do not add UI complexity before backend stability.
+Minimum requirements:
+- latency is within tolerance,
+- cost is within tolerance,
+- observability is complete,
+- benchmark results are reproducible.
 
 ---
 
-## 8. Definition of Done for Dynamic-RAG v1.0
+## 7. Build Priorities
 
-Dynamic-RAG v1.0 is complete when all of the following are true:
+The implementation order must always respect the following priority stack:
 
-- documents can be uploaded and indexed,
-- queries can be routed dynamically,
-- retrieval can use hybrid search,
-- answers are grounded in evidence,
-- web search can be used when needed,
-- answers are verified before return,
-- session memory works,
-- logs and traces exist,
-- the system is testable and reproducible,
+1. Runtime foundation
+2. Observability backbone
+3. Ingestion and indexing
+4. Retrieval MVP
+5. Retrieval evaluation
+6. Grounded generation
+7. Generation evaluation
+8. Verification
+9. Adaptive routing
+10. Web research
+11. Memory
+12. System-level evaluation
+13. UI
+14. Hardening
+
+This order prevents premature complexity and protects the evaluation-first architecture.
+
+---
+
+## 8. Non-Negotiable Rules
+
+1. Do not build agents before observability exists.
+2. Do not build orchestration before retrieval works.
+3. Do not trust generation before faithfulness is measurable.
+4. Do not trust retrieval before it is benchmarked.
+5. Do not move to production before latency and cost are known.
+6. Do not hide failures.
+7. Do not skip evaluation gates.
+8. Do not treat evaluation as an afterthought.
+
+---
+
+## 9. Definition of Done for Dynamic-RAG v1.0
+
+Dynamic-RAG v1.0 is complete only when all of the following are true:
+
+- documents can be ingested and persisted,
+- retrieval quality is measurable and benchmarked,
+- generation faithfulness is measurable and enforced,
+- route decisions are adaptive and observable,
+- web research works when needed,
+- memory improves continuity without contaminating retrieval,
+- system-level latency and cost are tracked,
+- failures are diagnosable,
+- the system can be evaluated across versions,
 - the project can be deployed and demonstrated reliably.
 
 ---
 
-## 9. Post-v1 Ideas
+## 10. Final Statement
 
-After the first stable release, the following enhancements can be considered:
+Dynamic-RAG is a build-order driven system, not a feature pile.
 
-- better reranker models,
-- OCR support,
-- document summaries,
-- agent specialization upgrades,
-- multi-tenant authorization,
-- richer analytics,
-- advanced query decomposition,
-- multilingual support,
-- domain-specific adapters,
-- benchmark dashboards.
+The project should evolve through:
+- measurable foundation,
+- observable ingestion,
+- benchmarked retrieval,
+- grounded generation,
+- verified answers,
+- adaptive routing,
+- robust memory,
+- system-level accountability,
+- production hardening.
 
-These should be treated as follow-up phases, not initial scope.
-
----
-
-## 10. Final Note
-
-This roadmap is intentionally strict. Dynamic-RAG is not a “build everything and hope” project. It is a layered engineering system that should evolve in the correct order:
-
-**foundation → ingestion → retrieval → generation → routing → verification → memory → observability → hardening**
-
-If the team follows this sequence, the project will remain coherent, testable, and scalable from the beginning.
+That is the implementation strategy for the project.

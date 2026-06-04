@@ -1,240 +1,269 @@
-# PROJECT ARCHITECTURE
+# Dynamic-RAG — Project Architecture
 
 ## 1. Overview
 
-This project is a production-oriented **Dynamic RAG system** built as a modular, multi-agent knowledge application. The system accepts natural-language questions, determines the most appropriate reasoning path, retrieves relevant evidence when needed, optionally researches external sources when the query depends on freshness or web context, generates grounded answers, and verifies those answers before returning them to the user.
+**Dynamic-RAG** is a production-grade adaptive retrieval-augmented generation system built to answer questions through the most appropriate reasoning path while maintaining strong retrieval quality, faithful generation, and system-level accountability.
 
 The architecture is designed around a central principle:
 
 > **Do not force every query through the same pipeline.**
->  
-> Instead, route each query to the lightest reliable path that can answer it correctly.
+>
+> Each query should be routed to the lightest reliable path that can answer it correctly, and every major decision should be observable and measurable.
 
-That principle drives the system design. Some queries require only reasoning over prior conversation or internal memory. Some require retrieval from uploaded documents. Some require live web research. Some require multi-step evidence gathering and answer verification. The architecture must support all of these cases without becoming brittle, slow, or difficult to extend.
+Dynamic-RAG is not only a question-answering application. It is an engineered knowledge platform with explicit support for:
+- query planning,
+- retrieval,
+- generation,
+- verification,
+- memory,
+- observability,
+- benchmarking,
+- accountability.
 
-This document defines the project from first principles so that the codebase can be implemented, extended, maintained, and evaluated in a disciplined way.
+The system is deliberately organized to make it possible to answer three distinct questions for every request:
+
+1. **Did we retrieve the right evidence?**
+2. **Did the model use that evidence faithfully?**
+3. **Did the overall system behave reliably and efficiently?**
+
+That is the architectural identity of Dynamic-RAG.
 
 ---
 
 ## 2. Project Vision
 
-The system aims to become a high-trust assistant for document-grounded and knowledge-grounded question answering. It should be able to:
+The project exists to build a knowledge system that is:
+- adaptive,
+- grounded,
+- observable,
+- measurable,
+- robust,
+- production-ready.
 
-- answer questions from uploaded documents,
-- support conversations across multiple turns,
-- selectively use retrieval only when it is needed,
-- fetch fresh information from the web when required,
-- cite or expose supporting evidence,
-- detect unsupported or low-confidence answers,
-- log behavior for debugging and evaluation,
-- scale from local development to production deployment.
+The design should support both local experimentation and real deployment. It should not treat retrieval quality, generation faithfulness, latency, and cost as separate concerns. They are all part of the same engineering problem.
 
-The long-term goal is not merely to build a chatbot. The goal is to build a **query-orchestrated knowledge system** where routing, retrieval, generation, verification, and memory are separate concerns with explicit interfaces.
-
----
-
-## 3. Design Goals
-
-### 3.1 Accuracy
-The system should favor grounded answers over fluent but unsupported answers. Retrieval and verification must reduce hallucination risk.
-
-### 3.2 Adaptivity
-The system should choose the answer path dynamically based on query intent, complexity, and freshness requirements.
-
-### 3.3 Modularity
-Each subsystem must be replaceable independently. The project should not depend on one monolithic chain.
-
-### 3.4 Observability
-Every important step in the request path should be measurable and traceable: route selection, retrieval quality, latency, token usage, verification outcomes, and failure modes.
-
-### 3.5 Persistence
-Documents, embeddings, session memory, and operational traces must persist beyond process restarts.
-
-### 3.6 Extensibility
-The codebase should allow future addition of new retrieval strategies, new agents, new memory types, and new storage backends without major rewrites.
-
-### 3.7 Production Readiness
-The project must support API separation, configuration management, logging, error handling, rate limiting hooks, and safe deployment patterns.
+Dynamic-RAG should be able to:
+- answer from uploaded documents,
+- answer from recent conversation context,
+- selectively use web search when freshness is needed,
+- verify whether an answer is supported,
+- abstain when evidence is insufficient,
+- log and measure every step,
+- compare performance across versions.
 
 ---
 
-## 4. Core Architectural Principles
+## 3. Core Architectural Identity
 
-### 4.1 Separate Planning from Execution
-The system first decides *what to do*, then performs the chosen task. Planning and execution must not be collapsed into a single opaque LLM call.
+Dynamic-RAG is defined by four architectural commitments.
 
-### 4.2 Separate Retrieval from Generation
-Retrieval produces evidence. Generation turns evidence into an answer. These are different problems and should remain isolated.
+### 3.1 Adaptive Execution
+The system should not use a single fixed route for every query. Instead, it should plan execution based on:
+- intent,
+- complexity,
+- evidence availability,
+- freshness requirements,
+- budget.
 
-### 4.3 Separate Evidence from Memory
-Conversation memory is not the same as document knowledge. The system must treat them as distinct data sources.
+### 3.2 Evaluation-First Design
+Retrieval quality, grounding quality, and system behavior must be measurable from the beginning. Evaluation is not a final-stage feature.
 
-### 4.4 Verify Before Responding
-Generation alone is not enough. A verification layer should assess faithfulness and completeness before the final response is released.
+### 3.3 Evidence-Grounded Answers
+The system should use retrieved or researched evidence whenever possible, and it should not present unsupported claims as fact.
 
-### 4.5 Keep Route Decisions Explicit
-Every request should have a visible route outcome such as `internal_rag`, `web_research`, or `general_reasoning`.
-
-### 4.6 Prefer Structured Outputs
-Wherever the system produces internal decisions, it should use structured objects instead of free-form text.
-
-### 4.7 Build for Reusability
-All core logic should be packaged into reusable modules instead of being embedded directly in API endpoints.
+### 3.4 Observability and Accountability
+Every query should be traceable. The system should expose:
+- route taken,
+- evidence used,
+- confidence estimates,
+- retry behavior,
+- latency,
+- cost,
+- verification outcome.
 
 ---
 
-## 5. System Scope
+## 4. Design Goals
+
+### 4.1 Strong Retrieval
+The system should retrieve the most relevant and useful evidence, not merely topically similar chunks.
+
+### 4.2 Faithful Generation
+The system should produce answers that remain aligned with retrieved context.
+
+### 4.3 Robust Routing
+The system should choose the right route for each query rather than overusing retrieval or overusing generation.
+
+### 4.4 Operational Accountability
+The system should expose metrics and traces that allow debugging, benchmarking, and regression analysis.
+
+### 4.5 Modular Implementation
+Every subsystem should be independently replaceable.
+
+### 4.6 Production Readiness
+The system should support persistent storage, configurable deployment, and predictable failure handling.
+
+---
+
+## 5. Scope
 
 ### 5.1 In Scope
-- document upload and indexing,
-- query routing,
+- document ingestion,
+- chunking and indexing,
 - hybrid retrieval,
-- multi-stage retrieval refinement,
+- reranking,
+- adaptive routing,
 - answer generation,
-- verification and retry loops,
-- web research path,
-- short-term and long-term memory,
-- logging and observability,
-- API-based interaction,
-- UI integration,
-- configuration via environment variables and config files.
+- verification and retries,
+- web research fallback,
+- session memory,
+- semantic memory,
+- trace logging,
+- benchmarking,
+- system observability,
+- API exposure,
+- frontend integration.
 
-### 5.2 Out of Scope for the First Version
-- voice interfaces,
-- multimodal image understanding,
-- fully autonomous tool execution beyond defined agents,
-- heavy workflow automation unrelated to RAG,
-- arbitrary plugin execution,
-- user-generated code execution,
-- multi-tenant enterprise permission systems beyond foundational support,
-- training a foundation language model from scratch.
+### 5.2 Out of Scope for the Initial Release
+- model training from scratch,
+- multimodal reasoning,
+- autonomous code execution,
+- arbitrary plugin ecosystems,
+- enterprise authorization layers beyond basic support,
+- heavy workflow automation unrelated to RAG.
 
-The architecture should allow these later, but they are not required to achieve the first stable release.
+The architecture should allow these later, but they are not required for the first stable version.
 
 ---
 
-## 6. High-Level Architecture
+## 6. High-Level Layered Architecture
 
-The system is organized into the following layers:
+Dynamic-RAG is built as a layered system.
 
-1. **Interface Layer**
-   - FastAPI endpoints
-   - Streamlit or web frontend
-   - Request validation
+### 6.1 Interface Layer
+Handles:
+- HTTP APIs,
+- request validation,
+- upload endpoints,
+- query endpoints,
+- metrics endpoints,
+- client-facing responses.
 
-2. **Orchestration Layer**
-   - Planner agent
-   - LangGraph workflow
-   - route selection
-   - retry control
+### 6.2 Orchestration Layer
+Handles:
+- query planning,
+- route selection,
+- workflow control,
+- retry control,
+- state transitions.
 
-3. **Knowledge Layer**
-   - document ingestion
-   - chunking
-   - embeddings
-   - Qdrant vector store
-   - hybrid search
-   - reranking
+### 6.3 Knowledge Layer
+Handles:
+- ingestion,
+- embedding,
+- vector indexing,
+- hybrid retrieval,
+- reranking,
+- evidence assembly.
 
-4. **Reasoning Layer**
-   - generation agent
-   - web research agent
-   - general reasoning path
+### 6.4 Reasoning Layer
+Handles:
+- generation,
+- direct reasoning,
+- web research,
+- answer synthesis.
 
-5. **Verification Layer**
-   - critic agent
-   - faithfulness checking
-   - evidence alignment
-   - retry decisions
+### 6.5 Verification Layer
+Handles:
+- faithfulness checks,
+- completeness checks,
+- support validation,
+- retry or abstain decisions.
 
-6. **Memory Layer**
-   - session memory
-   - semantic memory
-   - conversation state
+### 6.6 Memory Layer
+Handles:
+- session memory,
+- semantic memory,
+- context summarization.
 
-7. **Persistence and Observability Layer**
-   - MongoDB
-   - Qdrant
-   - logs
-   - traces
-   - metrics
+### 6.7 Observability and Evaluation Layer
+Handles:
+- traces,
+- logs,
+- metrics,
+- retrieval evaluation,
+- generation evaluation,
+- system-level benchmarking.
 
-This separation ensures that each layer can evolve independently.
+### 6.8 Persistence Layer
+Handles:
+- document storage,
+- vector storage,
+- session storage,
+- trace storage,
+- memory storage.
 
 ---
 
 ## 7. Request Lifecycle
 
-A request follows a structured lifecycle.
+Every query should follow a structured lifecycle.
 
-### 7.1 Ingestion or Query Entry
-The system receives either:
-- a document upload,
-- a user query,
-- a follow-up query in an existing session.
+### Step 1 — Entry
+The system receives a query or document upload through the API.
 
-### 7.2 Context Assembly
-The system gathers available context:
-- current query,
-- recent conversation turns,
-- relevant persistent memory,
-- user/session metadata,
-- document collections available to the session.
+### Step 2 — Context Assembly
+The system loads:
+- session history,
+- relevant memory,
+- available document scope,
+- optional metadata.
 
-### 7.3 Planning
-The planner agent estimates:
-- query intent,
-- query complexity,
-- whether retrieval is needed,
-- whether web search is needed,
-- whether the query should be decomposed,
-- confidence in routing,
-- budget for tokens and retrieval steps.
+### Step 3 — Planning
+A planner agent estimates:
+- intent,
+- complexity,
+- freshness need,
+- retrieval need,
+- route confidence,
+- budget.
 
-### 7.4 Route Selection
-The orchestrator selects one of the core routes:
-- no retrieval / direct reasoning,
+### Step 4 — Routing
+The system selects one of the supported routes:
+- direct reasoning,
 - internal retrieval,
 - web research,
-- hybrid or iterative retrieval,
-- fallback or abstain path.
+- hybrid retrieval,
+- abstain / fallback.
 
-### 7.5 Evidence Gathering
-The chosen route gathers supporting material:
-- internal document chunks,
-- web snippets,
-- prior session context,
-- semantic memory items.
+### Step 5 — Evidence Gathering
+The chosen path retrieves or assembles:
+- document chunks,
+- web results,
+- memory context,
+- supporting metadata.
 
-### 7.6 Answer Generation
-The generator forms a candidate response using:
-- the query,
-- relevant evidence,
-- system constraints,
-- formatting instructions.
+### Step 6 — Generation
+The generator produces a candidate answer from the assembled evidence.
 
-### 7.7 Verification
-A critic agent checks:
-- whether the answer is supported,
-- whether important claims are grounded,
-- whether the answer is complete enough,
-- whether a retry is needed.
+### Step 7 — Verification
+The critic checks:
+- support,
+- faithfulness,
+- completeness,
+- citation correctness,
+- answer relevance.
 
-### 7.8 Response Formatting
-The formatter prepares the final response with:
-- answer text,
-- supporting sources,
-- confidence,
-- route used,
-- optional citations or reference metadata.
+### Step 8 — Retry or Return
+If verification fails, the system can:
+- rewrite the query,
+- retrieve again,
+- research again,
+- regenerate,
+- abstain.
 
-### 7.9 Logging and Persistence
-The request outcome is stored for:
-- debugging,
-- analytics,
-- evaluation,
-- auditing,
-- future memory retrieval.
+### Step 9 — Formatting and Logging
+The final answer is formatted, traced, and persisted.
 
 ---
 
@@ -242,573 +271,463 @@ The request outcome is stored for:
 
 ## 8.1 Interface Layer
 
-The interface layer exposes the project to external clients.
+The interface layer is the external contract for the system.
 
 ### Responsibilities
-- accept user messages,
-- validate input payloads,
-- handle file uploads,
-- manage sessions,
-- expose status and metrics endpoints,
-- return structured responses.
+- accept user questions,
+- accept document uploads,
+- validate payloads,
+- return structured answers,
+- expose health and metrics endpoints.
 
-### Implementation Requirements
-- FastAPI as the primary backend framework,
-- request and response schemas defined with Pydantic,
-- route handlers thin and delegation-only,
-- consistent error responses,
-- versioned API paths.
-
-### Expected Endpoints
-- `POST /documents/upload`
-- `POST /chat/query`
-- `GET /chat/{session_id}`
-- `GET /query/{query_id}/sources`
-- `GET /system/metrics`
-- `POST /documents/reindex`
-- `DELETE /documents/{doc_id}`
-
-The interface layer must not contain business logic beyond validation and orchestration calls.
+### Design Rules
+- API handlers should be thin,
+- business logic must live in service modules,
+- responses must be structured,
+- errors must be explicit and consistent.
 
 ---
 
 ## 8.2 Orchestration Layer
 
-This layer coordinates the end-to-end reasoning path.
+This layer coordinates the overall workflow.
 
-### Core Components
-- Planner agent
-- LangGraph workflow
-- route dispatcher
-- retry controller
-- failure fallback rules
+### Components
+- planner agent,
+- route dispatcher,
+- graph controller,
+- retry manager,
+- failure manager.
 
 ### Responsibilities
-- decide route,
-- manage state transitions,
-- call the correct downstream modules,
-- stop repeated loops,
-- enforce retry limits,
-- pass structured state objects between nodes.
+- determine what happens next,
+- route requests to the correct node,
+- keep state consistent,
+- stop infinite retry loops,
+- preserve observability data.
 
-### Required Behavior
-The orchestration layer should be deterministic in structure and probabilistic only where LLM-based decisions are intentionally used. Each node must have a clear input and output schema.
+### Key Principle
+Planning and execution must remain separate.
 
 ---
 
 ## 8.3 Query Planner Agent
 
-This agent is the first decision-maker for every query.
+The planner is the system’s first decision point.
 
 ### Responsibilities
-- classify the query,
-- estimate complexity,
-- determine freshness requirements,
-- determine whether document retrieval is needed,
-- decide whether external search is required,
-- decide whether the query should be decomposed,
-- produce route confidence.
+- classify query type,
+- estimate query complexity,
+- decide whether retrieval is needed,
+- decide whether web search is needed,
+- estimate confidence,
+- produce subqueries when necessary,
+- set execution budget.
 
-### Output Schema
-A planner output should be structured and machine-readable. Example fields:
-- `intent`
-- `route`
-- `complexity`
-- `needs_web`
-- `needs_retrieval`
-- `confidence`
-- `subqueries`
-- `budget`
+### Output Requirements
+The planner must return structured output, not free-form text.
 
 ### Why It Matters
-The planner avoids unnecessary retrieval and prevents the system from treating all queries alike. This is the key mechanism behind adaptive behavior.
+A good planner reduces unnecessary retrieval, improves latency, and increases accuracy by selecting the right route early.
 
 ---
 
 ## 8.4 Ingestion Pipeline
 
-The ingestion pipeline converts raw documents into indexed knowledge.
+The ingestion pipeline transforms raw documents into retrievable knowledge.
 
 ### Responsibilities
 - load files,
 - extract text,
-- normalize content,
+- clean and normalize content,
 - chunk documents,
-- generate embeddings,
 - attach metadata,
-- store in vector database,
-- update searchable indexes.
+- generate embeddings,
+- persist chunks in vector storage.
 
 ### Supported Inputs
-Initially:
+Initial support:
 - PDF
 - TXT
 
-Later:
+Future support:
 - DOCX
 - HTML
 - Markdown
-- scanned PDFs with OCR
+- scanned documents with OCR
 
-### Chunking Policy
-Chunking should preserve semantic coherence while maintaining retrieval efficiency. Chunks should include:
-- chunk text,
+### Ingestion Requirements
+Each chunk should preserve:
 - source document ID,
-- page or section metadata,
+- file name,
+- section or page reference,
 - chunk position,
-- content hash.
-
-### Metadata Requirements
-Each chunk should store:
-- document ID,
-- filename,
-- document type,
 - version,
-- page number or section,
-- upload timestamp,
-- access scope,
-- optional tags.
+- hash,
+- upload time.
 
-### Why This Layer Exists
-Without disciplined ingestion, retrieval quality degrades quickly. Document quality and metadata quality are primary drivers of answer quality.
+### Why It Matters
+Retrieval quality depends heavily on ingestion quality.
 
 ---
 
 ## 8.5 Retrieval Layer
 
-The retrieval layer finds evidence relevant to the current query.
+The retrieval layer finds evidence for the query.
 
-### Retrieval Strategy
-The project should use **hybrid retrieval**, not only dense vectors.
+### Retrieval Modes
+- dense retrieval,
+- sparse retrieval,
+- hybrid retrieval,
+- metadata-filtered retrieval,
+- reranked retrieval.
 
-### Components
-- dense vector retrieval,
-- lexical retrieval,
-- score fusion,
-- metadata filtering,
-- reranking,
-- deduplication.
+### Responsibilities
+- retrieve candidate chunks,
+- merge candidate sets,
+- rerank results,
+- deduplicate noisy results,
+- preserve source traceability.
 
-### Dense Retrieval
-Captures semantic similarity between query and document chunks.
+### Evidence Requirement
+Retrieval should return evidence objects, not just text fragments.
 
-### Lexical Retrieval
-Captures exact term matches and rare entity references.
-
-### Reranking
-A cross-encoder or similar reranker should reorder candidate chunks using higher-quality relevance scoring.
-
-### Output
-The retrieval layer should return:
-- top chunks,
-- source metadata,
-- scores,
-- retrieval path used,
-- retrieval confidence.
-
-### Design Requirement
-Retrieval should be repeatable, inspectable, and testable independently of generation.
+Each evidence item should carry:
+- source type,
+- source identifier,
+- chunk identifier,
+- content text,
+- score,
+- metadata.
 
 ---
 
 ## 8.6 Web Research Agent
 
-The web research agent is used when:
-- the query needs current information,
-- the internal corpus is insufficient,
-- external corroboration is needed,
-- the user asks for non-document knowledge that may have changed.
+This agent is used only when current or external information is needed.
 
 ### Responsibilities
-- search the web using a trusted search provider,
-- gather snippets or page content,
-- extract candidate evidence,
-- normalize results into the same evidence format used by internal retrieval.
-
-### Important Constraint
-Web research should not be used for every query. It is a selective fallback and should be invoked only when the planner indicates need.
-
-### Output
-A structured evidence bundle including:
-- search query used,
-- titles,
-- URLs or references,
-- snippets,
-- recency indicators if available.
-
----
-
-## 8.7 General Reasoning Path
-
-Some queries do not require retrieval.
-
-### Examples
-- simple conceptual questions,
-- small talk,
-- explanatory requests,
-- brainstorming prompts,
-- low-risk open-domain requests.
-
-### Responsibilities
-- answer directly,
-- avoid unnecessary retrieval cost,
-- remain within policy and system instructions,
-- preserve consistency with the project’s grounded-answer philosophy.
-
-This path should still be traceable and logged, even if it does not use evidence retrieval.
-
----
-
-## 8.8 Generation Layer
-
-The generation layer produces the candidate answer.
-
-### Responsibilities
-- synthesize evidence into a coherent answer,
-- remain faithful to source material,
-- avoid unsupported claims,
-- follow response format requirements,
-- maintain concise and useful language.
-
-### Input
-- user query,
-- selected route,
-- retrieved evidence,
-- memory context,
-- generation instructions.
-
-### Output
-- candidate answer,
-- source references,
-- optional uncertainty statements,
-- confidence estimate.
+- formulate search queries,
+- gather web results,
+- normalize snippets,
+- preserve source metadata,
+- pass evidence to the generator.
 
 ### Design Constraint
-The generator should not be the only authority on correctness. It is a synthesis component, not a truth engine.
+The web route should be selective. It should not be the default path for every request.
 
 ---
 
-## 8.9 Critic / Verification Layer
+## 8.7 Generation Layer
 
-This layer validates the candidate response before it is returned.
+The generation layer synthesizes evidence into a candidate answer.
 
 ### Responsibilities
-- check faithfulness against evidence,
+- combine the query and evidence,
+- generate a grounded answer,
+- follow formatting constraints,
+- avoid unsupported claims,
+- expose uncertainty when needed.
+
+### Design Constraint
+The generator is not the truth source. It is an evidence synthesis component.
+
+---
+
+## 8.8 Verification Layer
+
+The verification layer validates the generated response.
+
+### Responsibilities
+- score faithfulness,
 - detect unsupported claims,
-- detect missing key points,
-- assess completeness,
-- decide whether to accept or retry,
-- enforce abstention when confidence is too low.
+- check source-to-claim alignment,
+- verify answer completeness,
+- decide whether to retry or abstain.
 
-### Verification Signals
-- support coverage,
-- contradiction risk,
-- source alignment,
-- answer completeness,
-- retrieval sufficiency.
-
-### Retry Policy
-If the critic rejects the answer:
-1. reformulate the query or subquery,
-2. rerun retrieval or research,
-3. regenerate,
-4. verify again,
-5. stop after a bounded number of attempts.
-
-### Why This Layer Exists
-It reduces hallucination and makes the system safer and more reliable.
+### Why It Exists
+Generation alone can be fluent while still being incorrect. Verification prevents unsupported confidence from reaching the user.
 
 ---
 
-## 8.10 Formatter Layer
+## 8.9 Memory Layer
 
-The formatter prepares the final response for the client.
-
-### Responsibilities
-- clean raw output,
-- enforce consistent structure,
-- attach sources,
-- include confidence information if desired,
-- format markdown or JSON depending on client needs.
-
-### Required Output Properties
-- readable answer,
-- source references,
-- route metadata,
-- error or abstain messages when applicable.
-
-### Why It Matters
-The formatter separates presentation from reasoning.
-
----
-
-## 8.11 Memory Layer
-
-The memory layer preserves state across interactions.
+The memory layer manages continuity across sessions.
 
 ### Short-Term Memory
-Used for:
-- recent conversation turns,
-- immediate session continuity,
-- pronoun resolution,
-- follow-up questions.
+Stores recent conversation turns for immediate continuity.
 
 ### Long-Term Memory
-Used for:
-- stable user preferences,
-- recurring topics,
-- persistent semantic facts,
-- previous resolution patterns.
+Stores stable user preferences, semantic facts, and reusable context.
 
-### Design Requirement
-Memory should be filtered and scored before injection into prompts. It should not dump raw history into every request.
-
-### Storage
-Session history may live in MongoDB. Semantic memory may be stored in a separate structure or collection with retrieval support.
+### Design Rule
+Memory must be selective. It should not be dumped blindly into every prompt.
 
 ---
 
-## 8.12 Persistence Layer
+## 8.10 Observability Layer
 
-The persistence layer stores all durable artifacts.
+This layer makes the system measurable.
 
-### Qdrant
-Used for:
-- document embeddings,
-- searchable chunk vectors,
-- metadata payloads,
-- hybrid retrieval support.
+### Must Be Observable
+- route decisions,
+- retrieval latency,
+- generation latency,
+- verification outcomes,
+- retry count,
+- token usage,
+- cost,
+- source count,
+- failure states.
 
-### MongoDB
-Used for:
+### Why It Matters
+Without observability, the system cannot be improved systematically.
+
+---
+
+## 8.11 Evaluation Layer
+
+This layer measures system quality across three planes:
+
+### Plane 1 — Retrieval Quality
+- Context Recall
+- Context Precision
+- Recall@K
+- MRR
+- NDCG@K
+- Hit Rate
+
+### Plane 2 — Generation Quality
+- Faithfulness
+- Answer Relevance
+- Groundedness
+- Citation Accuracy
+- Completeness
+- Robustness
+
+### Plane 3 — System-Level Quality
+- End-to-end accuracy
+- Rejection rate
+- Latency
+- Cost per query
+- Retry frequency
+- Stability across versions
+
+Evaluation is a core architectural function, not a reporting add-on.
+
+---
+
+## 9. Data and Persistence Architecture
+
+## 9.1 Qdrant
+Qdrant is the primary vector store for:
+- chunk embeddings,
+- source metadata,
+- filtered retrieval,
+- persistent indexing.
+
+### Stored Data
+Each vector record should contain:
+- vector representation,
+- chunk text,
+- chunk ID,
+- document ID,
+- page or section reference,
+- document version,
+- tags,
+- upload metadata.
+
+---
+
+## 9.2 MongoDB
+MongoDB should store:
 - chat sessions,
-- conversation events,
-- memory records,
-- request logs,
-- operational state.
-
-### File System / Object Storage
-Used for:
-- raw uploaded files,
-- intermediate parsing artifacts,
-- evaluation datasets,
-- exported logs if needed.
-
-### Design Requirement
-No important state should exist only in process memory.
+- conversation messages,
+- semantic memory,
+- request traces,
+- document ingestion state,
+- evaluation summaries.
 
 ---
 
-## 8.13 Observability Layer
+## 9.3 File Storage
+The file layer stores:
+- raw uploads,
+- intermediate parsing artifacts,
+- benchmark datasets,
+- generated evaluation reports.
 
-The observability layer allows the system to be measured and debugged.
+---
 
-### What Must Be Logged
+## 10. Data Model Overview
+
+### QueryState
+Contains the evolving state of one request:
 - request ID,
 - session ID,
-- route selected,
-- retrieval timing,
-- generation timing,
-- verification result,
-- token usage,
-- error type,
-- retries performed,
-- source count,
-- confidence score,
-- response length.
+- query text,
+- route,
+- evidence,
+- answer,
+- critic result,
+- final response,
+- metrics.
 
-### Why This Matters
-A production system must be explainable operationally. If something fails, the team must know where and why.
-
-### Evaluation Support
-The same observability data should support:
-- regression tests,
-- offline evaluation,
-- quality comparisons between versions,
-- performance benchmarks.
-
----
-
-## 9. Data Model Overview
-
-The project should use explicit models for core entities.
-
-### 9.1 Query State
-Contains:
-- user query,
-- session ID,
-- memory context,
-- planner output,
-- selected route,
-- evidence bundles,
-- generated answer,
-- critic result.
-
-### 9.2 Document Chunk
-Contains:
+### DocumentChunk
+Contains one retrievable unit:
 - chunk text,
-- source document ID,
-- chunk ID,
-- position,
-- metadata,
-- embedding vector reference.
+- source metadata,
+- vector reference,
+- version,
+- hash.
 
-### 9.3 Session Record
-Contains:
-- session ID,
-- user messages,
-- assistant messages,
-- timestamps,
-- memory summary,
-- active document scope.
+### PlannerOutput
+Contains routing decisions:
+- intent,
+- complexity,
+- route,
+- confidence,
+- budget,
+- subqueries.
 
-### 9.4 Retrieval Result
-Contains:
-- retrieved chunks,
-- retrieval scores,
-- retriever type,
-- reranker scores,
-- selected evidence set.
+### RetrievalResult
+Contains retrieval outputs:
+- candidate chunks,
+- reranked chunks,
+- scores,
+- confidence.
 
-### 9.5 Verification Record
-Contains:
-- answer ID,
-- verdict,
-- issues found,
-- retry count,
-- supporting evidence coverage.
+### VerificationResult
+Contains validation outputs:
+- faithful or not,
+- supported or not,
+- issues,
+- retry decision.
 
----
-
-## 10. Routing Modes
-
-The system should support several explicit routes.
-
-### 10.1 Direct Reasoning
-Used when the query is simple and does not require evidence retrieval.
-
-### 10.2 Internal Retrieval
-Used when the answer should come from uploaded or indexed documents.
-
-### 10.3 Web Research
-Used when fresh or external information is needed.
-
-### 10.4 Hybrid Route
-Used when internal documents and web evidence both matter.
-
-### 10.5 Abstain Route
-Used when the system cannot answer safely or confidently.
-
-Each route should be visible in logs and response metadata.
+### FinalResponse
+Contains the user-facing output:
+- answer,
+- source references,
+- route,
+- confidence,
+- status.
 
 ---
 
-## 11. Non-Functional Requirements
+## 11. LangGraph Workflow Design
 
-### 11.1 Reliability
-The system should degrade gracefully. If web search fails, internal retrieval may still work. If one document store is temporarily unavailable, the system should report the failure clearly.
+LangGraph should orchestrate the system as a state machine.
 
-### 11.2 Scalability
-The architecture should support more documents, more users, and more requests without major redesign.
+### Suggested Nodes
+1. Context Loader  
+2. Planner  
+3. Route Dispatcher  
+4. Internal Retriever  
+5. Web Researcher  
+6. General Reasoner  
+7. Evidence Assembler  
+8. Generator  
+9. Critic  
+10. Retry Controller  
+11. Formatter  
+12. Logger
 
-### 11.3 Maintainability
-Each module should have a single responsibility and a clear interface.
+### Workflow Principle
+Each node should have:
+- a clear input,
+- a clear output,
+- a bounded responsibility.
 
-### 11.4 Testability
-Core logic should be unit-testable without requiring the full UI or live external services.
-
-### 11.5 Security
-The system should avoid exposing secrets, should validate inputs, and should be safe against unsafe file or prompt content where feasible.
-
-### 11.6 Cost Awareness
-The planner should reduce unnecessary model calls and avoid expensive pathways for simple requests.
-
----
-
-## 12. Error Handling Philosophy
-
-The system should not fail silently.
-
-### Required Behaviors
-- return structured errors,
-- log failure reasons,
-- preserve request context,
-- distinguish between user error and system error,
-- provide fallback answers or safe abstentions where possible.
-
-### Examples of Failure Classes
-- invalid file format,
-- missing environment variable,
-- empty retrieval result,
-- vector database failure,
-- web search failure,
-- generation timeout,
-- verification failure.
+### State Transition Rule
+The graph should make the decision path explicit and traceable.
 
 ---
 
-## 13. Extensibility Roadmap Built Into the Architecture
+## 12. Routing Modes
 
-The current architecture should allow these future additions without breaking core design:
+### 12.1 Direct Reasoning
+Used for queries that do not require retrieval.
 
-- additional retrieval strategies,
-- more robust reranking models,
-- document-level summaries,
-- source citation rendering,
-- multi-tenant document isolation,
-- OCR for scanned documents,
-- tool-using subagents,
-- evaluation dashboards,
-- policy-based response filters,
-- multilingual support,
-- advanced memory compression.
+### 12.2 Internal Retrieval
+Used for document-grounded queries.
 
-These are not required immediately, but the architecture should not block them.
+### 12.3 Web Research
+Used for current or external information.
 
----
+### 12.4 Hybrid Retrieval
+Used when both document evidence and external evidence are useful.
 
-## 14. Implementation Boundaries
-
-To keep the codebase clean:
-
-### API Layer
-Should not contain retrieval, embedding, or reasoning logic.
-
-### Agent Layer
-Should not directly manage file uploads or database schema definitions.
-
-### Retrieval Layer
-Should not format user-facing responses.
-
-### Persistence Layer
-Should not make routing decisions.
-
-### Formatter Layer
-Should not query databases directly.
-
-This separation prevents architectural entanglement.
+### 12.5 Abstain
+Used when the system does not have sufficient support to answer safely.
 
 ---
 
-## 15. Success Criteria for the Architecture
+## 13. Production Constraints
 
-The architecture can be considered successful when the following are true:
+### 13.1 Reliability
+The system must recover gracefully from:
+- missing documents,
+- empty retrieval,
+- search failures,
+- generation failures,
+- verification failures.
 
-1. The system can ingest documents reliably.
-2. The system can answer document-based questions grounded in retrieved evidence.
-3. The system can selectively route non-document questions away from retrieval.
-4. The system can use web research for fresh information.
-5. The system can verify answer quality before responding.
-6. The system can preserve and reuse session memory.
-7. The system can be observed, tested, and debugged effectively.
-8. The system can be extended without rewriting core logic.
+### 13.2 Traceability
+Every answer should be traceable back to:
+- route selection,
+- evidence,
+- verification,
+- logs.
+
+### 13.3 Persistence
+Important state must survive process restarts.
+
+### 13.4 Cost Awareness
+The architecture must allow controlled use of retrieval and LLM calls.
+
+### 13.5 Modularity
+Each subsystem should be replaceable without rewriting the entire application.
+
+---
+
+## 14. Testing and Benchmark Readiness
+
+The architecture should support:
+- unit testing,
+- integration testing,
+- offline benchmark evaluation,
+- regression comparisons,
+- route correctness tests,
+- retrieval quality tests,
+- generation faithfulness tests,
+- system-level stability tests.
+
+The design must make these tests easy to run and interpret.
+
+---
+
+## 15. Success Criteria
+
+Dynamic-RAG has a successful architecture when:
+- queries are routed intelligently,
+- retrieval quality is measurable,
+- answers are grounded,
+- unsupported claims are caught,
+- latency and cost are visible,
+- routes and failures are traceable,
+- the system can be benchmarked and improved over time.
 
 ---
 
 ## 16. Final Architectural Statement
 
-This project is a modular adaptive knowledge system that combines query planning, retrieval, generation, verification, and memory into a single disciplined workflow. The architecture is intentionally built to avoid a common failure pattern in RAG applications: forcing every question through the same retrieval-and-generation path.
+Dynamic-RAG is an evaluation-first adaptive RAG system built to combine:
+- intelligent routing,
+- high-quality retrieval,
+- faithful generation,
+- verification,
+- memory,
+- observability,
+- accountability.
 
-Instead, the system chooses the correct path for each query, gathers the right evidence, verifies the result, and returns a grounded response. That is the core architectural identity of the project.
-
-This document defines the target state of the system. The implementation should follow it closely and preserve the separation of concerns described here.
+Its defining characteristic is not just that it answers questions. It is that it can explain, measure, and defend how those answers were produced.

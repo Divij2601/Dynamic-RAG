@@ -2,109 +2,104 @@
 
 ## 1. Purpose
 
-This document defines the technical design of **Dynamic-RAG**, a modular adaptive retrieval-augmented generation system built with explicit orchestration, persistent storage, verification, and multi-agent execution.
+This document defines the technical implementation blueprint for **Dynamic-RAG**, an evaluation-first adaptive retrieval-augmented generation system.
 
-The purpose of this document is to describe how the system should be implemented in code. It translates the project architecture and roadmap into concrete engineering structure:
-- module boundaries,
-- class responsibilities,
-- state models,
-- database schemas,
-- API contracts,
-- workflow transitions,
-- failure handling,
-- deployment assumptions.
+The purpose of this document is to translate the architecture and roadmap into a concrete software design that can be implemented reliably, tested independently, and extended without architectural drift.
 
-This document should be treated as the implementation reference for backend development and agentic coding.
+Dynamic-RAG is designed to:
+- route queries intelligently,
+- retrieve the right evidence,
+- generate grounded answers,
+- verify answer faithfulness,
+- preserve memory appropriately,
+- expose observability data,
+- support benchmarking and regression testing,
+- remain production-ready.
 
----
-
-## 2. Design Objectives
-
-Dynamic-RAG is designed to satisfy the following technical objectives:
-
-1. **Adaptive execution**
-   - Route each query to the correct reasoning path.
-
-2. **Grounded answer generation**
-   - Generate answers from evidence whenever possible.
-
-3. **Persistent retrieval**
-   - Store and retrieve embeddings reliably across restarts.
-
-4. **Verification-first response flow**
-   - Validate candidate answers before release.
-
-5. **Multi-agent separation**
-   - Keep planning, retrieval, generation, verification, and formatting isolated.
-
-6. **Operational visibility**
-   - Log and trace route selection, latency, and quality signals.
-
-7. **Modular codebase**
-   - Support future replacement of any subsystem without full rewrite.
+This document is the implementation reference for backend development.
 
 ---
 
-## 3. Technology Stack
+## 2. Design Identity
 
-The initial implementation should use the following stack:
+Dynamic-RAG is not a simple chat application with retrieval attached.
+
+It is a modular knowledge system built around four technical commitments:
+
+1. **Adaptive control flow**
+   - Different queries may require different execution paths.
+
+2. **Evaluation-first engineering**
+   - Retrieval quality, generation faithfulness, and system behavior must be measurable.
+
+3. **Evidence-grounded output**
+   - Answers should be supported by retrieved or researched evidence.
+
+4. **Operational accountability**
+   - Every important request decision should be traceable.
+
+These commitments affect every module in the system.
+
+---
+
+## 3. Design Objectives
+
+### 3.1 Correctness
+The system should maximize answer correctness through strong retrieval, faithful generation, and verification.
+
+### 3.2 Measurability
+Every major subsystem should emit metrics and traces.
+
+### 3.3 Modularity
+Each component should be replaceable independently.
+
+### 3.4 Persistence
+Indexed documents, sessions, memory, and traces should survive restarts.
+
+### 3.5 Scalability
+The design should support growth in documents, users, and request volume.
+
+### 3.6 Debuggability
+Failures should be localizable to a specific stage of the pipeline.
+
+---
+
+## 4. Technology Stack
+
+The first implementation should use the following stack.
 
 ### Backend
-- **FastAPI** for HTTP APIs
-- **Uvicorn** as ASGI server
-- **Pydantic** for request/response schemas
-- **LangGraph** for workflow orchestration
-- **LangChain** for model and retriever integrations
+- FastAPI
+- Uvicorn
+- Pydantic
+- LangGraph
+- LangChain
 
-### AI / Retrieval
-- **GROQ-compatible LLM**
-- **Sentence-transformers or embedding provider**
-- **Qdrant** as primary vector store
-- **BM25** for sparse retrieval
-- **Reranker model** for candidate reordering
-- **Tavily or equivalent search API** for web research
+### Retrieval and AI
+- Qdrant
+- sentence-transformers or equivalent embedding provider
+- BM25 or equivalent sparse retrieval component
+- reranker model
+- OpenAI-compatible LLM or equivalent provider
+- Tavily or another web search API for external evidence
 
 ### Storage
-- **MongoDB** for sessions, memory, and logs
-- **Qdrant** for document embeddings and payload metadata
-- Optional local filesystem for raw documents and debugging artifacts
+- MongoDB for sessions, memory, logs, and traces
+- Qdrant for embeddings and vector metadata
+- local file storage for raw uploads and artifacts
 
 ### Observability
-- structured logging,
-- request tracing,
-- token and latency measurement,
-- evaluation hooks.
-
----
-
-## 4. System Boundary
-
-Dynamic-RAG is a backend-first application. The frontend is a thin client.
-
-### In scope
-- document upload,
-- indexing,
-- query orchestration,
-- retrieval,
-- answer generation,
-- verification,
-- memory management,
-- source exposure,
-- logging,
-- metrics.
-
-### Out of scope for core backend design
-- model training,
-- distributed orchestration clusters,
-- custom UI rendering logic,
-- streaming media processing,
-- unrelated automation workflows.
+- structured logging
+- timing hooks
+- token accounting
+- trace persistence
+- benchmark export
 
 ---
 
 ## 5. Repository Structure
 
-The codebase should be organized into clean modules.
+A clean modular structure is required.
 
 ```text
 repo/
@@ -112,15 +107,7 @@ repo/
 │   ├── api/
 │   │   ├── main.py
 │   │   ├── routes/
-│   │   │   ├── chat.py
-│   │   │   ├── documents.py
-│   │   │   ├── health.py
-│   │   │   └── metrics.py
 │   │   ├── schemas/
-│   │   │   ├── chat.py
-│   │   │   ├── documents.py
-│   │   │   ├── common.py
-│   │   │   └── responses.py
 │   │   └── dependencies.py
 │   │
 │   ├── agents/
@@ -150,7 +137,7 @@ repo/
 │   │   ├── session_store.py
 │   │   ├── semantic_memory.py
 │   │   ├── summarizer.py
-│   │   └── memory_policy.py
+│   │   └── policy.py
 │   │
 │   ├── graph/
 │   │   ├── state.py
@@ -172,7 +159,9 @@ repo/
 │   │
 │   ├── evaluation/
 │   │   ├── datasets.py
-│   │   ├── metrics.py
+│   │   ├── retrieval_metrics.py
+│   │   ├── generation_metrics.py
+│   │   ├── system_metrics.py
 │   │   ├── offline_eval.py
 │   │   └── regression.py
 │   │
@@ -194,254 +183,220 @@ repo/
 
 ---
 
-## 6. Core Runtime Flow
+## 6. Core Runtime Model
 
-The runtime flow is the same for every query, though the selected route changes.
+Dynamic-RAG should operate as a stateful request-processing system.
 
-### Request flow
-1. API receives query.
-2. Session and memory context are loaded.
-3. Planner agent analyzes the request.
-4. Route is selected.
-5. Relevant execution path runs.
-6. Evidence is assembled.
-7. Generator produces candidate answer.
-8. Critic verifies response.
-9. Formatter prepares the final payload.
-10. Result is returned and logged.
+### The runtime flow
+1. API receives request.
+2. Context is loaded.
+3. Planner decides route.
+4. Selected route executes.
+5. Evidence is assembled.
+6. Generator creates answer.
+7. Critic verifies answer.
+8. Formatter prepares final payload.
+9. Logger and metric collector store the trace.
 
-This flow should be implemented through LangGraph or an equivalent graph-based state machine.
+The runtime should be implemented as a graph or state machine so each step is explicit and inspectable.
 
 ---
 
-## 7. Main Data Objects
+## 7. Key Data Objects
 
-The system should rely on explicit data structures rather than ad hoc dictionaries wherever possible.
+The system should rely on explicit structured objects.
 
 ### 7.1 QueryState
-Represents the full state of one user request.
+Represents the full state of one request.
 
 Suggested fields:
-- `query_id`
-- `session_id`
-- `user_query`
-- `chat_history`
-- `memory_context`
-- `planner_output`
-- `route`
-- `retrieved_evidence`
-- `web_evidence`
-- `candidate_answer`
-- `critic_result`
-- `final_answer`
-- `metadata`
-- `error`
+- request_id
+- session_id
+- query_text
+- chat_history
+- memory_context
+- planner_output
+- selected_route
+- internal_evidence
+- web_evidence
+- candidate_answer
+- verification_result
+- final_response
+- metrics
+- error
 
 ### 7.2 PlannerOutput
-Represents route selection output.
+Represents route selection and budget planning.
 
 Suggested fields:
-- `intent`
-- `complexity`
-- `route`
-- `needs_retrieval`
-- `needs_web`
-- `needs_decomposition`
-- `confidence`
-- `subqueries`
-- `budget`
+- intent
+- complexity
+- route
+- confidence
+- needs_retrieval
+- needs_web
+- needs_decomposition
+- subqueries
+- budget
 
 ### 7.3 EvidenceItem
-Represents a unit of supporting evidence.
+Represents one supporting evidence unit.
 
 Suggested fields:
-- `source_type`
-- `source_id`
-- `chunk_id`
-- `page`
-- `text`
-- `score`
-- `metadata`
+- source_type
+- source_id
+- chunk_id
+- page
+- section
+- text
+- score
+- metadata
 
 ### 7.4 RetrievalResult
 Represents retrieval output.
 
 Suggested fields:
-- `retrieval_mode`
-- `dense_results`
-- `sparse_results`
-- `merged_results`
-- `reranked_results`
-- `top_k`
-- `confidence`
+- mode
+- dense_candidates
+- sparse_candidates
+- merged_candidates
+- reranked_candidates
+- top_k
+- retrieval_confidence
 
 ### 7.5 VerificationResult
 Represents critic output.
 
 Suggested fields:
-- `faithful`
-- `supported`
-- `completeness`
-- `issues`
-- `retry_required`
-- `severity`
+- faithful
+- supported
+- complete
+- issues
+- retry_required
+- severity
 
 ### 7.6 FinalResponse
-Represents response sent to the user.
+Represents the response returned to the client.
 
 Suggested fields:
-- `answer`
-- `sources`
-- `route`
-- `confidence`
-- `status`
-- `session_id`
-- `query_id`
+- answer
+- sources
+- route
+- confidence
+- status
+- query_id
+- session_id
 
 ---
 
 ## 8. API Design
+
+The API layer should remain thin and delegate all business logic.
 
 ## 8.1 Health Endpoint
 
 ### `GET /health`
 Returns service status.
 
-Example response:
+Example:
 ```json
 {
   "status": "ok"
 }
 ```
 
----
-
 ## 8.2 Document Upload
 
 ### `POST /documents/upload`
 
-Accepts:
-- file,
-- optional description,
-- optional metadata.
-
 Responsibilities:
 - validate file type,
 - store raw file,
-- parse text,
-- chunk content,
-- embed chunks,
-- persist vectors and metadata,
-- return document ID.
-
----
+- trigger ingestion,
+- return document metadata.
 
 ## 8.3 Query Endpoint
 
 ### `POST /chat/query`
 
-Accepts:
-- user query,
-- session ID,
-- optional client metadata.
-
 Responsibilities:
-- load memory,
-- plan route,
-- execute selected flow,
-- verify output,
-- return structured answer.
-
----
+- load context,
+- execute graph,
+- return final response.
 
 ## 8.4 Session Endpoint
 
 ### `GET /chat/{session_id}`
 Returns session history and metadata.
 
----
-
-## 8.5 Sources Endpoint
+## 8.5 Source Endpoint
 
 ### `GET /query/{query_id}/sources`
-Returns cited sources or evidence items associated with a query.
-
----
+Returns evidence references associated with a query.
 
 ## 8.6 Metrics Endpoint
 
 ### `GET /system/metrics`
-Returns system health and operational statistics.
+Returns high-level operational metrics.
 
 ---
 
-## 9. LangGraph State Machine Design
+## 9. LangGraph Workflow Design
 
-Dynamic-RAG should use LangGraph for explicit control flow.
+LangGraph should serve as the orchestration layer.
 
 ## 9.1 Graph Nodes
 
-### Node 1: Context Loader
+### Node 1 — Context Loader
 Loads:
-- chat history,
-- semantic memory,
-- document scope.
+- chat history
+- semantic memory
+- document scope
 
-### Node 2: Planner
-Classifies the query and sets the route.
+### Node 2 — Planner
+Classifies query and selects route.
 
-### Node 3: Route Dispatcher
-Sends the state to the appropriate branch.
+### Node 3 — Route Dispatcher
+Branches to the appropriate path.
 
-### Node 4a: Internal Retriever
-Retrieves from Qdrant and supporting indexes.
+### Node 4A — Internal Retriever
+Retrieves evidence from Qdrant and supporting indexes.
 
-### Node 4b: Web Researcher
-Fetches external evidence.
+### Node 4B — Web Researcher
+Collects external evidence when needed.
 
-### Node 4c: General Reasoner
-Handles direct non-retrieval responses.
+### Node 4C — General Reasoner
+Handles direct reasoning without retrieval.
 
-### Node 5: Evidence Assembler
-Consolidates selected evidence into a uniform input format.
+### Node 5 — Evidence Assembler
+Normalizes retrieved material into a consistent evidence bundle.
 
-### Node 6: Generator
+### Node 6 — Generator
 Produces the candidate answer.
 
-### Node 7: Critic
-Verifies faithfulness and completeness.
+### Node 7 — Critic
+Evaluates faithfulness and completeness.
 
-### Node 8: Retry Controller
-Re-routes if verification fails.
+### Node 8 — Retry Controller
+Retries, rewrites, or aborts based on critic outcome.
 
-### Node 9: Formatter
-Builds final response payload.
+### Node 9 — Formatter
+Produces the final structured response.
 
-### Node 10: Logger
-Stores traces and request summary.
+### Node 10 — Logger / Metrics Sink
+Persists traces, metrics, and audit data.
 
 ---
 
-## 9.2 State Transitions
+## 9.2 State Transition Rules
 
-Example flow:
+The graph should obey these rules:
 
-```text
-load_context
-→ plan
-→ route_dispatch
-→ retrieve / web_research / direct_reason
-→ assemble_evidence
-→ generate
-→ critic
-→ [pass] formatter
-→ [fail] retry_controller → retrieve/rewrite/generate
-```
-
-### Retry Policy
-- maximum retries should be bounded,
-- repeated failure should lead to abstention or safe fallback,
-- retry conditions should be explicit.
+1. Every node has a defined input and output schema.
+2. Every failure path is explicit.
+3. Retry count is bounded.
+4. Verification failure cannot be ignored.
+5. Final response cannot be emitted without a terminal state.
 
 ---
 
@@ -452,474 +407,442 @@ load_context
 ### Purpose
 Select the best route for a query.
 
-### Inputs
-- query,
-- memory,
-- session context,
-- available collections,
-- optional document scope.
+### Responsibilities
+- classify intent,
+- estimate complexity,
+- detect freshness requirements,
+- decide whether retrieval is needed,
+- decide whether web search is needed,
+- set a budget,
+- generate subqueries when needed.
 
-### Outputs
-- route,
-- complexity,
-- need for retrieval,
-- need for web search,
-- subqueries,
-- confidence.
-
-### Design Constraint
-The planner must return structured output. Free-form text is not acceptable for routing decisions.
+### Output
+Structured planner output only.
 
 ---
 
 ## 10.2 Retriever Agent
 
 ### Purpose
-Find relevant internal evidence.
+Fetch relevant internal evidence.
 
-### Subsystems Used
-- dense retriever,
-- sparse retriever,
-- fusion module,
-- reranker,
-- evidence normalizer.
+### Responsibilities
+- hybrid retrieval,
+- reranking,
+- metadata filtering,
+- evidence normalization,
+- confidence estimation.
 
-### Behavior
-- fetch candidate chunks,
-- re-score them,
-- return evidence bundle,
-- handle empty result cases.
+### Output
+A ranked evidence bundle with source metadata.
 
 ---
 
 ## 10.3 Web Research Agent
 
 ### Purpose
-Fetch fresh external evidence.
+Fetch external evidence when freshness or broader coverage is required.
 
-### Behavior
-- create search queries,
-- execute search,
+### Responsibilities
+- build search queries,
+- retrieve web results,
 - normalize snippets,
-- optionally summarize source content,
-- return structured evidence.
-
-### Constraint
-This agent should never be called unless the planner or route rules require it.
+- preserve source references.
 
 ---
 
 ## 10.4 Critic Agent
 
 ### Purpose
-Assess whether the generated answer is supported.
+Verify that the answer is supported by evidence.
 
-### Checks
-- evidence coverage,
-- unsupported claims,
-- contradiction risk,
-- missing important details,
-- answer completeness,
-- source alignment.
+### Responsibilities
+- detect unsupported claims,
+- score faithfulness,
+- check citation alignment,
+- measure completeness,
+- request retry or abstention.
 
-### Output
-- pass/fail,
-- issue list,
-- retry recommendation.
+### Design Requirement
+This agent is the enforcement mechanism for grounded output.
 
 ---
 
 ## 10.5 Formatter Agent
 
 ### Purpose
-Render the final response into a consistent schema and presentation format.
+Prepare the final answer payload.
 
 ### Responsibilities
-- clean answer,
+- format answer text,
 - attach sources,
-- attach metadata,
-- enforce output style.
+- attach route metadata,
+- attach confidence,
+- produce client-ready output.
 
 ---
 
 ## 10.6 Memory Agent
 
 ### Purpose
-Manage both session memory and semantic memory.
+Manage session continuity and semantic memory.
 
 ### Responsibilities
-- store recent turns,
-- summarize older turns,
-- retrieve relevant past context,
-- inject only relevant memory into the request state.
+- retrieve recent turns,
+- summarize long sessions,
+- retrieve relevant semantic memory,
+- inject memory selectively.
 
 ---
 
 ## 11. Retrieval System Design
 
-The retrieval system should be hybrid and layered.
+Retrieval must be hybrid and measurable.
 
-### 11.1 Dense Retrieval
+## 11.1 Dense Retrieval
 Used for semantic similarity.
 
-#### Input
-- query embedding,
-- Qdrant vectors.
+## 11.2 Sparse Retrieval
+Used for lexical precision and exact-match terms.
 
-#### Output
-- top semantic candidates.
+## 11.3 Hybrid Fusion
+Combines dense and sparse scores.
 
-### 11.2 Sparse Retrieval
-Used for exact keywords and rare entity matching.
+## 11.4 Reranker
+Reorders candidates using a stronger relevance model.
 
-#### Input
-- query tokens,
-- lexical index.
+## 11.5 Evidence Builder
+Converts candidate chunks into structured evidence items.
 
-#### Output
-- keyword-matched candidates.
-
-### 11.3 Fusion Layer
-Combines dense and sparse results.
-
-### 11.4 Reranker
-Applies stronger relevance scoring on the fused candidate set.
-
-### 11.5 Evidence Builder
-Normalizes and deduplicates final chunks into evidence objects.
-
-### Retrieval Requirements
-- stable output schema,
-- source metadata preserved,
-- ranking scores available,
-- filter support by document scope and metadata.
+### Retrieval Output Requirements
+The retrieval layer must provide:
+- top-k candidates,
+- scores,
+- source metadata,
+- retrieval mode,
+- retrieval confidence.
 
 ---
 
 ## 12. Ingestion Pipeline Design
 
-The ingestion pipeline should be a deterministic preprocessing pipeline.
+The ingestion pipeline must be deterministic and metadata-rich.
 
 ### Stages
-1. file validation,
-2. extraction,
-3. normalization,
-4. chunking,
-5. metadata enrichment,
-6. embedding,
-7. indexing,
-8. verification.
+1. file validation
+2. extraction
+3. normalization
+4. chunking
+5. metadata enrichment
+6. embedding generation
+7. indexing
+8. persistence
 
-### Chunk Strategy
-Chunks should be:
-- semantically coherent,
-- not too small,
-- not excessively large,
-- annotated with page and source metadata when available.
-
-### Metadata Strategy
-Each chunk should store:
+### Chunk Requirements
+Each chunk should preserve:
 - document ID,
-- file name,
+- filename,
 - version,
-- page,
-- section,
-- upload time,
-- owner scope,
-- hash.
-
-### Failure Handling
-If ingestion fails at any stage:
-- record the reason,
-- avoid partial silent success,
-- allow safe retry or cleanup.
-
----
-
-## 13. Database Design
-
-## 13.1 Qdrant Collections
-
-### Collection Name
-`dynamic_rag_documents`
-
-### Vector Schema
-- cosine distance,
-- embedding dimension determined by chosen embedding model.
-
-### Payload Schema
-Suggested fields:
-- `doc_id`
-- `chunk_id`
-- `file_name`
-- `page`
-- `section`
-- `version`
-- `text`
-- `tags`
-- `upload_time`
-- `owner_id`
-- `source_type`
-- `hash`
-
-### Use Cases
-- semantic search,
-- metadata filtering,
-- source traceability,
-- version-aware retrieval.
-
----
-
-## 13.2 MongoDB Collections
-
-### `sessions`
-Stores:
-- session metadata,
-- summary,
-- active scope.
-
-### `messages`
-Stores:
-- turn-by-turn conversation history.
-
-### `memory`
-Stores:
-- long-term semantic memory entries,
-- normalized preference and fact records.
-
-### `traces`
-Stores:
-- request logs,
-- route data,
-- latency and token data,
-- critic outcomes.
-
-### `documents`
-Stores:
-- document metadata,
-- ingestion status,
-- indexing state.
-
----
-
-## 14. Configuration Design
-
-Configuration should be centralized.
-
-### Sources
-- `.env`
-- environment variables
-- optional config profiles
-
-### Required Settings
-- GROQ API key or provider key,
-- Qdrant URL and API key,
-- MongoDB URI,
-- web search API key,
-- embedding model name,
-- reranker model name,
-- logging level,
-- retry limits,
-- chunk size,
-- overlap size.
-
-### Design Requirement
-No secrets should be committed to the repository.
-
----
-
-## 15. Error Handling Design
-
-Dynamic-RAG should use explicit error classification.
-
-### Error Types
-- validation error,
-- ingestion error,
-- retrieval error,
-- generation error,
-- verification error,
-- external API error,
-- database error,
-- configuration error.
-
-### Behavior
-- log the error,
-- classify the error,
-- return safe API response,
-- preserve diagnostic context.
-
-### Response Strategy
-- user-caused errors should be explained clearly,
-- system failures should not leak sensitive internals,
-- unsupported or unsafe requests should be handled gracefully.
-
----
-
-## 16. Logging and Tracing Design
-
-Every request should emit a structured trace.
-
-### Trace Fields
-- request ID,
-- session ID,
-- route,
-- planner output,
-- retrieval stats,
-- generation latency,
-- verification verdict,
-- final status,
-- token counts,
-- failure state.
-
-### Logging Levels
-- DEBUG for development,
-- INFO for normal operation,
-- WARNING for recoverable issues,
-- ERROR for failures,
-- CRITICAL for unrecoverable failures.
+- page or section,
+- hash,
+- upload timestamp,
+- tags.
 
 ### Why This Matters
-Without trace data, evaluation and debugging become guesswork.
+The retrieval layer depends on structured ingestion quality. Weak chunking creates weak retrieval metrics.
 
 ---
 
-## 17. Evaluation Design
+## 13. Storage Design
 
-The system should be evaluated independently of the UI.
+## 13.1 Qdrant
+Primary storage for:
+- embeddings,
+- chunk metadata,
+- filtered retrieval,
+- persistent document search.
 
-### Evaluation Dimensions
-- retrieval relevance,
-- answer faithfulness,
-- answer completeness,
-- routing accuracy,
-- latency,
-- cost efficiency,
-- retry frequency.
+### Payload fields
+- doc_id
+- chunk_id
+- file_name
+- page
+- section
+- version
+- text
+- tags
+- owner_id
+- upload_time
+- source_type
+- hash
 
-### Evaluation Assets
-- benchmark question set,
-- expected source set,
-- offline replay runner,
-- regression comparison script.
+## 13.2 MongoDB
+Stores:
+- sessions,
+- chat messages,
+- semantic memory,
+- traces,
+- ingestion state,
+- evaluation summaries.
 
-### Required Output
-Evaluation should produce measurable, repeatable results.
+## 13.3 File Storage
+Stores:
+- raw uploads,
+- local artifacts,
+- benchmark files,
+- reports.
 
 ---
 
-## 18. Security and Safety Design
+## 14. Data Model Design
 
-### Security Principles
-- do not expose secrets,
-- validate uploaded files,
+### 14.1 SessionRecord
+- session_id
+- summary
+- start_time
+- last_updated
+- active_doc_scope
+
+### 14.2 MessageRecord
+- message_id
+- session_id
+- role
+- content
+- timestamp
+
+### 14.3 MemoryRecord
+- memory_id
+- type
+- content
+- relevance
+- created_at
+
+### 14.4 TraceRecord
+- trace_id
+- request_id
+- route
+- latency
+- cost
+- faithfulness
+- groundedness
+- retry_count
+- status
+
+### 14.5 DocumentRecord
+- doc_id
+- filename
+- version
+- status
+- ingestion_time
+- indexing_status
+
+---
+
+## 15. Observability Design
+
+Every request must produce a trace.
+
+### Required Fields
+- request_id
+- session_id
+- route
+- retrieval_mode
+- retrieval_latency
+- rerank_latency
+- generation_latency
+- faithfulness_score
+- groundedness_score
+- retry_count
+- token_usage
+- total_cost
+- final_status
+
+### Logs Must Support
+- debugging,
+- regression analysis,
+- performance analysis,
+- benchmark correlation.
+
+---
+
+## 16. Evaluation Design
+
+Evaluation is built into the system design.
+
+### Plane 1 — Retrieval
+Metrics:
+- Context Recall
+- Context Precision
+- Recall@K
+- MRR
+- NDCG@K
+- Hit Rate
+- retrieval latency
+
+### Plane 2 — Generation
+Metrics:
+- Faithfulness
+- Answer Relevance
+- Groundedness
+- Citation Accuracy
+- Completeness
+- Noise Robustness
+- Counterfactual Robustness
+
+### Plane 3 — System
+Metrics:
+- end-to-end accuracy
+- rejection rate
+- cost per query
+- latency percentiles
+- retry frequency
+- failure rate
+
+### Evaluation Modules
+The evaluation package should support:
+- dataset loading,
+- metric computation,
+- regression comparison,
+- benchmark reports,
+- adversarial testing.
+
+---
+
+## 17. Error Handling Design
+
+### Error Classes
+- validation error
+- ingestion error
+- retrieval error
+- generation error
+- verification error
+- external API failure
+- database failure
+- timeout
+- configuration failure
+
+### Handling Rules
+- classify errors explicitly,
+- log errors with context,
+- return safe responses,
+- do not silently suppress failures.
+
+---
+
+## 18. Performance Design
+
+### Priorities
+1. reduce unnecessary route cost,
+2. minimize retrieval noise,
+3. rerank efficiently,
+4. avoid prompt bloat,
+5. keep retries bounded,
+6. maintain low tail latency.
+
+### Metrics to Track
+- P50 latency
+- P95 latency
+- P99 latency
+- cost per query
+- retries per query
+
+---
+
+## 19. Security and Safety Design
+
+### Security
+- no hardcoded secrets,
+- validate all uploads,
 - sanitize inputs,
-- restrict unsafe operations,
-- isolate document scopes if multi-user support is added.
+- control external API usage,
+- preserve data isolation where relevant.
 
-### Safety Principles
+### Safety
 - abstain when confidence is too low,
 - do not fabricate sources,
-- do not return unsupported claims,
-- use verification before response release.
+- do not bypass verification,
+- do not return unsupported claims.
 
 ---
 
-## 19. Performance Design
-
-### Performance Targets
-The exact targets can be refined later, but the system should aim for:
-- low latency on simple queries,
-- bounded retry loops,
-- efficient retrieval,
-- minimal unnecessary LLM calls,
-- reusable cached context where appropriate.
-
-### Optimization Priorities
-1. reduce unnecessary routing cost,
-2. reduce retrieval candidate volume,
-3. rerank efficiently,
-4. minimize prompt bloat,
-5. cache stable artifacts where safe.
-
----
-
-## 20. Deployment Design
-
-The system should support local development first and containerized deployment later.
-
-### Local Development
-- FastAPI on local host,
-- Qdrant and MongoDB locally or via managed services,
-- `.env` configuration.
-
-### Containerized Deployment
-- backend container,
-- database containers or managed endpoints,
-- environment-based configuration,
-- health checks.
-
-### Deployment Requirement
-The system should recover cleanly after restart without losing indexed data or session state.
-
----
-
-## 21. Testing Strategy
-
-The codebase should include tests for each layer.
+## 20. Testing Strategy
 
 ### Unit Tests
-- planner output parsing,
-- chunking behavior,
+- planner output,
+- chunking,
 - retrieval scoring,
-- verification decisions,
+- verification behavior,
 - formatter output.
 
 ### Integration Tests
 - document ingestion to retrieval,
 - query to answer,
 - query to verification retry,
-- session memory continuity.
+- session continuity.
 
-### Regression Tests
-- route selection stability,
-- retrieval quality stability,
-- source attachment correctness.
+### Evaluation Tests
+- retrieval benchmark runs,
+- generation faithfulness runs,
+- system-level metric tracking,
+- regression comparisons.
+
+---
+
+## 21. Deployment Design
+
+### Local
+- FastAPI backend
+- MongoDB
+- Qdrant
+- .env configuration
+
+### Production-Ready Goals
+- containerized backend,
+- persistent databases,
+- restart safety,
+- trace persistence,
+- reproducible environment setup.
 
 ---
 
 ## 22. Design Constraints
 
-The following constraints should be respected throughout implementation:
-
-1. Keep API handlers thin.
-2. Keep agent responsibilities narrow.
-3. Keep retrieval evidence separate from final wording.
-4. Keep verification independent from generation.
-5. Keep memory selective.
-6. Keep route decisions structured.
-7. Keep observability mandatory.
-8. Keep storage persistent.
-9. Keep failure handling explicit.
-10. Keep the codebase modular.
+1. API layer must remain thin.
+2. Retrieval and generation must stay separate.
+3. Verification must be independent from generation.
+4. Memory must be selective.
+5. Observability must be mandatory.
+6. Evaluation must be versioned and reproducible.
+7. Every route decision must be explicit.
+8. Every failure must be traceable.
 
 ---
 
 ## 23. Definition of a Well-Designed System
 
 Dynamic-RAG is well designed only if:
-- every query has a visible route,
-- every answer has an evidence basis,
-- every retrieval path is inspectable,
-- every failure is logged,
-- every component is replaceable,
-- every major decision is explicit.
-
-That is the technical identity of the system.
+- queries are routed intelligently,
+- retrieval is measurable,
+- answers are grounded,
+- verification works,
+- memory is controlled,
+- observability is complete,
+- evaluation is reproducible,
+- failures are localizable.
 
 ---
 
-## 24. Final Design Statement
+## 24. Final Statement
 
-Dynamic-RAG is a modular adaptive retrieval and reasoning platform built around planning, retrieval, verification, and memory. The system is intentionally structured to choose the correct path per query rather than forcing a single one-size-fits-all pipeline.
+Dynamic-RAG is an adaptive, evaluation-first RAG platform with explicit orchestration, persistent storage, bounded verification loops, and strong observability.
 
-This design is meant to support implementation from scratch, future extension, and production hardening without architectural drift.
+Its implementation should make the system explainable in operational terms:
+- what was retrieved,
+- why it was retrieved,
+- how it was used,
+- whether it was faithful,
+- how much it cost,
+- how fast it ran,
+- where it failed.
+
+That is the technical identity of the system.
