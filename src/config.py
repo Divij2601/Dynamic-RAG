@@ -61,12 +61,33 @@ class Settings(BaseSettings):
     # ==========================
     # Pydantic Settings Config
     # ==========================
+    # ==========================
+    # Embedding Config
+    # ==========================
+
+    EMBEDDING_MODEL: str = (
+        "BAAI/bge-small-en-v1.5"
+    )
+
+    EMBEDDING_DEVICE: str = "cpu"
+
+    EMBEDDING_BATCH_SIZE: int = 16
 
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=True,
         extra="ignore"
     )
+
+    # ==========================
+    # Vector DB Config
+    # ==========================
+
+    QDRANT_COLLECTION_NAME: str = (
+        "dynamic_rag_documents"
+    )
+
+    VECTOR_DIMENSION: int = 384
 
 
 @lru_cache
