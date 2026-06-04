@@ -1,0 +1,80 @@
+from functools import lru_cache
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+
+    # ==========================
+    # App Config
+    # ==========================
+
+    APP_NAME: str = "Dynamic-RAG"
+    ENVIRONMENT: str = "development"
+    DEBUG: bool = True
+
+    HOST: str = "127.0.0.1"
+    PORT: int = 8000
+
+    LOG_LEVEL: str = "INFO"
+
+    # ==========================
+    # Database Config
+    # ==========================
+
+    MONGO_URI: str
+
+    QDRANT_URL: str
+    QDRANT_API_KEY: str = ""
+
+    # ==========================
+    # LLM Config
+    # ==========================
+
+    LLM_PROVIDER: str = "groq"
+
+    GROQ_API_KEY: str
+
+    DEFAULT_LLM: str
+    FAST_MODEL: str
+    CRITIC_MODEL: str
+
+    TEMPERATURE: float = 0.2
+    MAX_TOKENS: int = 2048
+
+    # ==========================
+    # Retrieval Config
+    # ==========================
+
+    TOP_K: int = 5
+    RERANK_TOP_K: int = 10
+
+    CHUNK_SIZE: int = 1000
+    CHUNK_OVERLAP: int = 200
+
+    # ==========================
+    # Runtime Config
+    # ==========================
+
+    REQUEST_TIMEOUT: int = 30
+    MAX_RETRIES: int = 2
+
+    # ==========================
+    # Pydantic Settings Config
+    # ==========================
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=True,
+        extra="ignore"
+    )
+
+
+@lru_cache
+def get_settings() -> Settings:
+    """
+    Singleton settings instance
+    """
+    return Settings()
+
+
+settings = get_settings()
