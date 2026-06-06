@@ -34,6 +34,22 @@ class Settings(BaseSettings):
 
     GROQ_API_KEY: str
 
+    # Short description of what the document
+    # knowledge base contains. The planner uses
+    # this to decide whether a query can be answered
+    # internally or needs the web. Update this when
+    # the corpus changes.
+    KNOWLEDGE_BASE_DESCRIPTION: str = (
+        "Documents about geopolitics, world affairs, "
+        "and world history: country profiles, "
+        "international organizations (UN, NATO, BRICS, "
+        "EU), treaties (Westphalia, NPT, Paris "
+        "Agreement), major wars and eras (WWI, WWII, "
+        "Cold War, decolonization, Cuban Missile "
+        "Crisis), core geopolitical concepts, and a "
+        "summary of global affairs in 2025-2026."
+    )
+
     DEFAULT_LLM: str
     FAST_MODEL: str
     CRITIC_MODEL: str
@@ -92,6 +108,10 @@ class Settings(BaseSettings):
 
     QDRANT_COLLECTION_NAME: str = (
         "dynamic_rag_documents"
+    )
+
+    MEMORY_COLLECTION_NAME: str = (
+        "dynamic_rag_memory"
     )
 
     VECTOR_DIMENSION: int = 384

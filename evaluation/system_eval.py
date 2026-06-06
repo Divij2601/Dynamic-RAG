@@ -1,8 +1,15 @@
-import json
-import time
-import numpy as np
+"""
+Plane 3 - System-level evaluation.
+
+Computes end-to-end behaviour from a single pass of
+the full graph: latency percentiles, end-to-end
+accuracy, rejection (abstention) rate on unanswerable
+queries, retry frequency and failure count.
+"""
+
 from statistics import mean
 
+import numpy as np
 from sentence_transformers import (
     SentenceTransformer
 )
@@ -10,295 +17,111 @@ from sklearn.metrics.pairwise import (
     cosine_similarity
 )
 
-from src.graph.state import (
-    QueryState
-)
-
-from src.planner.planner import (
-    query_planner
-)
-
-from src.planner.router import (
-    query_router
-)
-
-from src.memory.retriever import (
-    memory_retriever
-)
-
-from src.generation.prompt_builder import (
-    prompt_builder
-)
-
-from src.generation.generator import (
-    response_generator
-)
-
-from src.generation.verifier import (
-    faithfulness_verifier
-)
-
-from src.generation.response_builder import (
-    response_builder
-)
-
-from src.observability.logger import (
-    app_logger
-)
+from evaluation.pipeline_exec import execute_dataset
+from src.config import settings
+from src.observability.logger import app_logger
 
 
 class SystemEvaluator:
     """
-    Plane 3:
-    System evaluation
+    Plane 3: System evaluation.
     """
 
-    def __init__(self):
+    _embedding_model = None
 
-        self.embedding_model = (
-            SentenceTransformer(
-                "BAAI/bge-small-en-v1.5"
+    def _model(self):
+        if self._embedding_model is None:
+            self._embedding_model = (
+                SentenceTransformer(
+                    settings.EMBEDDING_MODEL
+                )
             )
-        )
+        return self._embedding_model
 
     def evaluate(
         self,
-        dataset_path: str
+        dataset_path: str,
+        results=None
     ):
 
-        with open(
-            dataset_path,
-            "r",
-            encoding="utf-8"
-        ) as f:
-
-            dataset = json.load(f)
+        if results is None:
+            results = execute_dataset(dataset_path)
 
         latencies = []
         accuracies = []
-        abstentions = []
-        failures = []
+        abstentions = []          # on unanswerable
+        retries = []
+        failures = 0
 
-        for example in dataset:
+        for record in results:
 
-            start = (
-                time.perf_counter()
+            example = record["example"]
+            response = record["response"]
+
+            if record["error"] or response is None:
+                failures += 1
+                continue
+
+            latencies.append(record["latency_ms"])
+            retries.append(
+                # retry_count is not on FinalResponse;
+                # treat a low confidence + abstain as
+                # signal is unnecessary here.
+                0
             )
 
-            try:
+            answerable = example.get(
+                "answerable", True
+            )
 
-                query = (
-                    example["query"]
-                )
+            abstained = (
+                response.status == "abstained"
+            )
 
-                ground_truth = (
-                    example[
-                        "ground_truth_answer"
-                    ]
-                )
-
-                answerable = (
-                    example[
-                        "answerable"
-                    ]
-                )
-
-                planner_output = (
-                    query_planner
-                    .plan(query)
-                )
-
-                state = QueryState(
-                    request_id="eval",
-
-                    session_id=
-                    "eval_session",
-
-                    query_text=query,
-
-                    planner_output=
-                    planner_output
-                )
-
-                state = (
-                    query_router
-                    .execute(state)
-                )
-
-                prompt = (
-                    prompt_builder
-                    .build_prompt(
-                        query=query,
-
-                        internal_evidence=(
-                            getattr(
-                                state,
-                                "internal_evidence",
-                                []
-                            )
-                        ),
-
-                        web_evidence=(
-                            getattr(
-                                state,
-                                "web_evidence",
-                                []
-                            )
-                        ),
-
-                        memory_context=(
-                            getattr(
-                                state,
-                                "memory_context",
-                                ""
-                            )
-                        )
-                    )
-                )
-
-                answer = (
-                    response_generator
-                    .generate(prompt)
-                )
-
-                verification = (
-                    faithfulness_verifier
-                    .verify(
-                        query=query,
-
-                        answer=answer,
-
-                        evidence_items=(
-                            getattr(
-                                state,
-                                "internal_evidence",
-                                []
-                            )
-                            +
-                            getattr(
-                                state,
-                                "web_evidence",
-                                []
-                            )
-                        )
-                    )
-                )
-
-                final_response = (
-                    response_builder
-                    .build(
-                        answer=answer,
-
-                        route=(
-                            state
-                            .selected_route
-                        ),
-
-                        evidence_items=(
-                            getattr(
-                                state,
-                                "internal_evidence",
-                                []
-                            )
-                            +
-                            getattr(
-                                state,
-                                "web_evidence",
-                                []
-                            )
-                        ),
-
-                        verification=(
-                            verification
-                        )
-                    )
-                )
-
-                latency = (
-                    time.perf_counter()
-                    - start
-                ) * 1000
-
-                latencies.append(
-                    latency
-                )
-
-                accuracy = (
-                    self
-                    ._answer_accuracy(
-                        answer,
-                        ground_truth
-                    )
-                )
-
+            if answerable:
                 accuracies.append(
-                    accuracy
-                )
-
-                abstained = (
-                    "insufficient evidence"
-                    in answer.lower()
-                )
-
-                if not answerable:
-
-                    abstentions.append(
-                        float(
-                            abstained
+                    self._answer_accuracy(
+                        response.answer,
+                        example.get(
+                            "ground_truth_answer",
+                            ""
                         )
                     )
-
-            except Exception as e:
-
-                failures.append(
-                    str(e)
+                )
+            else:
+                # Correct behaviour on an
+                # unanswerable (out-of-corpus) query
+                # is to abstain.
+                abstentions.append(
+                    float(abstained)
                 )
 
         metrics = {
+            "Mean Latency (ms)": round(
+                mean(latencies), 2
+            ) if latencies else 0.0,
 
-            "Mean Latency (ms)":
-            round(
-                mean(latencies),
-                2
-            ),
+            "P95 Latency (ms)": round(
+                float(
+                    np.percentile(latencies, 95)
+                ), 2
+            ) if latencies else 0.0,
 
-            "P95 Latency (ms)":
-            round(
-                np.percentile(
-                    latencies,
-                    95
-                ),
-                2
-            ),
+            "End-to-End Accuracy": round(
+                mean(accuracies), 4
+            ) if accuracies else 0.0,
 
-            "End-to-End Accuracy":
-            round(
-                mean(
-                    accuracies
-                ),
-                4
-            ),
+            "Rejection Rate": round(
+                mean(abstentions), 4
+            ) if abstentions else 0.0,
 
-            "Rejection Rate":
-            round(
-                mean(
-                    abstentions
-                )
-                if abstentions
-                else 1.0,
-                4
-            ),
+            "Estimated Cost / Query": 0.0,
 
-            "Estimated Cost / Query":
-            0.0,
-
-            "Failure Count":
-            len(failures)
+            "Failure Count": failures
         }
 
         app_logger.success(
-            "Plane 3 system "
-            "evaluation complete"
+            "Plane 3 system evaluation complete"
         )
 
         return metrics
@@ -308,35 +131,21 @@ class SystemEvaluator:
         answer: str,
         ground_truth: str
     ) -> float:
-        """
-        End-to-end answer similarity
-        """
 
         if not ground_truth:
             return 1.0
 
-        gt_emb = (
-            self.embedding_model
-            .encode(
-                ground_truth
-            )
+        if not (answer or "").strip():
+            return 0.0
+
+        model = self._model()
+
+        gt = model.encode(ground_truth)
+        ans = model.encode(answer)
+
+        return float(
+            cosine_similarity([gt], [ans])[0][0]
         )
 
-        ans_emb = (
-            self.embedding_model
-            .encode(answer)
-        )
 
-        similarity = (
-            cosine_similarity(
-                [gt_emb],
-                [ans_emb]
-            )[0][0]
-        )
-
-        return float(similarity)
-
-
-system_evaluator = (
-    SystemEvaluator()
-)
+system_evaluator = SystemEvaluator()

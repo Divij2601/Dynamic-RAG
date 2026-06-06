@@ -120,25 +120,26 @@ class EmbeddingGenerator:
             f"in "
             f"{execution_time} ms"
         )
+
+        return enriched_chunks
+
     def generate_query_embedding(
-            self,
-            query: str
-        ) -> list:
-            """
-            Generate embedding
-            for query
-            """
+        self,
+        query: str
+    ) -> list:
+        """
+        Generate embedding
+        for query
+        """
 
-            model = self._load_model()
+        model = self._load_model()
 
-            embedding = model.encode(
-                query,
-                normalize_embeddings=True
-            )
+        embedding = model.encode(
+            query,
+            normalize_embeddings=True
+        )
 
-            return embedding.tolist()    
-
-            return enriched_chunks
+        return embedding.tolist()
 
 
 embedding_generator = (

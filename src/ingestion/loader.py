@@ -1,5 +1,5 @@
 from pathlib import Path
-from uuid import uuid4
+import hashlib
 import shutil
 
 from src.observability.logger import app_logger
@@ -49,8 +49,16 @@ class DocumentLoader:
                 f"Unsupported file type: {extension}"
             )
 
+        # Deterministic document_id derived
+        # from file content, so re-ingesting
+        # the same file is idempotent and
+        # gold-chunk mappings stay stable.
+        file_hash = hashlib.sha1(
+            source_path.read_bytes()
+        ).hexdigest()[:12]
+
         document_id = (
-            f"doc_{uuid4().hex[:12]}"
+            f"doc_{file_hash}"
         )
 
         target_filename = (

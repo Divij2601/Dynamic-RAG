@@ -55,6 +55,13 @@ class RetrievalEvaluator:
 
         for example in dataset:
 
+            # Retrieval quality is only defined for
+            # answerable queries. Unanswerable items
+            # belong to abstention / rejection-rate
+            # (system-level evaluation), not Plane 1.
+            if not example.get("answerable", True):
+                continue
+
             query = (
                 example["query"]
             )

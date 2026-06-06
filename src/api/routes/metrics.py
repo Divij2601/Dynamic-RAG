@@ -1,16 +1,18 @@
 from fastapi import APIRouter
 
+from src.observability.metrics import (
+    get_system_metrics
+)
+
 
 router = APIRouter()
 
 
 @router.get("/system/metrics")
-async def get_metrics():
+def get_metrics():
     """
-    Placeholder metrics endpoint
+    Operational metrics aggregated from persisted
+    request traces.
     """
 
-    return {
-        "status": "active",
-        "message": "Metrics collection initialized"
-    }
+    return get_system_metrics()

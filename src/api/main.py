@@ -5,6 +5,8 @@ from src.observability.logger import app_logger
 
 from src.api.routes.health import router as health_router
 from src.api.routes.metrics import router as metrics_router
+from src.api.routes.chat import router as chat_router
+from src.api.routes.documents import router as documents_router
 
 
 app = FastAPI(
@@ -39,3 +41,5 @@ async def shutdown_event():
 # Register routes
 app.include_router(health_router)
 app.include_router(metrics_router)
+app.include_router(chat_router)
+app.include_router(documents_router)

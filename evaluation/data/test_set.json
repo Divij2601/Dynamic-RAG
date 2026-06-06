@@ -1,43 +1,205 @@
 [
   {
-    "query":
-    "What is PTOC50?",
-
-    "ground_truth_answer":
-    "PTOC50 is an overcurrent protection function.",
-
-    "relevant_chunk_ids":
-    ["chunk_12"],
-
-    "answerable":
-    true
+    "query": "When did the Soviet Union dissolve?",
+    "ground_truth_answer": "The Soviet Union dissolved on December 26, 1991, ending the Cold War.",
+    "relevant_chunk_ids": ["chunk_273b5efc9311"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "cold_war"}
   },
-
   {
-    "query":
-    "How is PTOC50 configured?",
-
-    "ground_truth_answer":
-    "PTOC50 is configured through relay protection settings.",
-
-    "relevant_chunk_ids":
-    ["chunk_15", "chunk_16"],
-
-    "answerable":
-    true
+    "query": "Who is the President of Russia as of 2026?",
+    "ground_truth_answer": "Vladimir Putin is the President of Russia, having dominated Russian politics since 1999.",
+    "relevant_chunk_ids": ["chunk_8a26acae61e7", "chunk_3f58fe9493a7"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "russia"}
   },
-
   {
-    "query":
-    "What is Tesla stock price?",
-
-    "ground_truth_answer":
-    "",
-
-    "relevant_chunk_ids":
-    [],
-
-    "answerable":
-    false
+    "query": "When was the United Nations founded and where is its headquarters located?",
+    "ground_truth_answer": "The United Nations was founded in 1945 and is headquartered in New York City.",
+    "relevant_chunk_ids": ["chunk_8fa6662296e4"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "united_nations"}
+  },
+  {
+    "query": "What is Article 5 of the North Atlantic Treaty?",
+    "ground_truth_answer": "Article 5 is NATO's collective defense principle: an armed attack against one member is considered an attack against all members, and each member commits to assist the attacked party.",
+    "relevant_chunk_ids": ["chunk_a0629c8cb3bc", "chunk_ed4a00d6ff6b"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "nato"}
+  },
+  {
+    "query": "Which countries are the permanent members of the UN Security Council?",
+    "ground_truth_answer": "The five permanent members are the United States, the United Kingdom, France, Russia, and China, each holding veto power.",
+    "relevant_chunk_ids": ["chunk_4e08ba7b6b0a", "chunk_311c71686658"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "united_nations"}
+  },
+  {
+    "query": "When did World War II begin and what event started it?",
+    "ground_truth_answer": "World War II began on September 1, 1939, when Germany invaded Poland, prompting Britain and France to declare war on Germany.",
+    "relevant_chunk_ids": ["chunk_87422cda4d2b", "chunk_af327550a45c"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "world_war_two"}
+  },
+  {
+    "query": "What event triggered the start of World War I?",
+    "ground_truth_answer": "The assassination of Archduke Franz Ferdinand of Austria-Hungary in Sarajevo on June 28, 1914 triggered the war by activating the alliance system.",
+    "relevant_chunk_ids": ["chunk_a3ed1ef98604"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "world_war_one"}
+  },
+  {
+    "query": "When was the Peace of Westphalia signed and which war did it end?",
+    "ground_truth_answer": "The Peace of Westphalia was signed in 1648 and ended the Thirty Years' War (and the Eighty Years' War between Spain and the Dutch Republic).",
+    "relevant_chunk_ids": ["chunk_0cf0d9c2f2ab"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "westphalia"}
+  },
+  {
+    "query": "Who is the Prime Minister of India?",
+    "ground_truth_answer": "Narendra Modi is the Prime Minister of India, in office since 2014.",
+    "relevant_chunk_ids": ["chunk_549d726d90a7"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "india"}
+  },
+  {
+    "query": "What is the capital of China and who is its paramount leader?",
+    "ground_truth_answer": "The capital of China is Beijing, and its paramount leader is Xi Jinping.",
+    "relevant_chunk_ids": ["chunk_c0511c4e512a"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "china"}
+  },
+  {
+    "query": "When was the Paris Climate Agreement adopted?",
+    "ground_truth_answer": "The Paris Climate Agreement was adopted on December 12, 2015 at COP21.",
+    "relevant_chunk_ids": ["chunk_41cc2ffc7670"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "paris_agreement"}
+  },
+  {
+    "query": "How many member states does the European Union have?",
+    "ground_truth_answer": "The European Union has twenty-seven member states following the withdrawal of the United Kingdom.",
+    "relevant_chunk_ids": ["chunk_46523dcc5456"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "european_union"}
+  },
+  {
+    "query": "Cuban Missile Crisis 1962 thirteen-day confrontation Kennedy naval quarantine",
+    "ground_truth_answer": "The Cuban Missile Crisis was a thirteen-day confrontation in October 1962; President Kennedy imposed a naval blockade he called a quarantine.",
+    "relevant_chunk_ids": ["chunk_711805791641", "chunk_1a5a9aa6c49c"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "cuban_missile_crisis"}
+  },
+  {
+    "query": "BRICS eleven full members 2026 Indonesia full member",
+    "ground_truth_answer": "By 2026 BRICS had eleven full members, and Indonesia became a full member in January 2025.",
+    "relevant_chunk_ids": ["chunk_798a5eb0a792"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "brics"}
+  },
+  {
+    "query": "mutually assured destruction nuclear deterrence balance of terror",
+    "ground_truth_answer": "Mutually assured destruction is the Cold War doctrine under which any nuclear attack would result in the annihilation of both sides, deterring direct war.",
+    "relevant_chunk_ids": ["chunk_d1bb99ba104a", "chunk_891948a86150"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "deterrence"}
+  },
+  {
+    "query": "Warsaw Pact Prague Spring 1968 Czechoslovakia Brezhnev Doctrine",
+    "ground_truth_answer": "In 1968 Warsaw Pact troops invaded Czechoslovakia to end the Prague Spring, establishing the Brezhnev Doctrine.",
+    "relevant_chunk_ids": ["chunk_5e4e53171dce"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "warsaw_pact"}
+  },
+  {
+    "query": "Operation Barbarossa Pearl Harbor 1941 war expands",
+    "ground_truth_answer": "In 1941 Germany invaded the Soviet Union in Operation Barbarossa, and Japan attacked Pearl Harbor, bringing the United States into the war.",
+    "relevant_chunk_ids": ["chunk_af327550a45c", "chunk_3570dc2a56a5"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "world_war_two"}
+  },
+  {
+    "query": "NPT nuclear-weapon states detonated weapon before 1967",
+    "ground_truth_answer": "Under the NPT, nuclear-weapon states are those that manufactured and detonated a nuclear weapon before January 1, 1967: the US, Russia, the UK, France, and China.",
+    "relevant_chunk_ids": ["chunk_37e9883c8f3f"],
+    "answerable": true,
+    "metadata": {"category": "keyword", "topic": "npt"}
+  },
+  {
+    "query": "What is sovereignty and how is it connected to the Peace of Westphalia?",
+    "ground_truth_answer": "Sovereignty is a state's supreme authority over its own territory free from external interference; it is traced to the Peace of Westphalia of 1648, hence the Westphalian system.",
+    "relevant_chunk_ids": ["chunk_3d3df06d3215", "chunk_e0c9c6685116", "chunk_3f0d1e30dd0e"],
+    "answerable": true,
+    "metadata": {"category": "conceptual_multihop", "topic": "sovereignty"}
+  },
+  {
+    "query": "What is soft power and who coined the term?",
+    "ground_truth_answer": "Soft power is the ability to attract and persuade others through culture, values, and policies rather than coercion; the term was coined by Joseph Nye.",
+    "relevant_chunk_ids": ["chunk_1b5fc328f875"],
+    "answerable": true,
+    "metadata": {"category": "conceptual", "topic": "soft_power"}
+  },
+  {
+    "query": "Why did the League of Nations fail to prevent war?",
+    "ground_truth_answer": "It lacked the participation of the United States, had no military force, depended on unwilling member states, and required unanimity, leaving it unable to stop aggression in the 1930s.",
+    "relevant_chunk_ids": ["chunk_402ca0a80fe8", "chunk_040f524ef7a6"],
+    "answerable": true,
+    "metadata": {"category": "conceptual", "topic": "league_of_nations"}
+  },
+  {
+    "query": "When did India gain independence from Britain?",
+    "ground_truth_answer": "India gained independence from Britain on August 15, 1947, accompanied by the partition into India and Pakistan.",
+    "relevant_chunk_ids": ["chunk_86c9c71dd178", "chunk_06e525aff554"],
+    "answerable": true,
+    "metadata": {"category": "factual", "topic": "decolonization"}
+  },
+  {
+    "query": "How has the war in Ukraine affected NATO and European security?",
+    "ground_truth_answer": "The 2022 invasion reshaped European security and prompted historically neutral Finland and Sweden to join NATO, expanding the alliance along Russia's borders.",
+    "relevant_chunk_ids": ["chunk_b253f11052f3", "chunk_7f83bbdf70e5", "chunk_b1b4fe1252c3"],
+    "answerable": true,
+    "metadata": {"category": "followup_multihop", "topic": "ukraine_war"}
+  },
+  {
+    "query": "What were the main consequences of World War I?",
+    "ground_truth_answer": "World War I led to the collapse of the German, Austro-Hungarian, Russian, and Ottoman empires, created the League of Nations, and set the stage for World War II.",
+    "relevant_chunk_ids": ["chunk_fd74e65a8bf8"],
+    "answerable": true,
+    "metadata": {"category": "conceptual", "topic": "world_war_one"}
+  },
+  {
+    "query": "What is the current price of Bitcoin?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {"category": "unanswerable", "topic": "out_of_scope"}
+  },
+  {
+    "query": "Who won the 2022 FIFA World Cup?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {"category": "unanswerable", "topic": "out_of_scope"}
+  },
+  {
+    "query": "What is the population of Tokyo?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {"category": "unanswerable", "topic": "out_of_scope"}
+  },
+  {
+    "query": "What are the common side effects of ibuprofen?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {"category": "unanswerable", "topic": "out_of_scope"}
+  },
+  {
+    "query": "Who is the chief executive officer of Tesla?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {"category": "unanswerable", "topic": "out_of_scope"}
   }
 ]

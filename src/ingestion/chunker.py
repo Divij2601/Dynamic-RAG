@@ -1,5 +1,5 @@
 import re
-from uuid import uuid4
+import hashlib
 from typing import List, Dict
 
 import nltk
@@ -11,9 +11,44 @@ from src.observability.logger import (
 )
 
 
+def _ensure_punkt():
+    """
+    Make sure the NLTK sentence
+    tokenizer data is available.
+    """
+
+    for resource in ("punkt", "punkt_tab"):
+        try:
+            nltk.data.find(
+                f"tokenizers/{resource}"
+            )
+        except LookupError:
+            try:
+                nltk.download(
+                    resource,
+                    quiet=True
+                )
+            except Exception:
+                # punkt_tab does not exist on
+                # older nltk; punkt is enough
+                pass
+
+
+_ensure_punkt()
+
+
 class DocumentChunker:
     """
-    Semantic document chunker
+    Sentence-aware document chunker.
+
+    Packs sentences greedily up to
+    CHUNK_SIZE characters, carries a
+    CHUNK_OVERLAP-sized tail of trailing
+    sentences into the next chunk, and
+    assigns deterministic chunk IDs so the
+    same document always yields the same
+    chunk IDs (stable gold-chunk mappings
+    for evaluation).
     """
 
     def __init__(self):
@@ -32,7 +67,8 @@ class DocumentChunker:
         document_id: str
     ) -> List[Dict]:
         """
-        Chunk full document
+        Chunk a full parsed document
+        page by page.
         """
 
         chunks = []
@@ -71,151 +107,192 @@ class DocumentChunker:
         document_id: str
     ) -> List[Dict]:
         """
-        Chunk one page
+        Chunk one page into sentence-packed
+        chunks that respect chunk_size.
         """
 
-        chunks = []
-
-        paragraphs = (
-            self._split_paragraphs(
-                text
-            )
+        sentences = (
+            self._split_sentences(text)
         )
 
-        current_chunk = ""
+        chunks = []
+        position = 0
 
-        for paragraph in (
-            paragraphs
-        ):
+        current: List[str] = []
+        current_len = 0
 
-            paragraph = (
-                paragraph.strip()
-            )
+        for sentence in sentences:
 
-            if not paragraph:
+            sentence = sentence.strip()
+
+            if not sentence:
                 continue
 
-            proposed = (
-                current_chunk
-                + "\n\n"
-                + paragraph
-            )
+            # +1 accounts for the joining space
+            addition = len(sentence) + 1
 
-            if len(proposed) < (
-                self.chunk_size
+            # If adding this sentence would
+            # overflow and we already have
+            # content, flush the current chunk.
+            if (
+                current
+                and current_len + addition
+                > self.chunk_size
             ):
 
-                current_chunk = (
-                    proposed
+                chunk_text = (
+                    " ".join(current).strip()
                 )
 
-            else:
-
-                if current_chunk:
-
-                    chunks.append(
-                        self._build_chunk(
-                            text=current_chunk,
-                            page_number=(
-                                page_number
-                            ),
-                            document_id=(
-                                document_id
-                            )
-                        )
-                    )
-
-                current_chunk = (
-                    self._apply_overlap(
-                        current_chunk
-                    )
-                    + paragraph
-                )
-
-        if current_chunk:
-
-            chunks.append(
-                self._build_chunk(
-                    text=current_chunk,
-                    page_number=(
-                        page_number
-                    ),
-                    document_id=(
-                        document_id
+                chunks.append(
+                    self._build_chunk(
+                        text=chunk_text,
+                        page_number=(
+                            page_number
+                        ),
+                        document_id=(
+                            document_id
+                        ),
+                        position=position
                     )
                 )
+
+                position += 1
+
+                # Seed the next chunk with a
+                # trailing-sentence overlap.
+                overlap = (
+                    self._overlap_sentences(
+                        current
+                    )
+                )
+
+                current = list(overlap)
+                current_len = sum(
+                    len(s) + 1
+                    for s in current
+                )
+
+            current.append(sentence)
+            current_len += addition
+
+        if current:
+
+            chunk_text = (
+                " ".join(current).strip()
             )
+
+            if chunk_text:
+
+                chunks.append(
+                    self._build_chunk(
+                        text=chunk_text,
+                        page_number=(
+                            page_number
+                        ),
+                        document_id=(
+                            document_id
+                        ),
+                        position=position
+                    )
+                )
 
         return chunks
 
-    def _split_paragraphs(
+    def _split_sentences(
         self,
         text: str
     ) -> List[str]:
         """
-        Semantic paragraph split
+        Split text into sentences, first
+        normalizing whitespace so PDF line
+        breaks do not fragment sentences.
+        Falls back to newline splitting if
+        the NLTK tokenizer is unavailable.
         """
 
-        paragraphs = re.split(
-            r"\n\s*\n",
+        normalized = re.sub(
+            r"\s+",
+            " ",
             text
-        )
+        ).strip()
 
-        return [
-            p.strip()
-            for p in paragraphs
-            if p.strip()
-        ]
+        if not normalized:
+            return []
 
-    def _apply_overlap(
+        try:
+            return sent_tokenize(normalized)
+        except Exception:
+            # Defensive fallback: split on
+            # sentence-ending punctuation.
+            return [
+                s.strip()
+                for s in re.split(
+                    r"(?<=[.!?])\s+",
+                    normalized
+                )
+                if s.strip()
+            ]
+
+    def _overlap_sentences(
         self,
-        text: str
-    ) -> str:
+        sentences: List[str]
+    ) -> List[str]:
         """
-        Sentence overlap
+        Return the trailing sentences whose
+        combined length is about
+        chunk_overlap characters.
         """
 
-        sentences = (
-            sent_tokenize(text)
-        )
+        overlap: List[str] = []
+        total = 0
 
-        overlap_text = ""
+        for sentence in reversed(sentences):
 
-        while (
-            len(overlap_text)
-            < self.chunk_overlap
-            and sentences
-        ):
+            if total >= self.chunk_overlap:
+                break
 
-            overlap_text = (
-                sentences[-1]
-                + " "
-                + overlap_text
-            )
+            overlap.insert(0, sentence)
+            total += len(sentence) + 1
 
-            sentences.pop()
-
-        return overlap_text
+        return overlap
 
     def _build_chunk(
         self,
         text: str,
         page_number: int,
-        document_id: str
+        document_id: str,
+        position: int
     ) -> Dict:
         """
-        Build chunk object
+        Build a chunk object with a
+        deterministic chunk_id derived from
+        document_id, page, position and text.
         """
+
+        fingerprint = (
+            f"{document_id}|"
+            f"{page_number}|"
+            f"{position}|"
+            f"{text}"
+        )
+
+        chunk_hash = hashlib.sha1(
+            fingerprint.encode("utf-8")
+        ).hexdigest()[:12]
 
         return {
             "chunk_id":
-            f"chunk_{uuid4().hex[:12]}",
+            f"chunk_{chunk_hash}",
 
             "document_id":
             document_id,
 
             "page":
             page_number,
+
+            "position":
+            position,
 
             "text":
             text.strip(),

@@ -1,4 +1,16 @@
-import json
+"""
+Plane 2 - Generation quality evaluation.
+
+Runs each query through the full Dynamic-RAG graph
+and scores the generated answers for faithfulness,
+groundedness, answer relevance, completeness and a
+citation-accuracy proxy.
+
+Faithfulness/groundedness are only meaningful for
+answerable, evidence-grounded queries, so those
+metrics are computed over answerable examples only.
+"""
+
 from statistics import mean
 
 from sentence_transformers import (
@@ -8,61 +20,43 @@ from sklearn.metrics.pairwise import (
     cosine_similarity
 )
 
-from src.graph.state import (
-    QueryState
-)
+from evaluation.pipeline_exec import execute_dataset
+from src.config import settings
+from src.observability.logger import app_logger
 
-from src.planner.planner import (
-    query_planner
-)
 
-from src.planner.router import (
-    query_router
-)
-
-from src.generation.prompt_builder import (
-    prompt_builder
-)
-
-from src.generation.generator import (
-    response_generator
-)
-
-from src.generation.verifier import (
-    faithfulness_verifier
-)
-
-from src.observability.logger import (
-    app_logger
-)
+ABSTAIN_MARKER = "could not find sufficient evidence"
 
 
 class GenerationEvaluator:
     """
-    Plane 2:
-    Generation evaluation
+    Plane 2: Generation evaluation.
     """
 
-    def __init__(self):
+    _embedding_model = None
 
-        self.embedding_model = (
-            SentenceTransformer(
-                "BAAI/bge-small-en-v1.5"
+    def _model(self):
+        if self._embedding_model is None:
+            self._embedding_model = (
+                SentenceTransformer(
+                    settings.EMBEDDING_MODEL
+                )
             )
-        )
+        return self._embedding_model
 
     def evaluate(
         self,
-        dataset_path: str
+        dataset_path: str,
+        results=None
     ):
+        """
+        Compute Plane 2 metrics. If `results`
+        (from execute_dataset) is provided, reuse
+        them; otherwise run the pipeline.
+        """
 
-        with open(
-            dataset_path,
-            "r",
-            encoding="utf-8"
-        ) as f:
-
-            dataset = json.load(f)
+        if results is None:
+            results = execute_dataset(dataset_path)
 
         faithfulness_scores = []
         groundedness_scores = []
@@ -70,199 +64,71 @@ class GenerationEvaluator:
         completeness_scores = []
         citation_scores = []
 
-        for example in dataset:
+        evaluated = 0
 
-            query = (
-                example["query"]
-            )
+        for record in results:
 
-            session_id = (
-                "eval_session"
-            )
+            example = record["example"]
+            response = record["response"]
 
-            planner_output = (
-                query_planner
-                .plan(query)
-            )
+            # Generation quality applies to
+            # answerable, evidence-grounded answers.
+            if not example.get("answerable", True):
+                continue
 
-            state = QueryState(
-                request_id="eval",
+            if response is None:
+                continue
 
-                session_id=
-                session_id,
+            evaluated += 1
 
-                query_text=query,
+            answer = response.answer or ""
 
-                planner_output=
-                planner_output
-            )
+            faith = response.faithfulness_score
+            if faith is not None:
+                faithfulness_scores.append(faith)
 
-            state = (
-                query_router
-                .execute(state)
-            )
-
-            prompt = (
-                prompt_builder
-                .build_prompt(
-                    query=query,
-
-                    internal_evidence=(
-                        getattr(
-                            state,
-                            "internal_evidence",
-                            []
-                        )
-                    ),
-
-                    web_evidence=(
-                        getattr(
-                            state,
-                            "web_evidence",
-                            []
-                        )
-                    ),
-
-                    memory_context=(
-                        getattr(
-                            state,
-                            "memory_context",
-                            ""
-                        )
-                    )
+            if response.grounded is not None:
+                groundedness_scores.append(
+                    float(response.grounded)
                 )
-            )
-
-            answer = (
-                response_generator
-                .generate(prompt)
-            )
-
-            verification = (
-                faithfulness_verifier
-                .verify(
-                    query=query,
-
-                    answer=answer,
-
-                    evidence_items=(
-                        getattr(
-                            state,
-                            "internal_evidence",
-                            []
-                        )
-                        +
-                        getattr(
-                            state,
-                            "web_evidence",
-                            []
-                        )
-                    )
-                )
-            )
-
-            # Faithfulness
-            faithfulness = (
-                verification.get(
-                    "faithfulness_score",
-                    0.0
-                )
-            )
-
-            faithfulness_scores.append(
-                faithfulness
-            )
-
-            # Groundedness
-            grounded = (
-                verification.get(
-                    "grounded",
-                    False
-                )
-            )
-
-            groundedness_scores.append(
-                float(grounded)
-            )
-
-            # Answer relevance
-            relevance = (
-                self._answer_relevance(
-                    query,
-                    answer
-                )
-            )
 
             relevance_scores.append(
-                relevance
-            )
-
-            # Completeness
-            completeness = (
-                self._estimate_completeness(
+                self._answer_relevance(
+                    example["query"],
                     answer
                 )
             )
 
             completeness_scores.append(
-                completeness
+                self._estimate_completeness(answer)
             )
 
-            # Citation accuracy proxy
-            citation_scores.append(
-                (
-                    faithfulness
-                    +
-                    float(grounded)
-                ) / 2
-            )
+            # Citation-accuracy proxy: agreement of
+            # faithfulness and groundedness signals.
+            cite = (
+                (faith if faith is not None else 0.0)
+                + (
+                    float(response.grounded)
+                    if response.grounded is not None
+                    else 0.0
+                )
+            ) / 2
+            citation_scores.append(cite)
+
+        def _avg(xs):
+            return round(mean(xs), 4) if xs else 0.0
 
         metrics = {
-
-            "Faithfulness":
-            round(
-                mean(
-                    faithfulness_scores
-                ),
-                4
-            ),
-
-            "Groundedness":
-            round(
-                mean(
-                    groundedness_scores
-                ),
-                4
-            ),
-
-            "Answer Relevance":
-            round(
-                mean(
-                    relevance_scores
-                ),
-                4
-            ),
-
-            "Completeness":
-            round(
-                mean(
-                    completeness_scores
-                ),
-                4
-            ),
-
-            "Citation Accuracy":
-            round(
-                mean(
-                    citation_scores
-                ),
-                4
-            )
+            "Faithfulness": _avg(faithfulness_scores),
+            "Groundedness": _avg(groundedness_scores),
+            "Answer Relevance": _avg(relevance_scores),
+            "Completeness": _avg(completeness_scores),
+            "Citation Accuracy": _avg(citation_scores),
+            "Evaluated (answerable)": evaluated
         }
 
         app_logger.success(
-            "Plane 2 generation "
-            "evaluation complete"
+            "Plane 2 generation evaluation complete"
         )
 
         return metrics
@@ -272,60 +138,36 @@ class GenerationEvaluator:
         query: str,
         answer: str
     ) -> float:
-        """
-        Query-answer relevance
-        """
 
-        query_emb = (
-            self.embedding_model
-            .encode(query)
+        if not answer.strip():
+            return 0.0
+
+        model = self._model()
+
+        q = model.encode(query)
+        a = model.encode(answer)
+
+        return float(
+            cosine_similarity([q], [a])[0][0]
         )
-
-        answer_emb = (
-            self.embedding_model
-            .encode(answer)
-        )
-
-        similarity = (
-            cosine_similarity(
-                [query_emb],
-                [answer_emb]
-            )[0][0]
-        )
-
-        return float(similarity)
 
     def _estimate_completeness(
         self,
         answer: str
     ) -> float:
-        """
-        Simple completeness
-        proxy metric
-        """
 
-        if (
-            "insufficient evidence"
-            in answer.lower()
-        ):
+        if ABSTAIN_MARKER in answer.lower():
             return 0.3
 
-        word_count = len(
-            answer.split()
-        )
+        words = len(answer.split())
 
-        if word_count > 120:
+        if words > 120:
             return 1.0
-
-        elif word_count > 60:
+        if words > 60:
             return 0.8
-
-        elif word_count > 30:
+        if words > 30:
             return 0.6
-
         return 0.4
 
 
-generation_evaluator = (
-    GenerationEvaluator()
-)
+generation_evaluator = GenerationEvaluator()

@@ -1,3 +1,11 @@
+import json
+import re
+from typing import Dict, Any
+
+from groq import Groq
+
+from src.config import settings
+
 from src.graph.state import (
     PlannerOutput
 )
@@ -11,166 +19,261 @@ from src.observability.logger import (
 )
 
 
+VALID_ROUTES = {
+    "internal_rag",
+    "web_research",
+    "hybrid",
+    "memory",
+    "direct_generation"
+}
+
+
 class QueryPlanner:
     """
-    Planner agent
-    deciding execution route
+    LLM-based adaptive query planner.
+
+    Uses a fast model to classify each query into
+    one of the supported routes, informed by a
+    description of what the knowledge base contains.
+    Falls back to keyword heuristics if the model
+    call or parsing fails, so planning never blocks
+    the pipeline.
     """
+
+    _client = None
+
+    def __init__(self):
+
+        self.model = settings.FAST_MODEL
+
+    def _get_client(self):
+
+        if self._client is None:
+
+            self._client = Groq(
+                api_key=settings.GROQ_API_KEY
+            )
+
+            app_logger.success(
+                "Planner LLM client initialized"
+            )
+
+        return self._client
 
     def plan(
         self,
         query: str
     ) -> PlannerOutput:
         """
-        Plan query execution
+        Plan execution route for a query.
         """
 
-        route = (
-            QueryHeuristics
-            .classify(query)
+        try:
+            return self._llm_plan(query)
+
+        except Exception as exc:
+
+            app_logger.error(
+                f"LLM planner failed, falling back "
+                f"to heuristics: {exc!r}"
+            )
+
+            route = QueryHeuristics.classify(query)
+
+            return self._build_output(
+                route=route,
+                intent="heuristic_fallback",
+                complexity="medium",
+                confidence=0.5,
+                needs_decomposition=False,
+                subqueries=[],
+                budget="medium"
+            )
+
+    # ------------------------------------------------
+
+    def _llm_plan(
+        self,
+        query: str
+    ) -> PlannerOutput:
+
+        prompt = self._build_prompt(query)
+
+        response = (
+            self._get_client()
+            .chat.completions.create(
+                model=self.model,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.0,
+                max_tokens=400
+            )
         )
 
-        planner_output = (
-            self._build_plan(
-                route=route,
-                query=query
-            )
+        raw = response.choices[0].message.content
+
+        data = self._parse(raw)
+
+        route = data.get("route")
+
+        if route not in VALID_ROUTES:
+            # Model returned an unknown route; fall
+            # back to heuristics for the route only.
+            route = QueryHeuristics.classify(query)
+
+        output = self._build_output(
+            route=route,
+            intent=str(
+                data.get("intent", "") or ""
+            ) or None,
+            complexity=str(
+                data.get("complexity", "") or ""
+            ) or None,
+            confidence=self._coerce_confidence(
+                data.get("confidence")
+            ),
+            needs_decomposition=bool(
+                data.get("needs_decomposition", False)
+            ),
+            subqueries=self._coerce_list(
+                data.get("subqueries")
+            ),
+            budget=str(
+                data.get("budget", "") or ""
+            ) or None
         )
 
         app_logger.success(
-            f"Planner selected "
-            f"route: "
-            f"{planner_output.route}"
+            f"Planner (LLM) selected route: "
+            f"{output.route}"
         )
 
-        return planner_output
+        return output
 
-    def _build_plan(
+    def _build_output(
         self,
         route: str,
-        query: str
+        intent=None,
+        complexity=None,
+        confidence: float = 0.7,
+        needs_decomposition: bool = False,
+        subqueries=None,
+        budget=None
     ) -> PlannerOutput:
         """
-        Build PlannerOutput
+        Construct PlannerOutput, deriving the
+        needs_* flags deterministically from the
+        chosen route (more reliable than trusting
+        the model's booleans).
         """
 
-        if route == "internal_rag":
-
-            return PlannerOutput(
-                intent="document_qa",
-
-                complexity="medium",
-
-                route="internal_rag",
-
-                confidence=0.90,
-
-                needs_retrieval=True,
-
-                needs_memory=False,
-
-                needs_web=False,
-
-                needs_decomposition=False,
-
-                budget="medium"
-            )
-
-        elif route == "memory":
-
-            return PlannerOutput(
-                intent="memory_lookup",
-
-                complexity="low",
-
-                route="memory",
-
-                confidence=0.90,
-
-                needs_retrieval=False,
-
-                needs_memory=True,
-
-                needs_web=False,
-
-                budget="low"
-            )
-
-        elif route == (
-            "web_research"
-        ):
-
-            return PlannerOutput(
-                intent="external_research",
-
-                complexity="medium",
-
-                route="web_research",
-
-                confidence=0.88,
-
-                needs_retrieval=False,
-
-                needs_memory=False,
-
-                needs_web=True,
-
-                budget="medium"
-            )
-
-        elif route == "hybrid":
-
-            return PlannerOutput(
-                intent="hybrid_reasoning",
-
-                complexity="high",
-
-                route="hybrid",
-
-                confidence=0.85,
-
-                needs_retrieval=True,
-
-                needs_memory=True,
-
-                needs_web=True,
-
-                needs_decomposition=True,
-
-                budget="high"
-            )
-
-        elif route == (
-            "direct_generation"
-        ):
-
-            return PlannerOutput(
-                intent="general_reasoning",
-
-                complexity="low",
-
-                route="direct_generation",
-
-                confidence=0.92,
-
-                needs_retrieval=False,
-
-                needs_memory=False,
-
-                needs_web=False,
-
-                budget="low"
-            )
-
         return PlannerOutput(
-            route="internal_rag",
-
-            confidence=0.50,
-
-            needs_retrieval=True
+            intent=intent,
+            complexity=complexity,
+            route=route,
+            confidence=confidence,
+            needs_retrieval=route in (
+                "internal_rag", "hybrid"
+            ),
+            needs_memory=route == "memory",
+            needs_web=route in (
+                "web_research", "hybrid"
+            ),
+            needs_decomposition=needs_decomposition,
+            subqueries=subqueries or [],
+            budget=budget
         )
 
+    def _build_prompt(
+        self,
+        query: str
+    ) -> str:
 
-query_planner = (
-    QueryPlanner()
-)
+        return f"""You are the query planner for Dynamic-RAG, an \
+adaptive retrieval-augmented system. Choose the single best route \
+for the user's query.
+
+KNOWLEDGE BASE CONTENTS:
+{settings.KNOWLEDGE_BASE_DESCRIPTION}
+
+ROUTES (choose exactly one):
+- "internal_rag": answerable from the knowledge base above (facts, \
+history, concepts, definitions within that domain), even if the query \
+mentions recent years.
+- "web_research": needs current/real-time/breaking information (live \
+prices, today's news, very recent events) OR is a factual question \
+clearly outside the knowledge base domain that the web can answer.
+- "hybrid": answering well needs BOTH the knowledge base AND fresh \
+web information.
+- "memory": refers to the earlier conversation (e.g. "what did we \
+discuss", "you said", "earlier", "previously", or pronouns referring \
+to prior turns).
+- "direct_generation": a general language task needing no retrieval \
+(rewrite, summarize provided text, translate, explain a general \
+concept, casual chat).
+
+Respond with ONLY a JSON object, no markdown:
+{{
+  "route": "<one of: internal_rag, web_research, hybrid, memory, direct_generation>",
+  "intent": "<short label>",
+  "complexity": "<low|medium|high>",
+  "confidence": <number 0..1>,
+  "needs_decomposition": <true|false>,
+  "subqueries": [],
+  "budget": "<low|medium|high>"
+}}
+
+USER QUERY:
+{query}"""
+
+    # ------------------------------------------------
+
+    def _parse(
+        self,
+        raw: str
+    ) -> Dict[str, Any]:
+
+        text = (raw or "").strip()
+
+        text = re.sub(
+            r"^```(?:json)?",
+            "",
+            text
+        ).strip()
+
+        text = re.sub(r"```$", "", text).strip()
+
+        start = text.find("{")
+        end = text.rfind("}")
+
+        if start != -1 and end != -1 and end > start:
+            text = text[start:end + 1]
+
+        return json.loads(text)
+
+    def _coerce_confidence(
+        self,
+        value
+    ) -> float:
+
+        try:
+            conf = float(value)
+            return max(0.0, min(1.0, conf))
+        except (TypeError, ValueError):
+            return 0.7
+
+    def _coerce_list(
+        self,
+        value
+    ):
+
+        if isinstance(value, list):
+            return [str(v) for v in value]
+        return []
+
+
+query_planner = QueryPlanner()

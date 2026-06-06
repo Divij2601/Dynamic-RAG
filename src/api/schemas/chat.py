@@ -24,6 +24,10 @@ class ChatResponse(BaseModel):
 
     answer: str
 
+    query_id: Optional[str] = None
+
+    session_id: Optional[str] = None
+
     route: str
 
     confidence: float

@@ -1,5 +1,5 @@
 from typing import List, Dict
-from uuid import uuid4
+from uuid import uuid5, NAMESPACE_URL
 
 from qdrant_client.models import (
     Distance,
@@ -123,11 +123,20 @@ class QdrantIndexer:
                 ]
             }
 
+            # Deterministic point id from the
+            # chunk_id keeps re-ingestion
+            # idempotent (same chunk upserts
+            # in place instead of duplicating).
+            point_id = str(
+                uuid5(
+                    NAMESPACE_URL,
+                    chunk["chunk_id"]
+                )
+            )
+
             points.append(
                 PointStruct(
-                    id=str(
-                        uuid4()
-                    ),
+                    id=point_id,
 
                     vector=chunk[
                         "embedding"

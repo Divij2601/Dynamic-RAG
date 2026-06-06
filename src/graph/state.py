@@ -49,6 +49,7 @@ class PlannerOutput(BaseModel):
     confidence: float = 0.0
 
     needs_retrieval: bool = False
+    needs_memory: bool = False
     needs_web: bool = False
     needs_decomposition: bool = False
 
@@ -140,6 +141,20 @@ class FinalResponse(BaseModel):
     confidence: float = 0.0
     status: str = "pending"
 
+    # Verification / accountability fields
+    faithfulness_score: Optional[float] = None
+    grounded: Optional[bool] = None
+
+    unsupported_claims: List[str] = Field(
+        default_factory=list
+    )
+
+    reasoning: Optional[str] = None
+
+    # Request correlation
+    query_id: Optional[str] = None
+    session_id: Optional[str] = None
+
 
 # ==========================================
 # Main Query State
@@ -162,9 +177,10 @@ class QueryState(BaseModel):
         default_factory=list
     )
 
-    memory_context: List[str] = Field(
-        default_factory=list
-    )
+    # The memory retriever returns a single
+    # formatted transcript string (recent +
+    # semantic memory), so this is a plain string.
+    memory_context: str = ""
 
     # Planner
     planner_output: Optional[
@@ -198,8 +214,12 @@ class QueryState(BaseModel):
         default_factory=GenerationMetrics
     )
 
+    # Stored as a plain dict produced by the
+    # faithfulness verifier (keys: faithful,
+    # grounded, faithfulness_score,
+    # unsupported_claims, reasoning).
     verification_result: Optional[
-        VerificationResult
+        Dict[str, Any]
     ] = None
 
     # Final Output
