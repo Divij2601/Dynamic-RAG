@@ -1,77 +1,47 @@
-from src.ingestion.loader import (
-    document_loader
+from src.retrieval.hybrid import (
+    hybrid_retriever
 )
 
-from src.ingestion.parser import (
-    document_parser
-)
-
-from src.ingestion.chunker import (
-    document_chunker
-)
-
-from src.ingestion.metadata import (
-    metadata_builder
-)
-
-from src.ingestion.embedder import (
-    embedding_generator
-)
-
-from src.ingestion.indexer import (
-    qdrant_indexer
+from src.retrieval.reranker import (
+    reranker
 )
 
 
-document = (
-    document_loader
-    .save_document(
-        "Divij_Dudeja_resume_26.pdf"
-    )
+query = (
+    "What is PTOC50?"
 )
 
-parsed = (
-    document_parser
-    .parse_document(
-        document["file_path"]
-    )
+hybrid_results = (
+    hybrid_retriever
+    .retrieve(query)
 )
 
-chunks = (
-    document_chunker
-    .chunk_document(
-        parsed_document=parsed,
-        document_id=(
-            document[
-                "document_id"
+reranked = (
+    reranker
+    .rerank(
+        query=query,
+        retrieved_chunks=(
+            hybrid_results[
+                "results"
             ]
         )
     )
 )
 
-metadata_chunks = (
-    metadata_builder
-    .enrich_chunks(
-        chunks=chunks,
-        filename=(
-            document[
-                "filename"
-            ]
-        )
+for i, chunk in enumerate(
+    reranked["results"]
+):
+
+    print("\n")
+    print(
+        f"Rank {i+1}"
     )
-)
 
-embedded_chunks = (
-    embedding_generator
-    .generate_embeddings(
-        metadata_chunks
+    print(
+        f"Rerank Score: "
+        f"{chunk['rerank_score']}"
     )
-)
 
-qdrant_indexer.index_chunks(
-    embedded_chunks
-)
-
-print(
-    "Pipeline complete"
-)
+    print(
+        chunk["text"][:300]
+    )
