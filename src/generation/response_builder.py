@@ -5,6 +5,10 @@ from src.graph.state import (
     FinalResponse
 )
 
+from src.evaluation.confidence import (
+    confidence_calibrator
+)
+
 from src.observability.logger import (
     app_logger
 )
@@ -12,8 +16,7 @@ from src.observability.logger import (
 
 class ResponseBuilder:
     """
-    Build final structured
-    Dynamic-RAG response
+    Final response builder
     """
 
     def build(
@@ -25,24 +28,70 @@ class ResponseBuilder:
         evidence_items:
         List[EvidenceItem],
 
-        confidence: float = 0.85
+        verification:
+        dict
     ) -> FinalResponse:
         """
         Build final response
         """
 
+        faithfulness_score = (
+            verification.get(
+                "faithfulness_score",
+                0.5
+            )
+        )
+
+        confidence = (
+            confidence_calibrator
+            .calculate(
+                evidence_items=(
+                    evidence_items
+                ),
+
+                faithfulness_score=(
+                    faithfulness_score
+                )
+            )
+        )
+
         response = (
             FinalResponse(
                 answer=answer,
-
-                sources=(
-                    evidence_items
-                ),
 
                 route=route,
 
                 confidence=(
                     confidence
+                ),
+
+                faithfulness_score=(
+                    faithfulness_score
+                ),
+
+                grounded=(
+                    verification.get(
+                        "grounded",
+                        False
+                    )
+                ),
+
+                unsupported_claims=(
+                    verification.get(
+                        "unsupported_claims",
+                        []
+                    )
+                ),
+
+                reasoning=(
+                    verification.get(
+                        "reasoning",
+                        ""
+                    )
+                ),
+
+                sources=(
+                    evidence_items
                 ),
 
                 status="success"

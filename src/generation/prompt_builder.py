@@ -1,17 +1,7 @@
+from typing import List, Optional
+
 from src.graph.state import (
-    QueryState
-)
-
-from src.retrieval.hybrid import (
-    hybrid_retriever
-)
-
-from src.retrieval.reranker import (
-    reranker
-)
-
-from src.retrieval.evidence import (
-    evidence_builder
+    EvidenceItem
 )
 
 from src.observability.logger import (
@@ -19,203 +9,140 @@ from src.observability.logger import (
 )
 
 
-class QueryRouter:
+class PromptBuilder:
     """
-    Route execution engine
+    Grounded prompt builder
+    with conversational memory
     """
 
-    def execute(
+    SYSTEM_PROMPT = """
+You are Dynamic-RAG, a grounded retrieval-augmented AI assistant.
+
+You MUST follow these rules strictly:
+
+1. ONLY answer using provided evidence.
+
+2. Use memory ONLY for conversational continuity.
+
+3. NEVER invent facts.
+
+4. If evidence is insufficient,
+say:
+"I could not find sufficient evidence to answer this."
+
+5. Be concise and technically accurate.
+
+6. Never override evidence
+with memory.
+
+7. Prioritize factual accuracy
+over completeness.
+"""
+
+    def build_prompt(
         self,
-        state: QueryState
-    ) -> QueryState:
+        query: str,
+
+        evidence_items:
+        List[EvidenceItem],
+
+        memory_context:
+        Optional[str] = ""
+    ) -> str:
         """
-        Execute selected route
+        Build grounded prompt
         """
 
-        route = (
-            state
-            .planner_output
-            .route
+        evidence_text = (
+            self._format_evidence(
+                evidence_items
+            )
         )
 
-        app_logger.info(
-            f"Executing route: "
-            f"{route}"
+        memory_section = ""
+
+        if memory_context:
+
+            memory_section = f"""
+-------------------
+CONVERSATION MEMORY
+-------------------
+
+{memory_context}
+"""
+
+        prompt = f"""
+{self.SYSTEM_PROMPT}
+
+{memory_section}
+
+-------------------
+USER QUESTION
+-------------------
+
+{query}
+
+-------------------
+EVIDENCE
+-------------------
+
+{evidence_text}
+
+-------------------
+TASK
+-------------------
+
+Answer the question ONLY
+using the evidence.
+
+Use memory ONLY to
+understand conversational
+references such as:
+"it", "that", "previously discussed".
+
+Never invent facts not
+present in evidence.
+"""
+
+        app_logger.success(
+            "Grounded memory-aware "
+            "prompt built"
         )
 
-        if route == (
-            "internal_rag"
+        return prompt
+
+    def _format_evidence(
+        self,
+        evidence_items:
+        List[EvidenceItem]
+    ) -> str:
+        """
+        Format evidence
+        """
+
+        formatted = []
+
+        for i, evidence in enumerate(
+            evidence_items
         ):
-            return (
-                self
-                ._internal_rag_route(
-                    state
-                )
+
+            entry = f"""
+[EVIDENCE {i+1}]
+Page: {evidence.page}
+
+Content:
+{evidence.text}
+"""
+
+            formatted.append(
+                entry
             )
 
-        elif route == (
-            "memory"
-        ):
-            return (
-                self
-                ._memory_route(
-                    state
-                )
-            )
-
-        elif route == (
-            "web_research"
-        ):
-            return (
-                self
-                ._web_route(
-                    state
-                )
-            )
-
-        elif route == (
-            "hybrid"
-        ):
-            return (
-                self
-                ._hybrid_route(
-                    state
-                )
-            )
-
-        elif route == (
-            "direct_generation"
-        ):
-            return (
-                self
-                ._direct_route(
-                    state
-                )
-            )
-
-        return state
-
-    def _internal_rag_route(
-        self,
-        state: QueryState
-    ) -> QueryState:
-        """
-        Internal retrieval route
-        """
-
-        retrieval = (
-            hybrid_retriever
-            .retrieve(
-                state.query_text
-            )
+        return "\n".join(
+            formatted
         )
 
-        reranked = (
-            reranker
-            .rerank(
-                query=(
-                    state.query_text
-                ),
 
-                retrieved_chunks=(
-                    retrieval[
-                        "results"
-                    ]
-                )
-            )
-        )
-
-        evidence = (
-            evidence_builder
-            .build(
-                reranked[
-                    "results"
-                ]
-            )
-        )
-
-        state.internal_evidence = (
-            evidence
-        )
-
-        state.selected_route = (
-            "internal_rag"
-        )
-
-        return state
-
-    def _memory_route(
-        self,
-        state: QueryState
-    ) -> QueryState:
-        """
-        Memory route
-        """
-
-        app_logger.info(
-            "Memory route "
-            "placeholder"
-        )
-
-        state.selected_route = (
-            "memory"
-        )
-
-        return state
-
-    def _web_route(
-        self,
-        state: QueryState
-    ) -> QueryState:
-        """
-        Web route
-        """
-
-        app_logger.info(
-            "Web route "
-            "placeholder"
-        )
-
-        state.selected_route = (
-            "web_research"
-        )
-
-        return state
-
-    def _hybrid_route(
-        self,
-        state: QueryState
-    ) -> QueryState:
-        """
-        Hybrid route
-        """
-
-        app_logger.info(
-            "Hybrid route "
-            "placeholder"
-        )
-
-        state.selected_route = (
-            "hybrid"
-        )
-
-        return state
-
-    def _direct_route(
-        self,
-        state: QueryState
-    ) -> QueryState:
-        """
-        Direct generation route
-        """
-
-        state.selected_route = (
-            "direct_generation"
-        )
-
-        return state
-
-
-query_router = (
-    QueryRouter()
+prompt_builder = (
+    PromptBuilder()
 )
