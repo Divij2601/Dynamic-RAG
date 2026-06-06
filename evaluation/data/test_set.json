@@ -1,0 +1,43 @@
+[
+  {
+    "query":
+    "What is PTOC50?",
+
+    "ground_truth_answer":
+    "PTOC50 is an overcurrent protection function.",
+
+    "relevant_chunk_ids":
+    ["chunk_12"],
+
+    "answerable":
+    true
+  },
+
+  {
+    "query":
+    "How is PTOC50 configured?",
+
+    "ground_truth_answer":
+    "PTOC50 is configured through relay protection settings.",
+
+    "relevant_chunk_ids":
+    ["chunk_15", "chunk_16"],
+
+    "answerable":
+    true
+  },
+
+  {
+    "query":
+    "What is Tesla stock price?",
+
+    "ground_truth_answer":
+    "",
+
+    "relevant_chunk_ids":
+    [],
+
+    "answerable":
+    false
+  }
+]
