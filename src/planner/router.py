@@ -14,6 +14,18 @@ from src.retrieval.evidence import (
     evidence_builder
 )
 
+from src.memory.retriever import (
+    memory_retriever
+)
+
+from src.web.search import (
+    web_search_agent
+)
+
+from src.web.evidence import (
+    web_evidence_builder
+)
+
 from src.observability.logger import (
     app_logger
 )
@@ -21,7 +33,7 @@ from src.observability.logger import (
 
 class QueryRouter:
     """
-    Route execution engine
+    Dynamic-RAG execution router
     """
 
     def execute(
@@ -29,7 +41,7 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Execute selected route
+        Execute planned route
         """
 
         route = (
@@ -46,6 +58,7 @@ class QueryRouter:
         if route == (
             "internal_rag"
         ):
+
             return (
                 self
                 ._internal_rag_route(
@@ -56,6 +69,7 @@ class QueryRouter:
         elif route == (
             "memory"
         ):
+
             return (
                 self
                 ._memory_route(
@@ -66,6 +80,7 @@ class QueryRouter:
         elif route == (
             "web_research"
         ):
+
             return (
                 self
                 ._web_route(
@@ -76,6 +91,7 @@ class QueryRouter:
         elif route == (
             "hybrid"
         ):
+
             return (
                 self
                 ._hybrid_route(
@@ -86,6 +102,7 @@ class QueryRouter:
         elif route == (
             "direct_generation"
         ):
+
             return (
                 self
                 ._direct_route(
@@ -100,7 +117,7 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Internal retrieval route
+        Internal document RAG
         """
 
         retrieval = (
@@ -142,6 +159,10 @@ class QueryRouter:
             "internal_rag"
         )
 
+        app_logger.success(
+            "Internal RAG route complete"
+        )
+
         return state
 
     def _memory_route(
@@ -149,16 +170,32 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Memory route
+        Memory retrieval route
         """
 
-        app_logger.info(
-            "Memory route "
-            "placeholder"
+        memory_context = (
+            memory_retriever
+            .retrieve_context(
+                session_id=(
+                    state.session_id
+                ),
+
+                query=(
+                    state.query_text
+                )
+            )
+        )
+
+        state.memory_context = (
+            memory_context
         )
 
         state.selected_route = (
             "memory"
+        )
+
+        app_logger.success(
+            "Memory route complete"
         )
 
         return state
@@ -168,16 +205,33 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Web route
+        Web research route
         """
 
-        app_logger.info(
-            "Web route "
-            "placeholder"
+        web_results = (
+            web_search_agent
+            .search(
+                state.query_text
+            )
+        )
+
+        evidence = (
+            web_evidence_builder
+            .build(
+                web_results
+            )
+        )
+
+        state.web_evidence = (
+            evidence
         )
 
         state.selected_route = (
             "web_research"
+        )
+
+        app_logger.success(
+            "Web route complete"
         )
 
         return state
@@ -187,16 +241,100 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Hybrid route
+        Hybrid route:
+        internal RAG
+        + memory
+        + web
         """
 
-        app_logger.info(
-            "Hybrid route "
-            "placeholder"
+        # -------------------
+        # Internal Retrieval
+        # -------------------
+
+        retrieval = (
+            hybrid_retriever
+            .retrieve(
+                state.query_text
+            )
+        )
+
+        reranked = (
+            reranker
+            .rerank(
+                query=(
+                    state.query_text
+                ),
+
+                retrieved_chunks=(
+                    retrieval[
+                        "results"
+                    ]
+                )
+            )
+        )
+
+        internal_evidence = (
+            evidence_builder
+            .build(
+                reranked[
+                    "results"
+                ]
+            )
+        )
+
+        state.internal_evidence = (
+            internal_evidence
+        )
+
+        # -------------------
+        # Memory Retrieval
+        # -------------------
+
+        memory_context = (
+            memory_retriever
+            .retrieve_context(
+                session_id=(
+                    state.session_id
+                ),
+
+                query=(
+                    state.query_text
+                )
+            )
+        )
+
+        state.memory_context = (
+            memory_context
+        )
+
+        # -------------------
+        # Web Research
+        # -------------------
+
+        web_results = (
+            web_search_agent
+            .search(
+                state.query_text
+            )
+        )
+
+        web_evidence = (
+            web_evidence_builder
+            .build(
+                web_results
+            )
+        )
+
+        state.web_evidence = (
+            web_evidence
         )
 
         state.selected_route = (
             "hybrid"
+        )
+
+        app_logger.success(
+            "Hybrid route complete"
         )
 
         return state
@@ -206,11 +344,16 @@ class QueryRouter:
         state: QueryState
     ) -> QueryState:
         """
-        Direct generation route
+        Direct generation
+        without retrieval
         """
 
         state.selected_route = (
             "direct_generation"
+        )
+
+        app_logger.success(
+            "Direct generation route complete"
         )
 
         return state
