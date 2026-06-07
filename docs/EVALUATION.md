@@ -175,7 +175,7 @@ Measures what fraction of the gold chunks appear anywhere in the final top-K set
 
 - **What it captures:** Coverage — does the retrieved set contain all the evidence needed to answer the question?
 - **What a bad score means:** The retrieval system is missing relevant evidence. The generator will be asked to answer from incomplete context. Hallucination risk is high.
-- **Current value:** 0.87 (CLAUDE.md spec) / 0.9375 (latest benchmark report)
+- **Current value:** 0.87 (spec) / 0.9375 (latest benchmark report)
 - **Target:** > 0.85 for the current corpus
 
 #### MRR (Mean Reciprocal Rank)
@@ -188,7 +188,7 @@ Measures how early in the ranked list the first relevant chunk appears. If the f
 
 - **What it captures:** Precision of the top position — is the most relevant chunk near the top?
 - **What a bad score means:** Relevant chunks exist in the set but are buried deep. The generator receives weaker context in earlier positions, which can reduce the quality of grounded answers.
-- **Current value:** 1.0 (CLAUDE.md spec) / 0.8833 (latest benchmark report)
+- **Current value:** 1.0 (spec) / 0.8833 (latest benchmark report)
 - **Target:** > 0.80
 
 #### NDCG@K (Normalized Discounted Cumulative Gain)
@@ -215,7 +215,7 @@ Averaged across queries. Measures whether at least one relevant chunk appears in
 
 - **What it captures:** Broad coverage — did we find anything useful at all?
 - **What a bad score means:** For those queries, the system retrieved zero relevant context. The generator will either hallucinate or correctly abstain (abstaining is the correct behavior here, but it means retrieval failed as a lookup system).
-- **Current value:** 1.0 (CLAUDE.md spec) / 0.9583 (latest benchmark report)
+- **Current value:** 1.0 (spec) / 0.9583 (latest benchmark report)
 - **Target:** > 0.95
 
 #### Context Precision
@@ -228,7 +228,7 @@ Measures what fraction of the retrieved chunks are actually relevant.
 
 - **What it captures:** Noise in the retrieved context. A low Context Precision means the generator receives many irrelevant chunks alongside the correct ones.
 - **What a bad score means:** The generator's prompt is diluted with noise. This increases the chance of the generator citing the wrong chunk or being distracted from the correct evidence. With FINAL_TOP_K=8 and typical gold sets of 3-5 chunks, a Context Precision of ~0.50 is structurally expected and acceptable.
-- **Current value:** 0.85 (CLAUDE.md spec) / 0.2917 (latest benchmark report — note: gold sets average 5 chunks, retrieved set is 8, so 0.29-0.38 is structurally bounded)
+- **Current value:** 0.85 (spec) / 0.2917 (latest benchmark report — note: gold sets average 5 chunks, retrieved set is 8, so 0.29-0.38 is structurally bounded)
 - **Note:** Context Precision is structurally bounded by `|gold| / FINAL_TOP_K`. With an average gold set of 5 and FINAL_TOP_K of 8, the theoretical maximum is 0.625. The metric is most useful for catching large regressions, not for comparison against absolute thresholds.
 
 #### Context Recall
@@ -335,7 +335,7 @@ Measures whether every factual claim in the generated answer is directly support
 
 - **What it captures:** Hallucination rate. A faithful answer only says things the context supports.
 - **What a bad score means:** The generator is introducing facts not present in the retrieved context — either fabricating from training data or misreading the evidence. This is the most critical generation failure mode.
-- **Current value:** 0.98 (CLAUDE.md spec) / 1.0 (latest benchmark report, 12 answerable queries evaluated)
+- **Current value:** 0.98 (spec) / 1.0 (latest benchmark report, 12 answerable queries evaluated)
 - **Important:** Faithfulness can be 1.0 while the answer is still wrong, if the retrieved context itself was incorrect (Plane 1 failure). Faithfulness measures faithfulness to evidence, not factual correctness.
 
 #### Groundedness
@@ -348,7 +348,7 @@ A binary signal from the verifier: does the answer derive from the retrieved evi
 
 - **What it captures:** Whether the generator is using the RAG context. A non-grounded but high-faithfulness score is theoretically impossible — if an answer is not grounded, it cannot be faithful to evidence.
 - **What a bad score means:** The generator ignored the context window. This indicates a prompt construction problem, a system prompt that overrides RAG behavior, or a model that tends to ignore context.
-- **Current value:** 1.0 (both CLAUDE.md spec and latest benchmark)
+- **Current value:** 1.0 (both spec and latest benchmark)
 
 #### Answer Relevance
 
@@ -384,7 +384,7 @@ A word-count proxy for response completeness. This is an intentionally simple he
 
 - **What it captures:** Whether the answer is substantive. Very short answers to complex questions are penalized.
 - **What it does not capture:** Whether the content of the answer is complete relative to the question requirements. A 150-word hallucination scores 1.0.
-- **Current value:** 0.85 (CLAUDE.md spec) / 0.6333 (latest benchmark report — reflects some short answers to straightforward factual queries)
+- **Current value:** 0.85 (spec) / 0.6333 (latest benchmark report — reflects some short answers to straightforward factual queries)
 - **Note:** The low Completeness in the latest run reflects that factual queries often have correct but concise answers (e.g., "The United Nations was founded in 1945 in New York City"). This is not a failure; it is a characteristic of the benchmark's factual query distribution.
 
 #### Citation Accuracy
@@ -396,7 +396,7 @@ Citation Accuracy = (Faithfulness + Groundedness) / 2
 A proxy that combines the two evidence-grounding signals. It measures the overall fidelity of the answer to its source evidence.
 
 - **What it captures:** The composite evidence-grounding quality.
-- **Current value:** 0.99 (CLAUDE.md spec) / 0.9583 (latest benchmark — note Faithfulness was 1.0 but Groundedness had one partial abstention case)
+- **Current value:** 0.99 (spec) / 0.9583 (latest benchmark — note Faithfulness was 1.0 but Groundedness had one partial abstention case)
 - **Note:** This metric will be replaced by a dedicated citation-link accuracy metric when the response builder is updated to emit explicit inline citations.
 
 ---
@@ -417,7 +417,7 @@ Computed for answerable queries only. Uses `BAAI/bge-small-en-v1.5` embeddings. 
 
 - **What it captures:** Whether the final answer is semantically equivalent to the known-correct answer, regardless of phrasing.
 - **What a bad score means:** The system produced an answer that is semantically divergent from the ground truth. This can happen even with perfect Faithfulness if the retrieved context was from the wrong documents (Plane 1 failure).
-- **Current value:** 0.81 (CLAUDE.md spec) / 0.892 (latest benchmark report, but note: only 12/29 queries were scored — the rest failed during the pipeline pass)
+- **Current value:** 0.81 (spec) / 0.892 (latest benchmark report, but note: only 12/29 queries were scored — the rest failed during the pipeline pass)
 - **Important distinction from Faithfulness:** Faithfulness measures faithfulness to retrieved context. E2E Accuracy measures correctness against the known ground truth. Both must be high for the system to be working well.
 
 #### Rejection Rate
@@ -431,7 +431,7 @@ Measures whether the system correctly abstains on truly unanswerable queries.
 - **What counts as an abstention:** `response.status == "abstained"` in the `FinalResponse`.
 - **Which queries are scored:** Only queries with `metadata.category == "unanswerable_true"`. Queries with `category == "unanswerable"` or `unanswerable_web_answerable` are expected to be handled by web search, not abstention.
 - **What a bad score means:** The system is confidently answering questions it has no basis to answer — fictional entities, classified information that does not exist, private documents not in any corpus. This is a safety and reliability failure.
-- **Current value:** 0.6 (CLAUDE.md spec) / 0.0 (latest benchmark — the pipeline pass had 17 failures, meaning `unanswerable_true` queries may not have been processed to completion; requires re-run after failure root cause is fixed)
+- **Current value:** 0.6 (spec) / 0.0 (latest benchmark — the pipeline pass had 17 failures, meaning `unanswerable_true` queries may not have been processed to completion; requires re-run after failure root cause is fixed)
 - **Target:** > 0.80
 
 **Important distinction:** Do not conflate Rejection Rate with the handling of `unanswerable_web_answerable` queries. Those queries should be answered via web research, not abstained on. Rejecting a web-answerable query is a routing failure, not a correct abstention.
@@ -457,7 +457,7 @@ Failure Count = number of queries where run_query() raised an exception
 
 Any unhandled exception during graph execution increments the Failure Count. The error is logged with `app_logger.error()` and the query's response is recorded as `None`.
 
-- **Current value:** 0 (CLAUDE.md spec) / 17 (latest benchmark report — indicates a systemic failure affecting more than half the pipeline pass; root cause is Groq rate limit exhaustion during the run)
+- **Current value:** 0 (spec) / 17 (latest benchmark report — indicates a systemic failure affecting more than half the pipeline pass; root cause is Groq rate limit exhaustion during the run)
 - **What a non-zero failure count means:** Some metric values (especially Plane 2 and Plane 3) are computed over only the non-failed queries and may be artificially inflated. A benchmark run with > 10% failures should be treated as invalid and re-run after fixing the root cause.
 
 #### Estimated Cost Per Query
