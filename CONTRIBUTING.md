@@ -39,18 +39,6 @@ If a contribution does not fit these values, it will not be merged regardless of
 
 ## 2. Before You Start
 
-### Read CLAUDE.md
-
-The file `CLAUDE.md` at the root of the repository is the operating context for this project. It describes:
-
-- the intended architecture and runtime flow,
-- the data strategy and corpus expectations,
-- the full module inventory and what each module is expected to do,
-- the recommended testing order,
-- the quality bar for each subsystem.
-
-Read it before writing a single line of code. If a section of CLAUDE.md contradicts your intuition, defer to CLAUDE.md.
-
 ### Understand the Three Evaluation Planes
 
 All contributions that touch retrieval, generation, or routing are evaluated across three planes:
