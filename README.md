@@ -382,7 +382,6 @@ Dynamic-RAG/
 +-- requirements.txt                # Python dependencies
 +-- .env.example                    # Template for environment variables
 +-- .gitignore                      # Excludes .env, logs/, data/uploads/, __pycache__/
-+-- CLAUDE.md                       # Agent operating context and test playbook
 +-- README.md                       # This file
 ```
 
