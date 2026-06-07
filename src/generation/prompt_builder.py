@@ -93,20 +93,20 @@ CONVERSATION MEMORY
         # Internal Evidence
         # ------------------
 
+        internal_count = 0
+
         if internal_evidence:
 
             internal_text = (
                 self._format_evidence(
                     internal_evidence,
-                    source_name=(
-                        "INTERNAL DOCUMENTS"
-                    )
+                    source_name="INTERNAL DOCUMENTS",
+                    index_offset=0
                 )
             )
 
-            sections.append(
-                internal_text
-            )
+            sections.append(internal_text)
+            internal_count = len(internal_evidence)
 
         # ------------------
         # Web Evidence
@@ -117,15 +117,14 @@ CONVERSATION MEMORY
             web_text = (
                 self._format_evidence(
                     web_evidence,
-                    source_name=(
-                        "WEB RESEARCH"
-                    )
+                    source_name="WEB RESEARCH",
+                    # Offset so source numbers continue
+                    # from where internal left off.
+                    index_offset=internal_count
                 )
             )
 
-            sections.append(
-                web_text
-            )
+            sections.append(web_text)
 
         combined_context = (
             "\n\n".join(
@@ -148,22 +147,18 @@ USER QUESTION
 TASK
 -------------------
 
-Answer the question
-ONLY using evidence.
+Answer ONLY using the evidence sources above.
 
-Memory exists ONLY to
-resolve conversational
-references like:
+When citing, use the source label exactly as shown,
+e.g. "[Source 1 — india_profile.txt, page 2]".
+You may shorten it to "[Source 1]" inline.
 
-- "it"
-- "that"
-- "previous discussion"
+Conversation history is ONLY for resolving
+references like "it", "that", or "same as before".
+Never treat history as factual evidence.
 
-Never use memory
-as factual evidence.
-
-If evidence is missing,
-abstain.
+If the evidence is insufficient, respond:
+"I could not find sufficient evidence to answer this."
 """
 
         app_logger.success(
@@ -175,59 +170,69 @@ abstain.
 
     def _format_evidence(
         self,
-        evidence_items:
-        List[EvidenceItem],
-
-        source_name: str
+        evidence_items: List[EvidenceItem],
+        source_name: str,
+        index_offset: int = 0
     ) -> str:
         """
-        Format evidence block
+        Format evidence block with self-describing
+        citations (filename + page) so the LLM
+        naturally cites by source name rather than
+        a generic number — making answers readable
+        without needing to cross-reference a panel.
         """
 
         formatted = [
-            f"""
--------------------
-{source_name}
--------------------
-"""
+            f"\n-------------------\n"
+            f"{source_name}\n"
+            f"-------------------"
         ]
 
-        for i, evidence in enumerate(
-            evidence_items
-        ):
+        for i, evidence in enumerate(evidence_items):
 
-            title = (
-                evidence.metadata.get(
-                    "title",
-                    ""
+            n = i + 1 + index_offset
+
+            stype = evidence.source_type
+
+            if stype == "web":
+                meta = evidence.metadata or {}
+                title = meta.get("title", "")
+                url = meta.get("url", "")
+                citation = (
+                    f"[Source {n} — {title}]"
+                    if title
+                    else f"[Source {n} — {url}]"
                 )
-                if evidence.metadata
-                else ""
+            else:
+                meta = evidence.metadata or {}
+                filename = meta.get("filename", "")
+                page = evidence.page
+                if filename and page is not None:
+                    citation = (
+                        f"[Source {n} — "
+                        f"{filename}, page {page}]"
+                    )
+                elif filename:
+                    citation = (
+                        f"[Source {n} — {filename}]"
+                    )
+                else:
+                    citation = f"[Source {n}]"
+
+            entry = (
+                f"\n{citation}\n"
+                f"{evidence.text}"
             )
 
-            entry = f"""
-[EVIDENCE {i+1}]
+            formatted.append(entry)
 
-Source Type:
-{evidence.source_type}
+        return "\n".join(formatted)
 
-Title:
-{title}
-
-Page:
-{evidence.page}
-
-Content:
-{evidence.text}
-"""
-
-            formatted.append(
-                entry
-            )
-
-        return "\n".join(
-            formatted
-        )
+    def _count_evidence(
+        self,
+        evidence_items: Optional[List[EvidenceItem]]
+    ) -> int:
+        return len(evidence_items) if evidence_items else 0
 
 
 prompt_builder = (

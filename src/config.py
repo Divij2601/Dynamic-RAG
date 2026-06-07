@@ -81,6 +81,13 @@ class Settings(BaseSettings):
     # per-model quota). Empty disables fallback.
     LLM_FALLBACK_MODEL: str = "llama-3.1-8b-instant"
 
+    # Conversation memory management
+    # When session exceeds this many turns, older
+    # turns are compressed into a summary.
+    MAX_HISTORY_TURNS: int = 8
+    # Recent turns kept verbatim after summarisation.
+    SUMMARY_KEEP_RECENT: int = 3
+
     # ==========================
     # Retrieval Config
     # ==========================

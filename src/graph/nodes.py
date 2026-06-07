@@ -28,6 +28,7 @@ from src.web.evidence import web_evidence_builder
 
 from src.memory.retriever import memory_retriever
 from src.memory.store import conversation_store
+from src.memory.summarizer import conversation_summariser
 
 from src.generation.prompt_builder import prompt_builder
 from src.generation.generator import response_generator
@@ -55,21 +56,79 @@ EVIDENCE_ROUTES = {
 # Context + Planning
 # ----------------------------------------------------
 
+def _format_history_as_string(
+    summary: str,
+    recent_turns: list
+) -> str:
+    """
+    Build a human-readable conversation context
+    string for the planner and generator.
+    """
+
+    parts = []
+
+    if summary:
+        parts.append(
+            f"[Earlier conversation summary]\n{summary}"
+        )
+
+    for t in recent_turns:
+        q = t.get("query", "")
+        a = t.get("answer", "")
+        if q:
+            parts.append(f"User: {q}\nAssistant: {a}")
+
+    return "\n\n".join(parts)
+
+
 def context_loader_node(
     state: QueryState
 ) -> Dict[str, Any]:
     """
-    Entry node. Kept light: request/session
-    identifiers are already on the state. Hook
-    point for preloading scope/metadata later.
+    Load session history on every request — regardless
+    of route — so the planner and generator always
+    have conversational context for follow-up queries.
+    Uses the summariser for long sessions.
     """
 
-    app_logger.info(
-        f"[{state.request_id}] context loaded "
-        f"for session {state.session_id}"
-    )
+    try:
+        ctx = conversation_summariser.get_context_for_session(
+            state.session_id
+        )
 
-    return {}
+        recent = ctx["recent_turns"]
+        summary = ctx["summary"]
+
+        chat_history = [
+            {
+                "query": t.get("query", ""),
+                "answer": t.get("answer", "")
+            }
+            for t in recent
+        ]
+
+        memory_context = _format_history_as_string(
+            summary, recent
+        )
+
+        app_logger.info(
+            f"[{state.request_id}] context loaded: "
+            f"{len(chat_history)} recent turns, "
+            f"summary={'yes' if summary else 'no'}"
+        )
+
+        return {
+            "chat_history": chat_history,
+            "memory_context": memory_context
+        }
+
+    except Exception as exc:
+
+        app_logger.error(
+            f"context_loader failed: {exc!r}"
+        )
+
+        return {}
 
 
 def planner_node(
@@ -77,10 +136,13 @@ def planner_node(
 ) -> Dict[str, Any]:
     """
     Classify the query and select a route.
+    Passes conversation history so the planner can
+    detect follow-up queries and rewrite them.
     """
 
     planner_output = query_planner.plan(
-        state.query_text
+        query=state.query_text,
+        chat_history=state.chat_history
     )
 
     return {
@@ -170,6 +232,25 @@ def _retrieve_with_decomposition(
     return []
 
 
+def _effective_query(state: QueryState) -> str:
+    """
+    Return the rewritten query if the planner produced
+    one (follow-up detected), otherwise the raw query.
+    """
+
+    if (
+        state.planner_output
+        and state.planner_output.rewritten_query
+    ):
+        app_logger.info(
+            f"Using rewritten query: "
+            f"{state.planner_output.rewritten_query!r}"
+        )
+        return state.planner_output.rewritten_query
+
+    return state.query_text
+
+
 def internal_retrieval_node(
     state: QueryState
 ) -> Dict[str, Any]:
@@ -177,6 +258,7 @@ def internal_retrieval_node(
     start = time.perf_counter()
 
     planner = state.planner_output
+    query = _effective_query(state)
 
     if (
         planner
@@ -184,7 +266,7 @@ def internal_retrieval_node(
         and planner.subqueries
     ):
         evidence = _retrieve_with_decomposition(
-            primary_query=state.query_text,
+            primary_query=query,
             subqueries=planner.subqueries
         )
         app_logger.info(
@@ -192,9 +274,7 @@ def internal_retrieval_node(
             f"{len(planner.subqueries)} sub-queries"
         )
     else:
-        evidence = _retrieve_internal(
-            state.query_text
-        )
+        evidence = _retrieve_internal(query)
 
     latency = round(
         (time.perf_counter() - start) * 1000,
@@ -214,11 +294,10 @@ def web_research_node(
 ) -> Dict[str, Any]:
 
     start = time.perf_counter()
+    query = _effective_query(state)
 
     try:
-        results = web_search_agent.search(
-            state.query_text
-        )
+        results = web_search_agent.search(query)
         evidence = web_evidence_builder.build(
             results
         )
@@ -274,15 +353,12 @@ def hybrid_node(
     """
 
     start = time.perf_counter()
+    query = _effective_query(state)
 
-    internal_evidence = _retrieve_internal(
-        state.query_text
-    )
+    internal_evidence = _retrieve_internal(query)
 
     try:
-        web_results = web_search_agent.search(
-            state.query_text
-        )
+        web_results = web_search_agent.search(query)
         web_evidence = web_evidence_builder.build(
             web_results
         )
@@ -327,11 +403,7 @@ def _build_direct_prompt(
 ) -> str:
     """
     Prompt for non-grounded routes (direct
-    reasoning and memory continuity). These tasks
-    (rewrite, summarize, explain, follow-ups) do
-    not depend on document/web evidence, so the
-    strict abstain-if-no-evidence rule does not
-    apply.
+    reasoning and memory continuity).
     """
 
     parts = [
@@ -340,9 +412,10 @@ def _build_direct_prompt(
 
     if memory_context:
         parts.append(
-            "Conversation memory (use only to "
-            "resolve references and maintain "
-            "continuity):\n" + memory_context
+            "CONVERSATION HISTORY (use to resolve "
+            "references and maintain continuity — "
+            "do not treat as factual evidence):\n"
+            + memory_context
         )
 
     parts.append("User question:\n" + query)
@@ -544,13 +617,16 @@ def persist_node(
         return {}
 
     # Save to short-term conversation memory.
+    # query_id links this turn to the trace record
+    # so the session restore can recover sources.
     try:
         conversation_store.save_interaction(
             session_id=state.session_id,
             query=state.query_text,
             answer=response.answer,
             route=response.route,
-            confidence=response.confidence
+            confidence=response.confidence,
+            query_id=state.request_id
         )
     except Exception as exc:
         app_logger.error(

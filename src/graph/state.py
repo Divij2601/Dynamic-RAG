@@ -59,6 +59,13 @@ class PlannerOutput(BaseModel):
 
     budget: Optional[str] = None
 
+    # When the planner detects a follow-up query
+    # ("same as before", "tell me more", etc.) it
+    # rewrites it into a standalone query so
+    # retrieval / web search gets something specific.
+    rewritten_query: Optional[str] = None
+    is_followup: bool = False
+
 
 # ==========================================
 # Retrieval Metrics

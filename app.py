@@ -317,12 +317,7 @@ def api_upload(file_bytes: bytes, filename: str) -> dict:
 
 
 def api_corpus_docs() -> list:
-    """
-    Pull unique indexed documents from Qdrant via
-    the dynamic corpus description builder.
-    We parse them from the corpus description endpoint
-    or fall back to listing via metrics.
-    """
+    """Pull indexed document names from corpus description."""
     try:
         from src.knowledge.corpus_description import (
             corpus_description_builder
@@ -336,6 +331,54 @@ def api_corpus_docs() -> list:
         return docs
     except Exception:
         return []
+
+
+def get_all_sessions() -> list:
+    """Fetch all sessions from MongoDB, newest first."""
+    try:
+        from src.memory.store import conversation_store
+        return conversation_store.get_all_sessions()
+    except Exception:
+        return []
+
+
+def load_session_messages(session_id: str) -> list:
+    """Reconstruct messages list from stored turns + traces."""
+    try:
+        from src.memory.store import conversation_store
+        return conversation_store.load_session_messages(
+            session_id
+        )
+    except Exception:
+        return []
+
+
+def rename_session_db(session_id: str, name: str):
+    """Persist a custom session name to MongoDB."""
+    try:
+        from src.memory.store import conversation_store
+        conversation_store.rename_session(session_id, name)
+    except Exception:
+        pass
+
+
+def _time_ago(dt) -> str:
+    """Return a human-readable relative timestamp string."""
+    if dt is None:
+        return ""
+    try:
+        now = datetime.utcnow()
+        diff = now - dt.replace(tzinfo=None)
+        s = int(diff.total_seconds())
+        if s < 60:
+            return "just now"
+        if s < 3600:
+            return f"{s // 60}m ago"
+        if s < 86400:
+            return f"{s // 3600}h ago"
+        return f"{s // 86400}d ago"
+    except Exception:
+        return ""
 
 
 # ─────────────────────────────────────────────────────────
@@ -384,13 +427,25 @@ def status_badge(status: str) -> str:
     return f'<span class="badge {cls}">{icons.get(status, status)}</span>'
 
 
-def render_sources(sources: list, source_type_filter: str = None):
+def render_sources(
+    sources: list,
+    source_type_filter: str = None,
+    global_offset: int = 0
+):
+    """
+    Render sources numbered as 'Source N' to match
+    how the LLM cited them in the answer text.
+    global_offset: when showing web sources after
+    document sources, pass len(doc_sources) so the
+    numbers continue correctly.
+    """
+
     if not sources:
         st.caption("No sources available.")
         return
 
     filtered = [
-        s for s in sources
+        (orig_idx, s) for orig_idx, s in enumerate(sources)
         if source_type_filter is None
         or s.get("source_type") == source_type_filter
     ]
@@ -399,27 +454,39 @@ def render_sources(sources: list, source_type_filter: str = None):
         st.caption("No sources of this type.")
         return
 
-    for i, s in enumerate(filtered, 1):
+    for orig_idx, s in filtered:
+        n = orig_idx + 1 + global_offset
         stype = s.get("source_type", "document")
         icon = "📄" if stype == "document" else "🌐"
-        name = s.get("source_id") or s.get("chunk_id") or f"Source {i}"
-        if stype == "document":
-            filename = (
-                name.split("/")[-1]
-                if "/" in name
-                else name
-            )
-            title = f"{icon} {filename}"
-            meta = f"Page {s.get('page', '?')}  ·  score {s.get('score', 0):.3f}"
-        else:
-            url = s.get("source_id", "")
-            title_text = s.get("title", url[:60] if url else f"Web {i}")
-            title = f"{icon} {title_text}"
-            meta = url[:80] if url else ""
 
-        with st.expander(title, expanded=False):
-            if meta:
-                st.caption(meta)
+        if stype == "document":
+            meta_obj = s.get("metadata") or {}
+            filename = (
+                meta_obj.get("filename")
+                or s.get("source_id", "")
+                or s.get("chunk_id", f"source_{n}")
+            )
+            filename = filename.split("/")[-1]
+            page = s.get("page")
+            page_str = f", page {page}" if page else ""
+            expander_label = (
+                f"{icon} Source {n} — {filename}{page_str}"
+            )
+            meta_line = (
+                f"Score: {s.get('score', 0):.3f}"
+                + (f"  ·  Page {page}" if page else "")
+            )
+        else:
+            meta_obj = s.get("metadata") or {}
+            web_title = meta_obj.get("title") or ""
+            url = meta_obj.get("url") or s.get("source_id", "")
+            display = web_title or url[:60] or f"Web source {n}"
+            expander_label = f"{icon} Source {n} — {display}"
+            meta_line = url[:90] if url else ""
+
+        with st.expander(expander_label, expanded=False):
+            if meta_line:
+                st.caption(meta_line)
             chunk_text = s.get("text", "")
             if chunk_text:
                 st.markdown(
@@ -522,9 +589,19 @@ def render_message(msg: dict):
                          f"Web ({len(web_sources)})"]
                     )
                     with tab_d:
-                        render_sources(doc_sources)
+                        # Docs: Source 1..N
+                        render_sources(
+                            sources,
+                            source_type_filter="document",
+                            global_offset=0
+                        )
                     with tab_w:
-                        render_sources(web_sources)
+                        # Web: Source N+1..M
+                        render_sources(
+                            sources,
+                            source_type_filter="web",
+                            global_offset=len(doc_sources)
+                        )
                 else:
                     render_sources(sources)
             else:
@@ -567,27 +644,125 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    st.markdown("### 💬 Session")
-    sid = st.text_input(
-        "Session ID",
-        value=st.session_state.session_id,
+    # ── Active session name / rename ──────────────────
+    st.markdown("### 💬 Active Session")
+
+    # Editable session name (stored in session_state;
+    # saved to MongoDB on change).
+    if "session_name" not in st.session_state:
+        st.session_state.session_name = (
+            st.session_state.session_id
+        )
+
+    new_name = st.text_input(
+        "Session name",
+        value=st.session_state.session_name,
         label_visibility="collapsed",
-        placeholder="Session ID"
+        placeholder="Session name…",
+        key="sidebar_name_input"
     )
-    st.session_state.session_id = sid
+
+    if new_name != st.session_state.session_name:
+        st.session_state.session_name = new_name
+        rename_session_db(
+            st.session_state.session_id,
+            new_name
+        )
 
     col_new, col_clear = st.columns(2)
     with col_new:
-        if st.button("New session", use_container_width=True):
+        if st.button("＋ New", use_container_width=True):
+            # Keep the old session in MongoDB (it's
+            # already persisted); just start fresh.
             st.session_state.session_id = (
                 f"session_{uuid.uuid4().hex[:8]}"
+            )
+            st.session_state.session_name = (
+                st.session_state.session_id
             )
             st.session_state.messages = []
             st.rerun()
     with col_clear:
-        if st.button("Clear chat", use_container_width=True):
+        if st.button("Clear", use_container_width=True):
             st.session_state.messages = []
             st.rerun()
+
+    # ── Session history list ───────────────────────────
+    st.markdown("<hr class='rag-divider'>", unsafe_allow_html=True)
+    st.markdown(
+        '<div style="font-weight:600;color:#F1F5F9;'
+        'font-size:0.9rem;margin-bottom:0.5rem">'
+        '🕑 All Sessions</div>',
+        unsafe_allow_html=True
+    )
+
+    all_sessions = get_all_sessions()
+    current_sid = st.session_state.session_id
+
+    if not all_sessions:
+        st.caption("No sessions yet.")
+    else:
+        for sess in all_sessions:
+            sid = sess["session_id"]
+            name = sess.get("name") or sid
+            preview = sess.get("preview", "")
+            msg_count = sess.get("message_count", 0)
+            last_active = sess.get("last_active")
+            ago = _time_ago(last_active)
+            is_current = (sid == current_sid)
+
+            # Active session styling
+            dot_color = "#4F8EF7" if is_current else "#334155"
+            name_color = "#F1F5F9" if is_current else "#94A3B8"
+            bg = (
+                "background:#1E293B;border:1px solid #334155;"
+                if is_current
+                else "background:#0F172A;border:1px solid #1E293B;"
+            )
+
+            # Truncate name for display
+            disp_name = (
+                name[:28] + "…"
+                if len(name) > 28
+                else name
+            )
+
+            card_html = (
+                f'<div style="{bg}border-radius:0.5rem;'
+                f'padding:0.5rem 0.65rem;margin-bottom:0.35rem">'
+                f'<div style="display:flex;align-items:center;'
+                f'gap:0.4rem;margin-bottom:0.15rem">'
+                f'<span style="color:{dot_color};font-size:0.55rem">●</span>'
+                f'<span style="color:{name_color};font-weight:600;'
+                f'font-size:0.82rem">{disp_name}</span>'
+                f'</div>'
+                f'<div style="color:#475569;font-size:0.72rem;'
+                f'white-space:nowrap;overflow:hidden;'
+                f'text-overflow:ellipsis">{preview}</div>'
+                f'<div style="color:#334155;font-size:0.68rem;'
+                f'margin-top:0.15rem">'
+                f'{msg_count} msgs · {ago}</div>'
+                f'</div>'
+            )
+
+            st.markdown(card_html, unsafe_allow_html=True)
+
+            if not is_current:
+                if st.button(
+                    "Open",
+                    key=f"open_sess_{sid}",
+                    use_container_width=True
+                ):
+                    # Switch to this session —
+                    # restore its messages from MongoDB.
+                    st.session_state.session_id = sid
+                    st.session_state.session_name = (
+                        name if name != sid else sid
+                    )
+                    st.session_state.messages = (
+                        load_session_messages(sid)
+                    )
+                    st.rerun()
 
     st.markdown("<hr class='rag-divider'>", unsafe_allow_html=True)
 
