@@ -1,6 +1,5 @@
-from groq import Groq
-
 from src.config import settings
+from src.models.groq_provider import groq_provider
 from src.observability.logger import (
     app_logger
 )
@@ -8,90 +7,33 @@ from src.observability.logger import (
 
 class ResponseGenerator:
     """
-    Groq-based grounded
-    response generator
+    Groq-based grounded response generator.
+    Delegates the LLM call to the resilient
+    GroqProvider (retry / backoff / fallback).
     """
-
-    _client = None
 
     def __init__(self):
 
-        self.model = (
-            settings.DEFAULT_LLM
-        )
-
-    def _get_client(self):
-        """
-        Singleton Groq client
-        """
-
-        if self._client is None:
-
-            self._client = Groq(
-                api_key=(
-                    settings
-                    .GROQ_API_KEY
-                )
-            )
-
-            app_logger.success(
-                "Groq client initialized"
-            )
-
-        return self._client
+        self.model = settings.DEFAULT_LLM
 
     def generate(
         self,
         prompt: str
     ) -> str:
         """
-        Generate grounded answer
+        Generate grounded answer.
         """
 
-        client = (
-            self._get_client()
+        answer = groq_provider.complete(
+            prompt=prompt,
+            model=self.model,
+            temperature=settings.TEMPERATURE,
+            max_tokens=settings.MAX_TOKENS
         )
 
-        response = (
-            client.chat.completions.create(
-                model=self.model,
-
-                messages=[
-                    {
-                        "role":
-                        "user",
-
-                        "content":
-                        prompt
-                    }
-                ],
-
-                temperature=(
-                    settings
-                    .TEMPERATURE
-                ),
-
-                max_tokens=(
-                    settings
-                    .MAX_TOKENS
-                )
-            )
-        )
-
-        answer = (
-            response
-            .choices[0]
-            .message
-            .content
-        )
-
-        app_logger.success(
-            "Answer generated"
-        )
+        app_logger.success("Answer generated")
 
         return answer
 
 
-response_generator = (
-    ResponseGenerator()
-)
+response_generator = ResponseGenerator()

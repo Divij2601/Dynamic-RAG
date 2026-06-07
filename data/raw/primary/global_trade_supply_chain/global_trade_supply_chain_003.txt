@@ -1,0 +1,25 @@
+RARE EARTH MINERALS: CHINA'S DOMINANCE AND GEOPOLITICAL LEVERAGE
+
+OVERVIEW
+
+Rare earth elements (REEs)—a group of seventeen metallic elements including neodymium, dysprosium, terbium, lanthanum, and cerium—are essential inputs for wind turbines, electric vehicle motors, defense guidance systems, consumer electronics, and medical imaging equipment. Despite their name, rare earths are relatively abundant in the Earth's crust, but economically viable deposits are concentrated in China, which controls approximately 60 percent of global production and an even higher share of processing capacity. This concentration has given Beijing significant geopolitical leverage, demonstrated through targeted export restrictions during diplomatic disputes and amplified by the accelerating global energy transition's voracious demand for these materials.
+
+CHINA'S PROCESSING MONOPOLY
+
+While mining of rare earths occurs in multiple countries—including Australia, the United States, Myanmar, and Russia—China dominates the refining and separation stages that transform raw ore into usable materials. As of 2024, China processed roughly 85-90 percent of global rare earth supply. This processing dominance is the product of decades of deliberate industrial policy, substantial environmental subsidization (rare earth processing generates significant toxic waste), and state-directed investment. Companies like China Northern Rare Earth Group and Shenghe Resources have built integrated supply chains that competitors elsewhere struggle to match economically. The 2010 Chinese restriction of rare earth exports to Japan during a maritime dispute in the East China Sea provided a stark demonstration of how this dominance could be weaponized.
+
+DEFENSE AND TECHNOLOGY APPLICATIONS
+
+The defense sector is particularly exposed to rare earth supply disruption. Neodymium-iron-boron magnets—produced using neodymium and dysprosium—power the motors in precision-guided munitions, radar systems, submarine sonar, F-35 fighter jets, and advanced drones. A 2019 US Government Accountability Office report found that most Pentagon weapons programs relied on Chinese rare earth materials somewhere in their supply chains. The Department of Defense has funded domestic rare earth processing capacity as a national security measure, but building competitive facilities takes years. Similarly, electric vehicles require approximately one kilogram of rare earth magnets per motor, making the EV transition directly dependent on Chinese processing capacity unless alternatives are developed.
+
+DIVERSIFICATION ATTEMPTS AND THEIR CHALLENGES
+
+Multiple countries have launched programs to reduce rare earth dependence on China. The US restarted production at the Mountain Pass mine in California, which MP Materials operates, and has invested in domestic separation capacity. Australia's Lynas Rare Earths operates the world's largest rare earth processing facility outside China at its Mount Weld mine and Malaysian plant, and has partnered with the US Department of Defense to build processing facilities in Texas. Canada, Greenland, Brazil, and Norway have significant rare earth deposits under development. However, processing facilities require large capital investments, face environmental permitting challenges, and need several years to reach commercial scale. China has periodically threatened to restrict exports of processed rare earths and rare earth magnets in response to US semiconductor controls, signaling its willingness to use mineral leverage in the technology conflict.
+
+EXPORT CONTROLS AS COUNTER-LEVERAGE
+
+In 2023 and 2024, China imposed export controls on gallium, germanium, graphite, and antimony—critical materials for semiconductor manufacturing, battery anodes, and military applications—explicitly as counter-measures to US chip export restrictions. While not rare earths per se, these actions confirmed Beijing's strategy of using mineral supply chains as bargaining chips in the technology conflict. In late 2024, China restricted exports of certain rare earth processing technologies, attempting to prevent the transfer of processing know-how to countries building alternative capacity. These moves accelerated Western investment in alternative supply chains but underscored the years-long timeline before meaningful diversification is achieved.
+
+CONCLUSION
+
+Rare earth mineral concentration represents one of the clearest examples of how supply chain geography translates directly into geopolitical power. China's dominance is not accidental—it reflects decades of strategic investment—and cannot be overcome quickly by adversaries. Managing rare earth supply chain risk requires a sustained, decade-long commitment to mine development, processing capacity, and recycling infrastructure across allied nations.

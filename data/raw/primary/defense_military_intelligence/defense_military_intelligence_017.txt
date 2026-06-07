@@ -1,0 +1,25 @@
+F-35 LIGHTNING II: GLOBAL DEPLOYMENTS AND ALLIED INTEGRATION
+
+OVERVIEW
+
+The Lockheed Martin F-35 Lightning II is the world's most widely deployed stealth combat aircraft, with over 1,000 aircraft delivered to the United States and international partners by 2024. Designed as a multi-role fifth-generation fighter with advanced stealth, sensor fusion, and networked capabilities, the F-35 has become the cornerstone of NATO and allied air power modernization despite a program history marked by cost overruns, schedule delays, and technical challenges. As of 2024, the F-35 is fielded by the US Air Force, Navy, and Marine Corps, as well as by 15 international partners and customers.
+
+PROGRAM OVERVIEW AND VARIANTS
+
+The F-35 exists in three variants: the F-35A conventional takeoff and landing version for the USAF and most international customers; the F-35B short takeoff and vertical landing (STOVL) variant for the USMC, UK Royal Air Force, and Royal Navy; and the F-35C carrier-based variant for the US Navy. The F-35B's versatility allowed the UK to operate the aircraft from its new Queen Elizabeth-class carriers without catapult systems.
+
+Total program acquisition costs have exceeded $400 billion for the US alone, making it the most expensive weapons acquisition program in history. The sustainment and operations costs over a 50-year lifecycle are projected to exceed $1.7 trillion. Despite these figures, the aircraft's capabilities — particularly its low-observable characteristics, integrated electronic warfare suite (AN/ASQ-239), and Distributed Aperture System for 360-degree situational awareness — have maintained its status as the preferred high-end fighter for Western air forces.
+
+INTERNATIONAL PARTNER COUNTRIES
+
+The F-35 program established a model for international defense cooperation, with partner nations contributing to production and receiving production work shares proportional to their commitments. International partners include the UK, Italy, Netherlands, Norway, Denmark, Australia, Canada, Turkey (before expulsion over the S-400 purchase), Japan, South Korea, Israel, Belgium, Poland, Singapore, Finland, and Switzerland, with additional customers including Germany, Greece, and the Czech Republic in procurement or consideration stages.
+
+Each international customer brings different strategic significance. Japan's F-35 fleet — eventually up to 147 aircraft including both A and B variants — represents the most capable air combat capability in Northeast Asia outside the US, directly affecting deterrence calculations regarding China and North Korea. Israel, as a Foreign Military Sales customer with special configuration permissions, uses the F-35I "Adir" with indigenous Israeli systems integrated, and the aircraft has reportedly been used in strikes against targets in Syria, Iraq, and Iran.
+
+NETWORK INTEGRATION AND COMBINED OPERATIONS
+
+A key F-35 advantage is its ability to fuse data from multiple sensor systems and share it with other platforms via the MADL (Multifunction Advanced Data Link) and other networks. In a coalition scenario, F-35s from different nations can operate as a connected sensing grid, with one aircraft's radar or EW data automatically shared with all others. This "network node" capability is increasingly central to NATO concepts for defeating advanced integrated air defense systems (IADS).
+
+BLOCK IV UPGRADES AND FUTURE DEVELOPMENT
+
+The ongoing Block 4 upgrade program is significantly expanding F-35 capabilities, including new weapons integration (including nuclear dual-capable certification for European NATO allies), enhanced radar modes, and improved electronic warfare. The program faces ongoing challenges with the Technology Refresh 3 (TR-3) hardware upgrade, delays in which held back Block 4 software delivery. Despite these challenges, the F-35 will remain the primary Western tactical strike aircraft through the 2040s and likely beyond.

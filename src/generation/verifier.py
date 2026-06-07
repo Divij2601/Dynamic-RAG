@@ -2,9 +2,8 @@ import json
 import re
 from typing import List, Dict, Any
 
-from groq import Groq
-
 from src.config import settings
+from src.models.groq_provider import groq_provider
 from src.graph.state import EvidenceItem
 from src.observability.logger import (
     app_logger
@@ -38,26 +37,9 @@ class FaithfulnessVerifier:
     return an answer (failure is logged, not hidden).
     """
 
-    _client = None
-
     def __init__(self):
 
         self.model = settings.CRITIC_MODEL
-
-    def _get_client(self):
-
-        if self._client is None:
-
-            self._client = Groq(
-                api_key=settings.GROQ_API_KEY
-            )
-
-            app_logger.success(
-                "Critic (verifier) client "
-                "initialized"
-            )
-
-        return self._client
 
     def verify(
         self,
@@ -94,31 +76,13 @@ class FaithfulnessVerifier:
 
         try:
 
-            client = self._get_client()
-
-            response = (
-                client.chat.completions.create(
-                    model=self.model,
-
-                    messages=[
-                        {
-                            "role": "user",
-                            "content": prompt
-                        }
-                    ],
-
-                    temperature=0.0,
-
-                    # Generous budget: the critic is a
-                    # reasoning model that spends tokens
-                    # on hidden reasoning before the JSON.
-                    max_tokens=settings.MAX_TOKENS
-                )
-            )
-
-            raw = (
-                response.choices[0]
-                .message.content
+            raw = groq_provider.complete(
+                prompt=prompt,
+                model=self.model,
+                temperature=0.0,
+                # Generous budget: a reasoning critic
+                # spends tokens before emitting JSON.
+                max_tokens=settings.MAX_TOKENS
             )
 
             verdict = self._parse_verdict(raw)

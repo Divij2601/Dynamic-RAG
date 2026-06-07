@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 from src.config import settings
@@ -9,36 +11,28 @@ from src.api.routes.chat import router as chat_router
 from src.api.routes.documents import router as documents_router
 
 
-app = FastAPI(
-    title=settings.APP_NAME,
-    version="0.1.0",
-    description="Dynamic-RAG API"
-)
-
-
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """
-    Startup lifecycle event
+    Startup / shutdown lifecycle using the modern
+    FastAPI lifespan context manager.
     """
-
     app_logger.info(
         f"{settings.APP_NAME} server starting..."
     )
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """
-    Shutdown lifecycle event
-    """
-
+    yield
     app_logger.info(
         f"{settings.APP_NAME} shutting down..."
     )
 
 
-# Register routes
+app = FastAPI(
+    title=settings.APP_NAME,
+    version="0.1.0",
+    description="Dynamic-RAG API",
+    lifespan=lifespan
+)
+
 app.include_router(health_router)
 app.include_router(metrics_router)
 app.include_router(chat_router)

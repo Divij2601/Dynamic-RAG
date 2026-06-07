@@ -1,0 +1,25 @@
+US-CHINA CHIP WAR: EXPORT CONTROLS AND THE CHIPS ACT
+
+OVERVIEW
+
+The United States and China are engaged in a sustained technology conflict centered on semiconductors—the foundational components of modern computing, artificial intelligence, and military systems. Beginning in earnest with the Trump administration's restrictions on Huawei in 2019 and dramatically escalating under the Biden administration's sweeping October 2022 export controls, the US has sought to deny China access to advanced chips and the manufacturing equipment needed to produce them. China has responded with industrial subsidies, diplomatic pressure, and accelerated domestic development programs. The result is a bifurcating global technology ecosystem with profound supply chain consequences.
+
+THE OCTOBER 2022 EXPORT CONTROLS
+
+The Biden administration's October 7, 2022 export control package was described by analysts as the most aggressive technology restriction in decades. The rules effectively prohibited US persons from supporting China's advanced chip manufacturing without a license, restricted exports of chips above certain performance thresholds, and barred the sale of semiconductor manufacturing equipment needed for sub-14 nanometer production. Critically, the controls also applied extraterritorially to foreign companies using US technology, which encompasses virtually all leading chipmakers and equipment suppliers. The Netherlands' ASML, the sole manufacturer of extreme ultraviolet (EUV) lithography machines essential for advanced chip production, was subsequently pressured to halt shipments to China, which it did in 2023. Japan imposed similar controls on twenty-three categories of semiconductor manufacturing equipment in the same year.
+
+THE CHIPS AND SCIENCE ACT
+
+Enacted in August 2022 with bipartisan support, the CHIPS and Science Act provided $52.7 billion for domestic semiconductor manufacturing and research, including $39 billion in manufacturing incentives. The act required recipients of funding to agree not to expand advanced manufacturing capacity in China for ten years—a guardrail designed to prevent subsidized companies from simultaneously benefiting from US taxpayers while strengthening Chinese chipmaking. Major beneficiaries included Intel ($8.5 billion), TSMC Arizona ($6.6 billion), Samsung's Texas expansion, and Micron's memory chip investments in Idaho and New York. The act also funded the National Semiconductor Technology Center to coordinate research and workforce development.
+
+CHINA'S RESPONSE: THE BIG FUND AND DOMESTIC PUSH
+
+China has responded with its own industrial mobilization. The China Integrated Circuit Industry Investment Fund—known as the "Big Fund"—has deployed over 300 billion yuan across two phases since 2014, with a third phase of similar scale launched in 2024. SMIC, China's leading domestic foundry, has pushed toward 7nm production using older deep ultraviolet (DUV) lithography equipment through multipatterning techniques, though yields remain challenged. Huawei's surprise 2023 release of the Mate 60 Pro smartphone, containing a SMIC-manufactured 7nm chip, demonstrated that China was making progress despite controls, though the pace remains constrained. The US responded by further tightening controls, including on less advanced chips used in AI applications.
+
+SUPPLY CHAIN BIFURCATION EFFECTS
+
+The export controls are driving a structural split in the global semiconductor supply chain. Companies must increasingly choose between maintaining access to the US technology ecosystem and serving the Chinese market, as compliance requirements make dual engagement difficult. Some foreign companies—including South Korean memory makers SK Hynix and Samsung—received temporary waivers to continue operating existing China facilities, but face uncertainty beyond 2025. The controls have accelerated Chinese investment in domestic equipment and materials suppliers, with the long-term goal of reducing reliance on foreign technology. Analysts at the Center for Strategic and International Studies estimated China would not achieve leading-edge chip self-sufficiency before the early 2030s under current trajectories.
+
+CONCLUSION
+
+The US-China chip war represents a fundamental restructuring of the technology supply chain that had underpinned globalization for three decades. Whether the restrictions will succeed in durably constraining Chinese military and AI capabilities—or primarily incentivize China to accelerate indigenization—remains the central question of technology geopolitics through the 2030s.

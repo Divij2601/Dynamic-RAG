@@ -115,6 +115,36 @@ class IngestionPipeline:
         # 6. Index into Qdrant
         qdrant_indexer.index_chunks(embedded)
 
+        # 7. Invalidate caches so the next query sees
+        # the new document immediately — no restarts
+        # or manual updates needed.
+        from src.retrieval.sparse import sparse_retriever
+        sparse_retriever.invalidate_cache()
+
+        from src.knowledge.corpus_description import (
+            corpus_description_builder
+        )
+        corpus_description_builder.invalidate()
+
+        # 8. Persist document metadata to MongoDB so
+        # the documents collection stays in sync.
+        try:
+            from src.database.repositories import (
+                document_repo
+            )
+            from datetime import datetime
+            document_repo.create_document({
+                "document_id": document_id,
+                "filename": saved["filename"],
+                "chunks": len(embedded),
+                "ingested_at": datetime.utcnow(),
+                "version": document_version
+            })
+        except Exception as exc:
+            app_logger.error(
+                f"document_repo save failed: {exc!r}"
+            )
+
         app_logger.success(
             f"Ingested {saved['filename']} "
             f"-> {len(embedded)} chunks "

@@ -1,0 +1,25 @@
+SEMICONDUCTOR SUPPLY CHAIN CONCENTRATION RISK: TAIWAN AND TSMC
+
+OVERVIEW
+
+The global semiconductor industry is anchored to a single geographic location to a degree unmatched by almost any other critical technology sector. Taiwan Semiconductor Manufacturing Company (TSMC), headquartered in Hsinchu, Taiwan, manufactures approximately 90 percent of the world's most advanced chips—those at 5 nanometers and below. This concentration has transformed a small island of 23 million people into one of the most strategically consequential locations on Earth, creating systemic vulnerabilities across every sector dependent on computing power.
+
+TSMC'S DOMINANT MARKET POSITION
+
+Founded in 1987 by Morris Chang, TSMC pioneered the pure-play foundry model, manufacturing chips designed by other companies rather than developing its own products. This model proved enormously successful. By 2024, TSMC's market capitalization exceeded $600 billion, making it the most valuable semiconductor company in the world and among the top ten most valuable companies globally. Its customers include Apple, Nvidia, AMD, Qualcomm, and virtually every major technology company that relies on advanced chips. TSMC's N3 and N2 process nodes—representing the technological frontier—have no equivalent capacity elsewhere. Intel's attempts to compete with its Intel Foundry Services division have faced repeated delays, while Samsung remains years behind on yield rates for the most advanced nodes.
+
+GEOPOLITICAL VULNERABILITY DIMENSIONS
+
+The Taiwan Strait is one of the world's most contested waterways, with China claiming Taiwan as a province subject to eventual reunification, by force if necessary. A Chinese military operation against Taiwan—whether a full invasion, naval blockade, or targeted strikes—would immediately threaten TSMC's operations. Defense analysts estimate that even a prolonged blockade lasting six to twelve months could halt advanced chip production entirely, triggering a cascade of failures across global supply chains within weeks. The automotive, defense, consumer electronics, data center, and telecommunications sectors would all face critical shortages. One study by the Rhodium Group estimated a potential $1 trillion annual hit to global GDP from a sustained Taiwan Strait disruption.
+
+DIVERSIFICATION EFFORTS AND THEIR LIMITS
+
+In response to growing geopolitical pressure, TSMC has undertaken an unprecedented geographic expansion. Its Arizona fabrication plants—Fab 21—received tens of billions in US government support through the CHIPS and Science Act of 2022. The first Arizona fab began producing N4 chips in 2024, with a second fab targeting N2 by 2026 or 2027. TSMC is also constructing fabs in Japan's Kumamoto Prefecture, with support from the Japanese government, targeting mature nodes critical for automotive and industrial applications. A European fab in Dresden, Germany, focuses on specialty chips for the automotive sector. However, these facilities will not replicate Taiwan's leading-edge capacity. Building the ecosystem—including specialized equipment suppliers, chemical companies, and trained engineers—takes decades. Taiwan retains an estimated fifteen-to-twenty-year head start.
+
+STRATEGIC IMPLICATIONS AND POLICY RESPONSES
+
+The semiconductor concentration risk has reshaped US-China-Taiwan relations fundamentally. Taiwan's "silicon shield"—the theory that its chip manufacturing capacity deters Chinese aggression because China itself depends on Taiwanese chips—is debated among strategists. Some argue it creates mutual deterrence; others contend China is racing to develop domestic alternatives specifically to remove that deterrent value before any military action. The US, EU, Japan, South Korea, and India have all launched domestic semiconductor support programs since 2022, collectively committing over $300 billion in subsidies and incentives. Despite these efforts, the consensus among industry analysts is that meaningful diversification of leading-edge manufacturing capacity is a decade-long project at minimum, leaving the global economy exposed to Taiwan-centric concentration risk well into the 2030s.
+
+CONCLUSION
+
+The TSMC concentration problem represents a rare instance where geopolitical risk analysis, technology policy, and global economic stability converge into a single acute vulnerability. No other industry depends so heavily on one company in one politically contested location. Managing this risk requires sustained government investment, corporate diversification strategies, and diplomatic frameworks—all of which are underway but insufficient relative to the timeline of potential disruption.

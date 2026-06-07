@@ -102,6 +102,14 @@ def get_system_metrics() -> Dict[str, Any]:
             route_counts.get(route, 0) + 1
         )
 
+    total_cost = round(
+        sum(
+            t.get("total_cost_usd", 0.0)
+            for t in traces
+        ),
+        6
+    )
+
     return {
         "status": "active",
         "total_requests": total,
@@ -121,5 +129,9 @@ def get_system_metrics() -> Dict[str, Any]:
         "abstention_rate": round(
             abstentions / total, 3
         ),
-        "total_retries": retries
+        "total_retries": retries,
+        "total_cost_usd": total_cost,
+        "mean_cost_per_query_usd": round(
+            total_cost / total, 6
+        )
     }

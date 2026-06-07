@@ -2,9 +2,11 @@ import json
 import re
 from typing import Dict, Any
 
-from groq import Groq
-
 from src.config import settings
+from src.models.groq_provider import groq_provider
+from src.knowledge.corpus_description import (
+    corpus_description_builder
+)
 
 from src.graph.state import (
     PlannerOutput
@@ -40,25 +42,9 @@ class QueryPlanner:
     the pipeline.
     """
 
-    _client = None
-
     def __init__(self):
 
         self.model = settings.FAST_MODEL
-
-    def _get_client(self):
-
-        if self._client is None:
-
-            self._client = Groq(
-                api_key=settings.GROQ_API_KEY
-            )
-
-            app_logger.success(
-                "Planner LLM client initialized"
-            )
-
-        return self._client
 
     def plan(
         self,
@@ -99,22 +85,12 @@ class QueryPlanner:
 
         prompt = self._build_prompt(query)
 
-        response = (
-            self._get_client()
-            .chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                temperature=0.0,
-                max_tokens=400
-            )
+        raw = groq_provider.complete(
+            prompt=prompt,
+            model=self.model,
+            temperature=0.0,
+            max_tokens=400
         )
-
-        raw = response.choices[0].message.content
 
         data = self._parse(raw)
 
@@ -193,20 +169,28 @@ class QueryPlanner:
         query: str
     ) -> str:
 
+        # Always fetch the current description — it
+        # rebuilds automatically after each ingestion.
+        kb_description = (
+            corpus_description_builder.get_description()
+        )
+
         return f"""You are the query planner for Dynamic-RAG, an \
 adaptive retrieval-augmented system. Choose the single best route \
 for the user's query.
 
 KNOWLEDGE BASE CONTENTS:
-{settings.KNOWLEDGE_BASE_DESCRIPTION}
+{kb_description}
 
 ROUTES (choose exactly one):
 - "internal_rag": answerable from the knowledge base above (facts, \
 history, concepts, definitions within that domain), even if the query \
 mentions recent years.
-- "web_research": needs current/real-time/breaking information (live \
-prices, today's news, very recent events) OR is a factual question \
-clearly outside the knowledge base domain that the web can answer.
+- "web_research": needs current/real-time data the knowledge base \
+cannot contain — e.g. live prices, sports results, today's news, \
+current population figures, weather, recent elections, stock data, \
+business leadership (CEO/CFO), or any fact that changes over time \
+and is not covered by the knowledge base description above.
 - "hybrid": answering well needs BOTH the knowledge base AND fresh \
 web information.
 - "memory": refers to the earlier conversation (e.g. "what did we \
@@ -222,10 +206,12 @@ Respond with ONLY a JSON object, no markdown:
   "intent": "<short label>",
   "complexity": "<low|medium|high>",
   "confidence": <number 0..1>,
-  "needs_decomposition": <true|false>,
-  "subqueries": [],
+  "needs_decomposition": <true if the question requires synthesising multiple distinct facts — e.g. compare two things, trace a sequence, or answer a multi-part question; false for single-fact lookups>,
+  "subqueries": ["<sub-question 1>", "<sub-question 2>", ...],
   "budget": "<low|medium|high>"
 }}
+
+For needs_decomposition=true, populate subqueries with 2-4 focused single-topic questions that together cover all parts of the user's question. Each subquery should be independently retrievable. For simple single-topic questions, set needs_decomposition=false and subqueries=[].
 
 USER QUERY:
 {query}"""

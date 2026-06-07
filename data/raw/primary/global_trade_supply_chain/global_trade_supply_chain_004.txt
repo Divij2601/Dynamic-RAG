@@ -1,0 +1,25 @@
+CRITICAL MINERALS AND BATTERY SUPPLY CHAINS IN THE EV TRANSITION
+
+OVERVIEW
+
+The global transition from internal combustion engines to electric vehicles has created an entirely new set of supply chain dependencies centered on critical minerals: lithium, cobalt, nickel, manganese, and graphite. These materials are essential for lithium-ion battery cells that power EVs, grid-scale energy storage, and consumer electronics. Unlike the petroleum supply chains they partially displace, critical mineral supply chains are geographically concentrated in a handful of countries, creating new forms of resource dependence. The International Energy Agency estimated in 2024 that demand for lithium would need to increase forty-fold by 2040 to meet net-zero transition scenarios, transforming a previously niche mining sector into a strategic industry of global importance.
+
+LITHIUM SUPPLY CHAIN GEOGRAPHY
+
+Lithium occurs in two primary forms: hard rock spodumene deposits concentrated in Australia and brine deposits in the "Lithium Triangle" of Chile, Argentina, and Bolivia. Australia is the world's largest lithium producer, supplying approximately 47 percent of global output from mines in Western Australia. However, most Australian lithium is exported as raw spodumene concentrate to China for processing into battery-grade lithium hydroxide or carbonate. China controls approximately 60 percent of global lithium processing capacity, creating a dependency similar to that in rare earths. Chile and Argentina export lithium carbonate primarily to China and Japan. The US, EU, and other Western nations have scrambled to secure lithium supply agreements and build domestic processing, but face a multi-year ramp-up period.
+
+COBALT DEPENDENCY AND THE DRC PROBLEM
+
+Cobalt is a critical cathode material for many lithium-ion battery chemistries, and the Democratic Republic of Congo supplies roughly 70 percent of global production. DRC cobalt mining has been associated with serious human rights concerns, including child labor in artisanal mining operations in Katanga province. CMOC Group (formerly China Molybdenum), a Chinese company, operates the world's largest cobalt mine—Tenke Fungurume—in the DRC, and Chinese companies collectively control much of the DRC's industrial cobalt output. Battery manufacturers and automakers have faced pressure from investors and governments to reduce cobalt intensity through alternative battery chemistries. Lithium iron phosphate (LFP) batteries, which use no cobalt, have grown rapidly as an alternative, particularly for lower-range EVs, with Chinese manufacturers CATL and BYD leading production.
+
+NICKEL SUPPLY CHAIN SHIFTS
+
+Nickel is required for high-energy-density battery chemistries preferred in longer-range EVs. Indonesia possesses the world's largest nickel reserves and has dramatically expanded its production of nickel intermediates for batteries, including mixed hydroxide precipitate. By 2024, Indonesia supplied over 50 percent of global nickel output after banning exports of raw nickel ore in 2020 to force downstream processing domestically. However, much of Indonesia's nickel processing investment has come from Chinese companies, meaning that while geographic diversification away from other countries has occurred, Chinese corporate control of the supply chain has deepened. Australia, Canada, and the Philippines are developing alternative nickel supply chains with Western financing.
+
+THE INFLATION REDUCTION ACT'S MINERALS PROVISIONS
+
+The US Inflation Reduction Act (IRA) of 2022 tied electric vehicle tax credits to domestic content requirements for critical minerals. To qualify for the full $7,500 consumer tax credit, an increasing percentage of battery minerals must be extracted or processed in the US or countries with US free trade agreements, and battery components must be manufactured in North America. This has driven a wave of investment in North American critical mineral mining and processing, and spurred free trade agreement negotiations with Australia, Japan, and EU members to qualify their minerals for IRA purposes. The IRA's minerals provisions represent a deliberate attempt to use consumer incentives to reshape global critical mineral supply chains away from Chinese dominance.
+
+CONCLUSION
+
+Critical mineral supply chains for batteries are arguably the defining supply chain challenge of the energy transition era. The concentration of mining and processing in a small number of countries—China dominant in processing, the DRC critical for cobalt, Australia for lithium hard rock, Indonesia for nickel—creates systemic vulnerabilities that will require decade-long investment programs and international cooperation to meaningfully diversify.

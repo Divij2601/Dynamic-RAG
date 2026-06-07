@@ -1,0 +1,25 @@
+SPACE MILITARIZATION AND ANTI-SATELLITE WEAPONS
+
+OVERVIEW
+
+Space has transitioned from a supporting domain to a warfighting domain. Military operations on Earth now depend critically on space-based capabilities for communications, navigation (GPS), intelligence gathering, missile warning, weather, and precision timing. This dependence has made space assets high-value targets, driving investment in anti-satellite (ASAT) weapons and space domain awareness across major powers. The United States Space Force, established in December 2019, reflects American recognition that space superiority is as important as air or sea superiority to modern warfighting.
+
+ANTI-SATELLITE WEAPONS DEVELOPMENT
+
+Anti-satellite capabilities take multiple forms. Direct-ascent kinetic ASAT missiles, launched from the ground, were demonstrated by China in 2007 (destroying its own Fengyun-1C satellite), the United States in 2008 (Operation Burnt Frost), India in 2019 (Mission Shakti), and Russia in 2021 (Nudol test that created a debris cloud endangering the International Space Station). These tests demonstrated capability but also generated diplomatic protests over the creation of long-lived orbital debris fields.
+
+More insidious are non-kinetic ASATs: systems that jam satellite uplinks or downlinks, blind optical sensors through laser dazzling, spoof navigation signals, or conduct cyberattacks against ground control stations. Russia's reported jamming of GPS signals over large areas of Eastern Europe and the Middle East during the Ukraine war demonstrates the operational use of non-kinetic space denial. China has developed co-orbital satellites capable of maneuvering to approach and potentially disable or capture adversary satellites — a capability that is difficult to attribute as hostile until the moment of action.
+
+US SPACE FORCE AND ALLIED POSTURE
+
+The US Space Force has prioritized "space domain awareness" — understanding the precise orbital position and intent of all objects in space — and resilience of space architectures. The proliferated Low Earth Orbit (LEO) constellation concept, exemplified by commercial systems like Starlink but also military programs through the Space Development Agency, disperses capability across hundreds or thousands of small satellites, making comprehensive attack more difficult and expensive. The National Reconnaissance Office has adopted resilience principles that replace single-point-of-failure exquisite satellites with distributed architectures.
+
+NATO declared space an operational domain in 2019 and has developed a space policy and space domain awareness framework. Allies including France, the UK, Germany, and Australia have established dedicated space commands and are investing in independent or complementary space capabilities to reduce collective dependence on US systems.
+
+CHINA AND RUSSIA SPACE STRATEGIES
+
+China's PLA Strategic Support Force (SSF) integrated space, cyber, and electronic warfare, explicitly treating space denial as part of an "anti-access/area denial" strategy to degrade US military effectiveness in a regional conflict. China is developing a range of orbital weapons, electronic warfare systems, and directed energy weapons for anti-satellite use. Russia's military doctrine similarly emphasizes space denial as a first-strike priority to blind adversary command and control.
+
+GOVERNANCE AND NORMS
+
+Space faces a significant governance gap. The Outer Space Treaty of 1967 prohibits weapons of mass destruction in orbit but does not ban conventional weapons or ASAT systems. Efforts to develop a Code of Conduct for Outer Space Activities have been blocked by major-power disagreements. The debris created by kinetic ASAT tests — which threatens all space users including commercial operators — has driven growing international concern, though comprehensive binding restrictions remain politically elusive.

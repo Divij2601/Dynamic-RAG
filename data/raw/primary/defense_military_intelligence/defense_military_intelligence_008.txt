@@ -1,0 +1,25 @@
+HYPERSONIC MISSILE DEVELOPMENT: THE GLOBAL RACE
+
+OVERVIEW
+
+Hypersonic weapons — those that travel at Mach 5 or faster and can maneuver during flight — represent one of the most consequential developments in contemporary military technology. Their combination of speed, maneuverability, and potential for low-altitude flight poses unique challenges to existing missile defense systems designed primarily to track and intercept ballistic trajectories. The United States, Russia, China, and a growing number of secondary powers are investing heavily in hypersonic systems, generating what many analysts describe as a destabilizing arms race with significant implications for strategic stability.
+
+CATEGORIES OF HYPERSONIC WEAPONS
+
+Two main categories exist: Hypersonic Glide Vehicles (HGVs) and Hypersonic Cruise Missiles (HCMs). HGVs are launched by a rocket booster to high altitude and then glide unpowered but maneuverable to their target, following a depressed trajectory that complicates early warning. HCMs use air-breathing scramjet engines to sustain hypersonic speeds in the lower atmosphere throughout flight. Both types complicate detection and intercept timelines compared to traditional ballistic missiles.
+
+RUSSIA'S OPERATIONAL DEPLOYMENTS
+
+Russia claims the distinction of being the first nation to operationally deploy hypersonic weapons. The Avangard HGV, mounted on an ICBM, was declared operational in December 2019. The Kinzhal air-launched ballistic missile — which Russia describes as hypersonic — has been used in Ukraine, though analysts debate whether it meets technical hypersonic definitions since it follows a modified ballistic rather than maneuvering trajectory. The Tsirkon (Zircon) ship-launched HCM was declared operational in 2022, with a claimed range of approximately 1,000 kilometers.
+
+CHINA'S PROGRAM
+
+China has advanced the most aggressive hypersonic testing program, conducting dozens of tests of HGVs and HCMs between 2019 and 2024. The DF-17 HGV-equipped medium-range ballistic missile is operational in PLA Rocket Force service. In 2021, China reportedly tested a Fractional Orbital Bombardment System (FOBS) variant with a hypersonic glide vehicle, circling the globe before descending — a capability that could approach the continental United States from unanticipated directions, bypassing missile defense radars.
+
+US PROGRAMS AND CHALLENGES
+
+The United States has faced setbacks and delays in hypersonic development. Multiple tests of the Army's Long Range Hypersonic Weapon (LRHW) and the Navy's Conventional Prompt Strike (CPS) program encountered technical challenges. However, by 2024, the US had achieved greater test successes and accelerated timelines, with initial operational capabilities expected in the 2025-2027 timeframe. DARPA's Hypersonic Air-breathing Weapon Concept (HAWC) achieved key test milestones. The Air Force's AGM-183A ARRW (Air-launched Rapid Response Weapon) faced repeated test failures before eventual program restructuring.
+
+DEFENSE AND STRATEGIC STABILITY
+
+The challenge of defending against hypersonic weapons has spurred investment in glide phase intercept technologies, space-based sensors for tracking low-altitude maneuvering targets, and directed energy systems. The Missile Defense Agency and Space Development Agency are developing a proliferated Low Earth Orbit satellite constellation to provide the persistent tracking layer needed. Strategically, the difficulty of defending against hypersonics risks incentivizing preemptive strikes, compressing decision timelines, and eroding the stability mechanisms — including assured second-strike survivability — that have underpinned nuclear deterrence for decades.

@@ -1,0 +1,21 @@
+US OFAC SANCTIONS REGIME: RUSSIA 2022 COMPREHENSIVE OVERVIEW
+
+BACKGROUND AND LEGAL AUTHORITY
+
+Following Russia's full-scale invasion of Ukraine on February 24, 2022, the United States implemented the most extensive sanctions package in OFAC's history against a major economy. The Office of Foreign Assets Control, operating under the Department of the Treasury, drew on multiple executive orders and legislative authorities including the International Emergency Economic Powers Act (IEEPA) and the National Emergencies Act. President Biden declared a national emergency with respect to Russia on February 21, 2022, providing the legal scaffolding for subsequent designations. These measures built upon earlier sanctions imposed following Russia's 2014 annexation of Crimea and interference in U.S. elections, but dwarfed those prior actions in scope and severity.
+
+MAJOR MEASURES IMPLEMENTED
+
+The 2022 sanctions package targeted Russia's financial sector with particular ferocity. OFAC designated Russia's two largest banks, Sberbank and VTB, cutting them off from the U.S. financial system. The Central Bank of Russia saw its foreign exchange reserves—approximately $300 billion held in Western financial institutions—frozen, an unprecedented measure against a G20 central bank. Sovereign debt transactions were prohibited, effectively barring new U.S. investment in Russian government securities. The export controls dimension was equally sweeping: the Commerce Department's Bureau of Industry and Security expanded the Foreign Direct Product Rule to cover Russia, restricting the export of advanced semiconductors, telecommunications equipment, and aerospace components even when manufactured outside the United States using American technology or software.
+
+SECTORAL DESIGNATIONS AND INDIVIDUAL TARGETS
+
+Beyond blanket financial restrictions, OFAC designated hundreds of Russian oligarchs, government officials, and entities under Executive Order 14024. High-profile targets included Roman Abramovich, Gennady Timchenko, and Igor Sechin. Defense sector entities including Rostec, the state defense conglomerate, were comprehensively blocked. Russia's sovereign wealth fund, the National Wealth Fund, faced restrictions on new transactions. Energy sector measures evolved over time: initially the United States avoided direct sanctions on Russian oil and gas to limit energy market disruption, but by December 2022 coordinated with G7 partners to implement a price cap on Russian seaborne crude oil, set at $60 per barrel, enforced through denial of Western shipping and insurance services.
+
+IMPLEMENTATION AND ENFORCEMENT CHALLENGES
+
+OFAC issued dozens of general licenses creating carve-outs for humanitarian activities, energy payments, and transactions necessary to wind down existing relationships. The 50 Percent Rule—under which OFAC considers an entity sanctioned if sanctioned persons own 50 percent or more in aggregate—required extensive due diligence from compliance departments globally. Secondary sanctions threats extended the regime's reach, warning non-U.S. persons that providing material support to sanctioned Russian entities could expose them to U.S. sanctions. Financial institutions worldwide began de-risking Russian counterparties preemptively, creating a "shadow" sanctions effect beyond formal designations.
+
+ECONOMIC IMPACT AND ASSESSMENT
+
+The ruble initially collapsed by nearly 40 percent before recovering due to Russia's capital controls and energy export revenues. Russia's GDP contracted approximately 2.1 percent in 2022, less than many forecasters predicted, in part because energy revenues from Asia cushioned the blow. However, structural damage accumulated through 2023 and 2024 as technology import restrictions degraded manufacturing capacity, particularly in automotive, aerospace, and electronics sectors. Russia's Central Bank faced sustained inflationary pressure, raising interest rates to historic highs above 16 percent by 2024. The sanctions debate produced competing assessments: critics argued Russia adapted faster than anticipated through trade diversion to China, India, and Turkey, while proponents noted the significant resource diversion required for Russia to maintain economic stability, constraining its war-making capacity over time.

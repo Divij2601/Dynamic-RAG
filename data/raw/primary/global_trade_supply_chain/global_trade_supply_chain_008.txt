@@ -1,0 +1,25 @@
+CHINA AS THE FACTORY OF THE WORLD: CONCENTRATION RISK AND STRUCTURAL DEPENDENCIES
+
+OVERVIEW
+
+For three decades following China's accession to the World Trade Organization in 2001, the global economy reorganized manufacturing around Chinese production capacity in a manner that created structural dependencies without parallel in economic history. China's share of global manufactured exports grew from roughly 4 percent in 2000 to approximately 15 percent by 2020, making it the world's largest manufacturing nation by value. This concentration delivered enormous consumer benefits through lower prices but created systemic vulnerabilities that became acutely apparent during the COVID-19 pandemic and the subsequent US-China strategic competition, prompting a partial but significant reorientation of global supply chains.
+
+DRIVERS OF MANUFACTURING CONCENTRATION
+
+China's emergence as the dominant global manufacturing hub reflected several compounding advantages. Its labor force of several hundred million workers, initially at very low wages, provided cost advantages that no other large economy could match. Government subsidies, industrial parks, preferential tax treatment, and infrastructure investment reduced operating costs further. China's domestic market—the largest in the world by population—provided demand that justified investment in manufacturing scale. Supply chain clustering effects meant that once a critical mass of component suppliers and assemblers established in a region, it became self-reinforcing: manufacturers wanted proximity to their suppliers, suppliers wanted proximity to their customers, and skills and infrastructure concentrated accordingly. The Pearl River Delta region in Guangdong province and the Yangtze River Delta around Shanghai became the most concentrated manufacturing zones in human history.
+
+SPECIFIC CONCENTRATION VULNERABILITIES
+
+China's dominance extends across multiple critical supply chain categories. In electronics, China produces approximately 70 percent of global smartphones, 70 percent of global laptops, and the majority of flat-panel displays. In chemicals, China is the world's largest producer of a vast range of industrial and specialty chemicals. In pharmaceuticals, Chinese factories produce the active pharmaceutical ingredients for a large share of global drug supply. In solar panels, China produces approximately 95 percent of global polysilicon and 90 percent of solar wafers, cells, and modules. In steel and aluminum, China produces over 50 percent of global output. In construction materials, Chinese factories dominate production of many specialty building products. Each of these categories represents a potential chokepoint where Chinese supply disruption—whether from policy, natural disaster, or geopolitical conflict—cascades across downstream industries worldwide.
+
+STRATEGIC COMPETITION AND SUPPLY CHAIN DECOUPLING
+
+US-China strategic competition has transformed the calculus of Chinese manufacturing dependence. Export controls, tariffs (starting with the Trump administration's Section 301 tariffs of 2018-2019, maintained and extended under Biden), and deliberate friend-shoring initiatives have begun redirecting investment away from China. US tariffs on Chinese goods averaging 20-25 percent on most categories and 25+ percent on strategic sectors have made many Chinese supply chains economically disadvantaged relative to alternatives. However, the depth of Chinese manufacturing integration means that true decoupling—removing China from supply chains entirely—is extremely difficult. Many goods notionally imported from Vietnam or India still contain Chinese components or processed materials, meaning visible trade statistics understate China's actual role in value chains.
+
+CHINA'S STRATEGIC RESPONSE
+
+Beijing has recognized the fragility inherent in being perceived as a concentration risk and has actively promoted "dual circulation"—a strategy emphasizing domestic consumption and innovation to reduce China's dependence on export-oriented growth and foreign technology. China is simultaneously investing in moving up the value chain through Made in China 2025 initiatives targeting advanced manufacturing in robotics, aerospace, semiconductors, and biotechnology. It is also deepening trade ties with the Global South through Belt and Road Initiative infrastructure investments, creating alternative export markets less dependent on Western demand. The Chinese government has also signaled willingness to use export controls on processed materials as leverage against countries attempting to reduce their Chinese supply chain exposure.
+
+CONCLUSION
+
+China's factory-of-the-world status is neither complete nor permanent, but the depth of its manufacturing integration into global supply chains means that reorientation is a decade-long process rather than a policy switch. The concentration risk it represents has become a central preoccupation of supply chain risk managers and industrial policy planners across the developed world.

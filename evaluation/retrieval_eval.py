@@ -22,6 +22,7 @@ from src.retrieval.evidence import (
     evidence_builder
 )
 
+from src.config import settings
 from src.observability.logger import (
     app_logger
 )
@@ -74,7 +75,10 @@ class RetrievalEvaluator:
 
             retrieval = (
                 hybrid_retriever
-                .retrieve(query)
+                .retrieve(
+                    query,
+                    top_k=settings.RERANK_TOP_K
+                )
             )
 
             reranked = (

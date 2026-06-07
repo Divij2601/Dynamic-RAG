@@ -1,0 +1,25 @@
+NEARSHORING TO MEXICO: THE US MANUFACTURING SHIFT AND ITS SUPPLY CHAIN IMPLICATIONS
+
+OVERVIEW
+
+Mexico has emerged as one of the primary beneficiaries of supply chain restructuring driven by US-China trade tensions, the COVID-19 pandemic, and the nearshoring trend that prizes geographic proximity and shared time zones over pure cost optimization. A combination of favorable trade agreements—particularly the United States-Mexico-Canada Agreement (USMCA)—competitive labor costs, infrastructure investment, and proximity to US consumers has positioned Mexico as the leading destination for manufacturing operations relocating from China or new manufacturing investments seeking to serve the North American market. In 2023, Mexico surpassed China to become the United States' largest trading partner for the first time in two decades, a milestone that reflected both the nearshoring trend and the effects of US tariffs on Chinese goods.
+
+DRIVERS OF THE NEARSHORING WAVE
+
+Multiple structural forces are converging to make Mexico an attractive manufacturing destination. USMCA, which replaced NAFTA in 2020, provides duty-free access to the US and Canadian markets for goods meeting rules of origin requirements. This creates a significant tariff advantage over China, which faces 20-25 percent general tariffs and higher rates in targeted sectors. Rising Chinese wages—which have grown substantially since the 2000s—have reduced the labor cost differential that made China attractive, while Mexico's wages in manufacturing remain competitive. Geographic proximity reduces shipping time from three to six weeks (China to US West Coast) to three to five days (northern Mexico to US distribution centers), cutting inventory carrying costs, improving responsiveness, and reducing carbon footprint.
+
+KEY MANUFACTURING SECTORS
+
+Nearshoring to Mexico is concentrated in several sectors. The automotive industry has deep roots in Mexico, with major assembly plants for General Motors, Ford, Stellantis, Volkswagen, BMW, and virtually all global automakers. The sector is expanding as EV supply chains localize, with battery gigafactories and EV component manufacturing investments accelerating. Electronics manufacturing has grown rapidly, with Foxconn, Flex, and other contract manufacturers expanding Mexico operations. Aerospace components, medical devices, appliances, and industrial machinery are all growing categories. The Monterrey, Guadalajara, Tijuana, and Juarez industrial corridors have attracted waves of manufacturing investment, and industrial real estate vacancy rates hit historic lows by 2023 as demand outpaced supply of manufacturing facilities.
+
+INFRASTRUCTURE AND LABOR CONSTRAINTS
+
+Mexico's nearshoring opportunity is constrained by infrastructure and labor challenges. The northern Mexico states most attractive for manufacturing—Nuevo León, Chihuahua, Baja California—face significant electricity supply constraints, with grid reliability a major concern for energy-intensive manufacturers. Water scarcity in arid northern regions limits certain industrial processes. Logistics infrastructure, including rail capacity and highway quality in some areas, requires continued investment. Labor market tightness in industrial corridors has pushed wages up and increased turnover, complicating manufacturers' workforce planning. Security concerns—organized crime activity in some regions—add operational and human risk management complexity. The Mexican government has increased investment in infrastructure but faces fiscal constraints.
+
+USMCA CONTENT REQUIREMENTS AND CHINA RISK
+
+USMCA's rules of origin requirements—specifying minimum North American content percentages for goods to qualify for tariff-free treatment—are designed partly to prevent "tariff-washing," whereby Chinese goods are minimally processed in Mexico before entering the US duty-free. The automotive sector requires 75 percent North American content by value, with specific requirements for steel, aluminum, and core parts. US Customs enforcement of these requirements has intensified amid concerns about Chinese manufacturers using Mexico as a transshipment location rather than genuine production. Some Chinese companies have established manufacturing in Mexico that meets content requirements, which the US government views with mixed reactions—manufacturing jobs in Mexico are better than imports from China, but deep Chinese supply chain integration in Mexico raises different concerns about technology transfer and supply chain alignment.
+
+CONCLUSION
+
+Mexico's nearshoring moment is real and substantial, representing a genuine restructuring of North American supply chains. Whether it translates into deep industrialization that builds resilient domestic supply chains or remains a final-assembly operation dependent on Chinese components will determine whether nearshoring achieves its strategic supply chain resilience objectives.

@@ -1,0 +1,27 @@
+ELECTRONIC WARFARE IN UKRAINE: EW AND JAMMING LESSONS
+
+OVERVIEW
+
+The Ukraine war has provided the most intensive real-world test of electronic warfare (EW) capabilities since the Cold War. Both sides have deployed a wide range of systems to contest the electromagnetic spectrum — jamming communications, degrading GPS navigation, deceiving radar systems, and intercepting signals intelligence. The EW contest has been dynamic and adaptive, with each side rapidly developing countermeasures to adversary innovations, making Ukraine a unique living laboratory for understanding contemporary electromagnetic competition.
+
+RUSSIAN EW CAPABILITIES AND INITIAL PERFORMANCE
+
+Russia fielded a theoretically formidable EW arsenal, including the Krasukha-4 broadband noise jammer, Borisoglebsk-2 ground-based system, and Murmansk-BN long-range HF communications jammer. In the opening weeks of the war, Russian EW performance was inconsistent, with operators deploying systems inappropriately, failing to integrate EW with maneuver operations, and sometimes jamming their own communications. Equipment maintenance issues were also reported.
+
+However, Russian EW adaptation improved substantially through 2022-2024. GPS jamming became increasingly sophisticated and widespread, affecting Ukrainian drone navigation and degrading the accuracy of GPS-guided munitions. Ukrainian operators reported significant problems with commercial drone systems losing navigation lock over contested areas. Russian electronic intelligence (ELINT) assets were used to locate and target Ukrainian command posts and artillery units through emissions analysis.
+
+UKRAINIAN EW ADAPTATION
+
+Ukraine leveraged Western-supplied EW systems and extensive technical assistance from NATO intelligence partners. Commercial software-defined radio technology was adapted for both signal intelligence collection and targeted jamming. Ukrainian operators became adept at frequency-hopping and redundant communications routing to resist Russian jamming.
+
+One of the most significant EW developments was Ukraine's effective use of commercial satellite internet — specifically Starlink — which proved largely resistant to Russian jamming attempts due to its low-Earth orbit architecture and spread-spectrum design. Starlink became a critical communications backbone for Ukrainian ground forces, artillery coordination, and drone operations. Russia's inability to reliably jam or disrupt Starlink became a significant operational disadvantage.
+
+DRONE AND GPS JAMMING EFFECTS
+
+The intense GPS jamming environment over Ukraine forced both sides to develop alternative navigation solutions. Ukraine's long-range strike drones incorporated inertial navigation, terrain-following algorithms, and visual correlation guidance to maintain accuracy despite GPS denial. Commercial FPV drones used fiber-optic guidance in some variants to achieve guidance immune to RF jamming. On the Russian side, FAB glide bomb variants faced navigation challenges in heavily jammed areas.
+
+The broader lesson for Western militaries was that GPS dependency — built into decades of precision munitions, navigation systems, and communications — is a critical vulnerability. Investments in GPS-denied navigation, anti-jam receivers, and alternative positioning, navigation, and timing (PNT) systems have accelerated across NATO.
+
+IMPLICATIONS FOR EW DOCTRINE
+
+Ukraine demonstrated that EW is not a specialized niche but a fundamental requirement integrated across all warfighting functions. Units operating without organic EW support — either in spectrum management or active jamming — suffered disproportionate casualties from drone strikes and artillery targeting. The contest for electromagnetic superiority runs parallel to, and enables, all other dimensions of the battlefield. NATO doctrine revision processes began incorporating these lessons into training and procurement requirements by 2024.

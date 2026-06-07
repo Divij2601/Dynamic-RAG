@@ -16,16 +16,33 @@ the dataset file.
 """
 
 import json
+import time
 from collections import defaultdict
+
+INTER_QUERY_DELAY_SECONDS = 2.0
 
 from src.planner.planner import query_planner
 from src.observability.logger import app_logger
 
 
 def _expected_route(example) -> str:
+    """
+    Return the expected route, or None if this query
+    has no correct route (truly unanswerable — the
+    system should abstain regardless of route).
+    """
 
     if example.get("expected_route"):
         return example["expected_route"]
+
+    # Truly unanswerable queries (fictional entities,
+    # private documents, classified info) have no
+    # correct route — exclude them from route accuracy.
+    category = example.get("metadata", {}).get(
+        "category", ""
+    )
+    if category == "unanswerable_true":
+        return None
 
     return (
         "internal_rag"
@@ -67,6 +84,11 @@ class RouteEvaluator:
             query = example["query"]
             expected = _expected_route(example)
 
+            # Skip truly unanswerable queries from
+            # route accuracy — they have no correct route.
+            if expected is None:
+                continue
+
             predicted = query_planner.plan(
                 query
             ).route
@@ -79,6 +101,8 @@ class RouteEvaluator:
             if predicted == expected:
                 correct += 1
                 per_class_correct[expected] += 1
+
+            time.sleep(INTER_QUERY_DELAY_SECONDS)
 
         per_class_accuracy = {
             route: round(

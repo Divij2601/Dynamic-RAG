@@ -33,6 +33,7 @@ from src.generation.prompt_builder import prompt_builder
 from src.generation.generator import response_generator
 from src.generation.verifier import faithfulness_verifier
 from src.generation.response_builder import response_builder
+from src.models.groq_provider import groq_provider
 
 from src.config import settings
 from src.observability.logger import app_logger
@@ -115,15 +116,85 @@ def _retrieve_internal(query: str):
     )
 
 
+def _retrieve_with_decomposition(
+    primary_query: str,
+    subqueries: list
+) -> list:
+    """
+    Multi-hop retrieval: retrieve independently
+    for the primary query and each sub-query,
+    then merge, deduplicate by chunk_id, and
+    rerank the merged pool against the primary.
+    """
+
+    all_chunks: dict = {}
+
+    # Primary query first
+    r = hybrid_retriever.retrieve(
+        primary_query,
+        top_k=settings.RERANK_TOP_K
+    )
+    for c in r["results"]:
+        all_chunks[c["chunk_id"]] = c
+
+    # Each sub-query
+    for sq in (subqueries or []):
+        if not sq.strip():
+            continue
+        r = hybrid_retriever.retrieve(
+            sq,
+            top_k=settings.RERANK_TOP_K
+        )
+        for c in r["results"]:
+            cid = c["chunk_id"]
+            # Keep the higher score if already present.
+            if (
+                cid not in all_chunks
+                or c.get("hybrid_score", 0)
+                > all_chunks[cid].get("hybrid_score", 0)
+            ):
+                all_chunks[cid] = c
+
+    merged = list(all_chunks.values())
+
+    # Rerank the merged pool against the primary query.
+    if merged:
+        reranked = reranker.rerank(
+            query=primary_query,
+            retrieved_chunks=merged
+        )
+        return evidence_builder.build(
+            reranked["results"]
+        )
+
+    return []
+
+
 def internal_retrieval_node(
     state: QueryState
 ) -> Dict[str, Any]:
 
     start = time.perf_counter()
 
-    evidence = _retrieve_internal(
-        state.query_text
-    )
+    planner = state.planner_output
+
+    if (
+        planner
+        and planner.needs_decomposition
+        and planner.subqueries
+    ):
+        evidence = _retrieve_with_decomposition(
+            primary_query=state.query_text,
+            subqueries=planner.subqueries
+        )
+        app_logger.info(
+            f"Decomposed retrieval: "
+            f"{len(planner.subqueries)} sub-queries"
+        )
+    else:
+        evidence = _retrieve_internal(
+            state.query_text
+        )
 
     latency = round(
         (time.perf_counter() - start) * 1000,
@@ -472,7 +543,7 @@ def persist_node(
     if response is None:
         return {}
 
-    # Save to conversation memory (for continuity).
+    # Save to short-term conversation memory.
     try:
         conversation_store.save_interaction(
             session_id=state.session_id,
@@ -485,6 +556,25 @@ def persist_node(
         app_logger.error(
             f"save_interaction failed: {exc!r}"
         )
+
+    # Save to long-term semantic memory so future
+    # sessions can recall semantically similar facts.
+    # Only store successful, grounded answers to
+    # avoid polluting memory with abstentions.
+    if response.status == "success":
+        try:
+            from src.memory.semantic import (
+                semantic_memory
+            )
+            semantic_memory.store_memory(
+                session_id=state.session_id,
+                query=state.query_text,
+                answer=response.answer
+            )
+        except Exception as exc:
+            app_logger.error(
+                f"semantic store_memory failed: {exc!r}"
+            )
 
     # Write a structured trace.
     try:
@@ -507,6 +597,10 @@ def persist_node(
             for s in response.sources
         ]
 
+        # Capture token usage + cost from the
+        # most recent LLM call via the provider.
+        usage = groq_provider.get_last_call_cost()
+
         trace = {
             "request_id": state.request_id,
             "session_id": state.session_id,
@@ -525,7 +619,10 @@ def persist_node(
             "retry_count": state.retry_count,
             "status": response.status,
             "num_sources": len(response.sources),
-            "sources": sources
+            "sources": sources,
+            "token_usage": usage,
+            "total_cost_usd":
+            usage.get("cost_usd", 0.0)
         }
 
         mongo_client.get_database()[

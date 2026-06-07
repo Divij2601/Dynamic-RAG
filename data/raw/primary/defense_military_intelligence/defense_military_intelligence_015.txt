@@ -1,0 +1,27 @@
+INFORMATION WARFARE AND THE COGNITIVE DOMAIN
+
+OVERVIEW
+
+Information warfare — the deliberate use of information and disinformation to achieve political and military objectives — has become a central instrument of statecraft for authoritarian and democratic governments alike. Russia's development of a sophisticated information warfare doctrine, visible in operations from Estonia (2007) to Ukraine (2022), has spurred Western governments to develop countermeasures and reexamine their own information operations capabilities. The cognitive domain — the arena of human perception, beliefs, and decision-making — is now explicitly recognized in military doctrine as a contested battlespace.
+
+RUSSIAN INFORMATION WARFARE DOCTRINE
+
+Russia's concept of "information-psychological warfare" treats information operations not as a support function but as a primary means of achieving strategic goals, potentially without kinetic conflict. Russian doctrine, articulated through military theorists including General Valery Gerasimov, envisions continuous competition across political, economic, and information domains in which the boundary between peace and war is deliberately blurred.
+
+Russian information operations have included the seizure of the Crimean information space in 2014, disabling Ukrainian public trust in state institutions through years of hybrid warfare, amplifying political polarization in Western democracies through social media manipulation, and conducting hack-and-leak operations against Western political figures. The Internet Research Agency, linked to financier Yevgeny Prigozhin, ran large-scale influence operations targeting the 2016 US presidential election, as documented in the Mueller investigation.
+
+UKRAINE WAR INFORMATION DIMENSION
+
+Russia's 2022 invasion was preceded by an information campaign attempting to delegitimize the Ukrainian government and prepare both domestic and international audiences for the operation. This campaign was largely unsuccessful externally — Western counter-information operations releasing intelligence about Russian military plans in advance of the invasion disrupted the narrative.
+
+Ukraine proved highly effective at information warfare in the reverse direction: leveraging President Zelensky's communications skills, viral social media content, and Western media access to build international support, pressure allies to provide weapons, and sustain domestic morale. The Ukrainian information operation became a model for how a smaller state can use information asymmetry effectively against a larger aggressor.
+
+CHINA AND THE INFORMATION DOMAIN
+
+China's PLA doctrine incorporates the "three warfares" concept: public opinion warfare, psychological warfare, and legal warfare (lawfare). China conducts persistent influence operations through state media networks (CGTN, Xinhua, Global Times), manufactured social media amplification, and the co-optation of diaspora media outlets. Operations targeting Taiwan, Hong Kong, Xinjiang narratives, and perceptions of Western democracies have been documented by multiple Western intelligence agencies and research organizations.
+
+WESTERN RESPONSES AND STRATEGIC COMMUNICATIONS
+
+NATO and Western governments have invested in counter-disinformation capabilities, including the NATO Strategic Communications Centre of Excellence in Riga, the EU's East StratCom Task Force, and bilateral efforts to train government communicators. The United States rebuilt its Global Engagement Center (GEC) to counter foreign disinformation, though debates persist about its authorities, effectiveness, and the line between counter-disinformation and government propaganda.
+
+The fundamental challenge for democracies is that defending against disinformation requires state action that can conflict with free speech norms and platform autonomy. Finding the balance between resilience and censorship is a policy challenge with no easy solutions, particularly as AI-generated synthetic media continues to lower the cost of producing convincing disinformation at scale.

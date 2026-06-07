@@ -1,0 +1,25 @@
+RED SEA HOUTHI ATTACKS: CONTAINER SHIPPING REROUTING AND SUPPLY CHAIN IMPACTS
+
+OVERVIEW
+
+Beginning in November 2023, Houthi militants in Yemen launched a sustained campaign of drone and missile attacks against commercial vessels transiting the Red Sea and Bab-el-Mandeb Strait—the narrow chokepoint connecting the Red Sea to the Gulf of Aden—in response to Israel's military operations in Gaza. The attacks escalated significantly in early 2024, prompting the withdrawal of major container shipping companies from the Red Sea route and triggering a mass rerouting of global container traffic around the Cape of Good Hope. The diversion of vessels carrying approximately 15-20 percent of global container trade added 10-14 days to Asia-Europe voyages, drove freight rates to multi-year highs, and disrupted supply chains across multiple industries.
+
+SCALE OF THE SHIPPING DISRUPTION
+
+The Red Sea carries a disproportionate share of global trade relative to its geographic size. Approximately 12-15 percent of global seaborne trade transits the Suez Canal-Red Sea corridor annually, including a significant share of Asia-Europe container traffic, oil tankers from the Gulf, and LNG shipments. Major container carriers including Maersk, MSC, CMA CGM, Hapag-Lloyd, and Evergreen suspended Red Sea transits in December 2023 and January 2024 following attacks on their vessels. Oil majors and bulk commodity carriers followed. The US-led Operation Prosperity Guardian naval coalition attempted to provide escort protection, but the Houthi threat—involving sophisticated anti-ship missiles and drone boats in addition to aerial drones—proved difficult to fully neutralize.
+
+FREIGHT RATE AND ECONOMIC IMPACTS
+
+The shift to Cape of Good Hope routing drove dramatic increases in freight rates. The Shanghai Containerized Freight Index for Asia-Europe routes rose from approximately $1,500 per forty-foot equivalent unit in October 2023 to over $7,000 by June 2024, before easing somewhat as the market adjusted. Additional voyage costs—fuel, crew time, port fees—of $1-3 million per vessel per round trip added to carrier operating expenses. These costs were passed through to shippers and ultimately to consumers. European manufacturers dependent on Asian inputs, including automotive and electronics companies, reported extended lead times and supply disruptions. Energy markets were affected as LNG carriers rerouted from the Red Sea, tightening spot supplies to European terminals during the winter heating season.
+
+GEOPOLITICAL DIMENSIONS
+
+The Houthi attacks represent a new form of sub-state actor capability to project power over critical trade infrastructure. Armed with ballistic missiles, cruise missiles, anti-ship missiles, and drone swarms supplied or enabled by Iran, the Houthis demonstrated the ability to threaten vessels hundreds of miles away and to sustain an attrition campaign against one of the world's most important maritime corridors for over a year. The US and UK conducted airstrikes against Houthi launch sites in Yemen beginning in January 2024, but did not deter the campaign. The attacks highlighted how geopolitical conflicts—in this case the Israel-Gaza war—can have far-reaching supply chain consequences for countries and companies with no direct involvement in the underlying conflict.
+
+LONG-TERM SUPPLY CHAIN ADAPTATIONS
+
+The extended Red Sea disruption—still ongoing as of mid-2025—has prompted supply chain managers to reassess their assumptions about the reliability of the Red Sea-Suez corridor. Some companies shifted to air freight for high-value, time-sensitive goods despite dramatically higher costs. Others accelerated inventory buildup strategies, maintaining higher safety stock to buffer against extended transit delays. The episode reinforced lessons from the COVID-19 period and the Ever Given blockage: maritime chokepoints are single points of failure, and just-in-time supply chains are structurally vulnerable to disruptions of even moderate duration. Insurance premiums for Red Sea transits rose sharply, with war-risk surcharges pricing the geopolitical threat into shipping economics.
+
+CONCLUSION
+
+The Houthi Red Sea campaign demonstrated that geopolitical conflicts in distant regions can rapidly and severely disrupt global trade infrastructure. The episode will likely accelerate corporate investment in supply chain diversification, higher inventory buffers, and alternative routing options—changes that, while individually rational, represent a systemic shift away from the hyper-efficient but fragile globalized logistics model that prevailed in the pre-2020 era.

@@ -1,0 +1,25 @@
+RUSSIA GEOPOLITICAL RISK PROFILE 2025 COMPOSITE
+
+OVERVIEW AND COMPOSITE RISK SCORE
+
+Russia's composite geopolitical risk score in 2025 remains among the highest of any major power, driven by the ongoing war in Ukraine, nuclear posturing, economic sanctions pressure, and internal political consolidation under Vladimir Putin. Across major risk indices, Russia scores in the 85th to 95th percentile globally for external conflict risk and state-directed aggression. The Fragile States Index rates Russia's external intervention indicators near maximum, while the Global Peace Index places Russia among the least peaceful nations on earth. This profile synthesizes military, political, economic, and social risk dimensions into a composite assessment.
+
+MILITARY AND NUCLEAR RISK
+
+The Russia-Ukraine war, now entering its fourth year in 2025, has demonstrated Russia's willingness to prosecute large-scale conventional warfare against a neighboring state and accept massive military casualties. Estimates from the Institute for the Study of War and Western intelligence agencies suggest Russian troop losses exceeding 300,000 killed or seriously wounded since 2022. Despite attrition, Russia has mobilized reserve forces, shifted to a war economy, and sustained offensive operations. The nuclear dimension represents the single greatest tail risk: Russia possesses approximately 5,580 nuclear warheads, including the largest tactical nuclear arsenal in the world. Putin has repeatedly invoked nuclear deterrence rhetoric, and Russia suspended participation in the New START treaty in 2023. Escalation pathways to nuclear use, while still assessed as low probability, carry catastrophic consequence weight in composite risk scoring.
+
+POLITICAL AND GOVERNANCE RISK
+
+Putin's domestic consolidation is near-total following the suppression of Alexei Navalny's movement, the imprisonment and subsequent death of Navalny in February 2024, and the elimination of meaningful political opposition. The Wagner Group mutiny of June 2023 briefly exposed elite fissures but was rapidly contained. Succession risk, however, remains a medium-term structural vulnerability: Putin is 72 years old in 2025, and no credible succession mechanism exists. A destabilizing transition could produce factional conflict among security services (FSB, GRU, SVR) and oligarchic networks. Russia's Freedom House score is 9 out of 100, categorizing it as "Not Free." Rule of law indicators from the World Bank Governance Indicators place Russia in the 6th percentile globally.
+
+ECONOMIC AND SANCTIONS RISK
+
+Western sanctions imposed since 2022 have structurally degraded Russia's technology and capital access. Russia's GDP contracted in 2022 before recovering on the back of high energy prices and redirected trade toward China, India, and Turkey. However, the Kremlin now runs a wartime economy with elevated military expenditure consuming roughly 7 percent of GDP. Inflation pressures, labor shortages from mobilization, and import substitution failures constrain industrial output. The International Monetary Fund projects subdued growth below 2 percent annually through 2026. Energy revenues remain Russia's primary hard currency earner, making global commodity prices a key risk variable. Ruble volatility and capital controls reflect underlying financial stress.
+
+EXTERNAL AGGRESSION AND REGIONAL RISK SPILLOVER
+
+Russia's hybrid warfare toolkit extends beyond Ukraine to include cyberattacks on NATO infrastructure, election interference in European democracies, disinformation campaigns, and support for destabilizing actors in Africa through the Africa Corps (successor to Wagner). The Baltic states, Moldova, and Georgia face elevated Russian interference risk. Article 5 scenarios involving NATO member states represent the highest-consequence pathway for global escalation. Analysts at RAND Corporation and the European Council on Foreign Relations consistently rate Russia as the primary state-based threat to the European security order through the remainder of the 2020s.
+
+COMPOSITE RISK SUMMARY
+
+Russia's composite geopolitical risk profile is defined by high-probability moderate-harm scenarios (continued Ukraine war, economic attrition, hybrid attacks) combined with low-probability catastrophic-harm scenarios (nuclear escalation, NATO confrontation). The asymmetry of these tail risks requires that risk weighting methodologies apply non-linear penalties to nuclear-armed adversaries. Overall composite score: VERY HIGH (Tier 1 threat category).

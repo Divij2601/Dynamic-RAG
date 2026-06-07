@@ -1,0 +1,25 @@
+FRIEND-SHORING AND ALLY-SHORING: THE REORIENTATION OF GLOBAL TRADE
+
+OVERVIEW
+
+"Friend-shoring"—the practice of concentrating supply chains within networks of geopolitically aligned nations rather than optimizing purely for cost—emerged as a formal US policy concept in 2022 when Treasury Secretary Janet Yellen articulated it as a strategic alternative to globalized supply chains exposed to geopolitical adversaries. Also termed "ally-shoring," the concept reflects a broader shift in trade policy philosophy: from the post-Cold War assumption that economic integration with all nations is mutually beneficial, to a view that supply chain geography carries strategic implications that justify accepting some economic efficiency losses in exchange for resilience and security. The concept has influenced trade agreements, investment decisions, and industrial policy across the developed world.
+
+POLICY ORIGINS AND ARTICULATION
+
+The friend-shoring concept draws on trends that predated its formal articulation. US tariffs on Chinese goods, restrictions on Huawei, semiconductor export controls, and the CHIPS Act all reflected friend-shoring logic before the term entered policy discourse. Yellen's 2022 speech crystallized the concept and provided official blessing for a policy approach that the US government had been pursuing de facto. The approach acknowledges that complete reshoring of supply chains to domestic production is often economically unfeasible but argues that sourcing from trusted partners with shared values and strategic alignment is a viable middle path. Friend-shoring differs from protectionism in that it maintains international trade; it simply restricts the circle of preferred trading partners.
+
+IMPLEMENTATION MECHANISMS
+
+Friend-shoring is implemented through several mechanisms. Free trade agreements and critical mineral supply agreements between the US and allied nations—including negotiations with Japan, the EU, and Australia—qualify minerals and components from these countries for preferential treatment under the Inflation Reduction Act and CHIPS Act. The Minerals Security Partnership, launched in 2022 by the US and thirteen allied nations, coordinates investment in critical mineral supply chains specifically within the alliance network. The CHIPS Act requires recipients to limit advanced semiconductor manufacturing in countries of concern, effectively channeling investment to allied nations. Export control coordination among the US, EU, Netherlands, Japan, and South Korea applies common restrictions on technology transfers to adversary nations.
+
+TRADE AGREEMENT EVOLUTION
+
+The friend-shoring agenda has reshaped trade agreement strategy. Rather than pursuing comprehensive multilateral agreements through the World Trade Organization—a framework that treats all members equally—the US has pursued plurilateral arrangements with trusted partners. The Indo-Pacific Economic Framework for Prosperity (IPEF), launched in 2022, created a supply chain resilience framework among fourteen Indo-Pacific nations. The US-EU Trade and Technology Council (TTC) coordinates technology standards and export controls. The US-Japan Semiconductor Partnership and US-South Korea technology dialogues create bilateral frameworks for supply chain coordination. These arrangements are explicitly designed to strengthen trade within the alliance network rather than maximize global economic efficiency.
+
+TENSIONS AND CRITIQUES
+
+Friend-shoring faces significant practical and theoretical critiques. Economically, restricting supply chains to allied nations reduces the efficiency gains from global comparative advantage, potentially raising prices and reducing innovation. Politically, many nations that the US considers potential supply chain partners—including India, Brazil, Vietnam, and Saudi Arabia—resist being asked to choose sides between the US and China and have their own economic interests in maintaining Chinese trade relationships. Legal challenges under WTO rules are possible if friend-shoring preferences are deemed discriminatory. Within the US, agricultural and manufacturing sectors that benefit from Chinese market access push back against policies that might invite Chinese retaliation. The Global South broadly views friend-shoring as a return to Cold War-era bloc economics that subordinates their interests to great-power competition.
+
+CONCLUSION
+
+Friend-shoring represents a genuine paradigm shift in US trade policy, away from the universal liberalization model that shaped the post-1945 order and toward a managed, geopolitically structured alternative. Whether it can be effectively implemented—given the complexity of global supply chains and the resistance of nominally allied nations to full alignment—remains the central test of this policy framework over the coming decade.

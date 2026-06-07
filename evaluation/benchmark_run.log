@@ -1,0 +1,1183 @@
+[32m2026-06-07 11:31:08[0m | [32m[1mSUCCESS[0m | [36msrc.database.qdrant_client[0m:[36mconnect[0m - [32m[1mQdrant connected successfully[0m
+[32m2026-06-07 11:31:10[0m | [32m[1mSUCCESS[0m | [36msrc.database.mongo_client[0m:[36mconnect[0m - [32m[1mMongoDB connected successfully[0m
+[32m2026-06-07 11:31:10[0m | [32m[1mSUCCESS[0m | [36msrc.graph.graph_builder[0m:[36mbuild_graph[0m - [32m[1mDynamic-RAG graph compiled[0m
+[32m2026-06-07 11:31:10[0m | [1mINFO[0m | [36m__main__[0m:[36mrun[0m - [1mStarting benchmark run[0m
+[32m2026-06-07 11:31:10[0m | [1mINFO[0m | [36msrc.ingestion.embedder[0m:[36m_load_model[0m - [1mLoading embedding model: BAAI/bge-small-en-v1.5[0m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 2504.63it/s]
+[32m2026-06-07 11:31:17[0m | [32m[1mSUCCESS[0m | [36msrc.ingestion.embedder[0m:[36m_load_model[0m - [32m[1mEmbedding model loaded[0m
+[32m2026-06-07 11:31:17[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 6984.18 ms[0m
+[32m2026-06-07 11:31:17[0m | [1mINFO[0m | [36msrc.retrieval.sparse[0m:[36m_ensure_cache[0m - [1mBuilding BM25 index from Qdrant corpus...[0m
+[32m2026-06-07 11:31:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36m_ensure_cache[0m - [32m[1mBM25 index built: 4888 documents[0m
+[32m2026-06-07 11:31:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 1115.09 ms[0m
+[32m2026-06-07 11:31:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:18[0m | [1mINFO[0m | [36msrc.retrieval.reranker[0m:[36m_load_model[0m - [1mLoading reranker: cross-encoder/ms-marco-MiniLM-L-6-v2[0m
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|##########| 105/105 [00:00<00:00, 3051.73it/s]
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36m_load_model[0m - [32m[1mReranker loaded[0m
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 8064.92 ms[0m
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 91.57 ms[0m
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 29.91 ms[0m
+[32m2026-06-07 11:31:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 439.8 ms[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 67.88 ms[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 29.13 ms[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 447.09 ms[0m
+[32m2026-06-07 11:31:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 140.23 ms[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 28.51 ms[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 475.45 ms[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 190.59 ms[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 35.88 ms[0m
+[32m2026-06-07 11:31:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:29[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 503.53 ms[0m
+[32m2026-06-07 11:31:29[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:29[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 485.9 ms[0m
+[32m2026-06-07 11:31:29[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 31.65 ms[0m
+[32m2026-06-07 11:31:29[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 439.94 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 60.17 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 28.27 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 400.92 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 51.66 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 39.23 ms[0m
+[32m2026-06-07 11:31:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 335.91 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.84 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 18.42 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 367.06 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 44.63 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 30.0 ms[0m
+[32m2026-06-07 11:31:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 361.13 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 42.66 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 20.75 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 263.71 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.26 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 21.65 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 443.7 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 43.22 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.19 ms[0m
+[32m2026-06-07 11:31:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 306.22 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.1 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 14.67 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 382.34 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 43.68 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.85 ms[0m
+[32m2026-06-07 11:31:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 294.7 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.17 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 15.31 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 292.32 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.93 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 13.24 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 272.26 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.12 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 15.32 ms[0m
+[32m2026-06-07 11:31:34[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 305.55 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 48.35 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 22.67 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 267.09 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 36.91 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 21.3 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 289.91 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 32.97 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 24.07 ms[0m
+[32m2026-06-07 11:31:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 286.91 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 32.2 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 15.1 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 289.97 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.61 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 26.4 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 285.68 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.14 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.63 ms[0m
+[32m2026-06-07 11:31:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 302.83 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 42.76 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 63.25 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 360.92 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 51.23 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 60.96 ms[0m
+[32m2026-06-07 11:31:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 306.42 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 40.89 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 73.11 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 331.36 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 48.42 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 80.51 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 331.89 ms[0m
+[32m2026-06-07 11:31:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.59 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 70.75 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 344.71 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 46.97 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 75.42 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 339.8 ms[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 46.27 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 81.75 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 375.49 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 36.94 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 49.94 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 326.71 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.24 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 78.86 ms[0m
+[32m2026-06-07 11:31:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 382.75 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 39.99 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 62.19 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 336.63 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 40.71 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 61.55 ms[0m
+[32m2026-06-07 11:31:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 386.79 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 40.05 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 54.29 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 285.6 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 44.69 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 72.84 ms[0m
+[32m2026-06-07 11:31:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 318.5 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 43.14 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 81.46 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 350.63 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 46.8 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 103.19 ms[0m
+[32m2026-06-07 11:31:43[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:31:44[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 384.59 ms[0m
+[32m2026-06-07 11:31:44[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:31:44[0m | [32m[1mSUCCESS[0m | [36mevaluation.retrieval_eval[0m:[36mevaluate[0m - [32m[1mPlane 1 retrieval evaluation complete[0m
+[32m2026-06-07 11:31:44[0m | [32m[1mSUCCESS[0m | [36msrc.models.groq_provider[0m:[36m_get_client[0m - [32m[1mGroq provider client initialized[0m
+[32m2026-06-07 11:31:45[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:31:47[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:31:49[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:31:51[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:31:54[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:31:56[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:31:59[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:01[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:04[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:06[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:09[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:11[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:13[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:16[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:18[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:21[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:23[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:28[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:34[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:39[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:46[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:51[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:32:57[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:04[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:09[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:33:15[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:21[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:27[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:33:33[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:33:38[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: memory[0m
+[32m2026-06-07 11:33:41[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:43[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:33:46[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:33:51[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:33:58[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:05[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:13[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:19[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:26[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:33[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:41[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:34:47[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:34:53[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:35:01[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:35:07[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:35:15[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:35:21[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:35:29[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:35:35[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:35:37[0m | [32m[1mSUCCESS[0m | [36mevaluation.route_eval[0m:[36mevaluate[0m - [32m[1mRoute (Gate C) evaluation complete[0m
+[32m2026-06-07 11:35:37[0m | [1mINFO[0m | [36m__main__[0m:[36mrun[0m - [1mExecuting pipeline pass for generation + system planes[0m
+[32m2026-06-07 11:35:37[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_6fadfd92aed0] context loaded for session session_req_6fadfd92aed0[0m
+[32m2026-06-07 11:35:37[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:35:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.94 ms[0m
+[32m2026-06-07 11:35:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 13.13 ms[0m
+[32m2026-06-07 11:35:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:35:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 324.08 ms[0m
+[32m2026-06-07 11:35:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:35:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:35:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:35:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:35:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.759)[0m
+[32m2026-06-07 11:35:39[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:35:39[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:35:39[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 1/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:35:54[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_ce561a59a976] context loaded for session session_req_ce561a59a976[0m
+[32m2026-06-07 11:35:55[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:35:55[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36m_get_client[0m - [32m[1mTavily initialized[0m
+[32m2026-06-07 11:35:59[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:35:59[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:35:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:35:59[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1759.104s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:36:04[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:36:05[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.0[0m
+[32m2026-06-07 11:36:05[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_ce561a59a976] retry 1/2[0m
+[32m2026-06-07 11:36:05[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:36:05[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3490.56s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:36:32[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:36:32[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mTransient API error on qwen/qwen3-32b; retrying in 2.0s: APIStatusError("Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3-32b` in organization `org_01jx9rjjbfe3091k2wv0vymv5g` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 6941, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}")[0m
+[32m2026-06-07 11:36:58[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mTransient API error on qwen/qwen3-32b; retrying in 4.0s: APIStatusError("Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3-32b` in organization `org_01jx9rjjbfe3091k2wv0vymv5g` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 6941, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}")[0m
+[32m2026-06-07 11:37:02[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mTransient API error on qwen/qwen3-32b; retrying in 8.0s: APIStatusError("Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3-32b` in organization `org_01jx9rjjbfe3091k2wv0vymv5g` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 6941, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}")[0m
+[32m2026-06-07 11:37:12[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:37:12[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.877)[0m
+[32m2026-06-07 11:37:12[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:37:12[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 2/49: route=web_research status=abstained[0m
+[32m2026-06-07 11:37:27[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_303172725417] context loaded for session session_req_303172725417[0m
+[32m2026-06-07 11:37:27[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:37:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.0 ms[0m
+[32m2026-06-07 11:37:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 21.05 ms[0m
+[32m2026-06-07 11:37:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:37:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 253.64 ms[0m
+[32m2026-06-07 11:37:28[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:37:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:37:28[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 518.4s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:37:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:37:41[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:37:41[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.918)[0m
+[32m2026-06-07 11:37:41[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:37:41[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:37:41[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 3/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:37:56[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_d199ab1b672d] context loaded for session session_req_d199ab1b672d[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 51.04 ms[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 23.57 ms[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 263.63 ms[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:37:57[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 463.104s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:37:57[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:38:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:38:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.834)[0m
+[32m2026-06-07 11:38:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:38:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:38:03[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 4/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:38:18[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_c6d5e5fb7b5d] context loaded for session session_req_c6d5e5fb7b5d[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.9 ms[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 21.56 ms[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 283.26 ms[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:38:18[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:38:18[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 450.144s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:38:19[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:38:20[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:38:20[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.999)[0m
+[32m2026-06-07 11:38:20[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:38:20[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:38:20[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 5/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:38:35[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_b7801cb1121c] context loaded for session session_req_b7801cb1121c[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.04 ms[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 26.96 ms[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 293.12 ms[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:38:35[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:38:35[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2117.664s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:38:36[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:38:37[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:38:37[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.909)[0m
+[32m2026-06-07 11:38:37[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:38:37[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:38:37[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 6/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:38:52[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_0e20f89eee90] context loaded for session session_req_0e20f89eee90[0m
+[32m2026-06-07 11:38:52[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 50.88 ms[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 17.6 ms[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 261.87 ms[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:38:53[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2096.063999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:38:53[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:38:54[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.0[0m
+[32m2026-06-07 11:38:54[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_0e20f89eee90] retry 1/2[0m
+[32m2026-06-07 11:38:54[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:38:54[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 416.448s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:38:54[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:38:58[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:38:58[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.853)[0m
+[32m2026-06-07 11:38:58[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:38:58[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 7/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:39:13[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_14c895e4ff41] context loaded for session session_req_14c895e4ff41[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.03 ms[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 23.48 ms[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 277.01 ms[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:39:14[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:39:14[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2120.255999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:39:15[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:39:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:39:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.906)[0m
+[32m2026-06-07 11:39:16[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:39:16[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:39:16[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 8/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:39:31[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_0e555682a1f6] context loaded for session session_req_0e555682a1f6[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 30.66 ms[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 15.71 ms[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 340.06 ms[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:39:32[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:39:32[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2006.208s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:39:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:39:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:39:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.989)[0m
+[32m2026-06-07 11:39:33[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:39:33[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:39:33[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 9/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:39:48[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_1a08749fa1f6] context loaded for session session_req_1a08749fa1f6[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.96 ms[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 22.04 ms[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 325.29 ms[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:39:49[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 386.20799999999997s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:39:49[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:39:50[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:39:50[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.72)[0m
+[32m2026-06-07 11:39:50[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:39:50[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:39:50[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 10/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:40:05[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_42e8b714a9cd] context loaded for session session_req_42e8b714a9cd[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 31.45 ms[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 13.75 ms[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 238.99 ms[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:40:06[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:40:06[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2024.351999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:40:07[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:40:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:40:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.952)[0m
+[32m2026-06-07 11:40:08[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:40:08[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:40:08[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 11/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:40:23[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_fdc2b50aff00] context loaded for session session_req_fdc2b50aff00[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 30.18 ms[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 16.81 ms[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 380.3 ms[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:40:23[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:40:23[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1999.296s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:40:24[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:40:24[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:40:24[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.945)[0m
+[32m2026-06-07 11:40:24[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:40:25[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:40:25[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 12/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:40:40[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_603c64fbb63a] context loaded for session session_req_603c64fbb63a[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.22 ms[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 16.28 ms[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 262.21 ms[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:40:40[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:40:40[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 349.91999999899997s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:40:41[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:40:41[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:40:41[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.937)[0m
+[32m2026-06-07 11:40:41[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:40:42[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:40:42[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 13/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:40:57[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_4e94a88889ed] context loaded for session session_req_4e94a88889ed[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 67.89 ms[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 12.91 ms[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 347.81 ms[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:40:57[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:40:57[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2124.576s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:40:58[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:40:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:40:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.969)[0m
+[32m2026-06-07 11:40:59[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:40:59[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:40:59[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 14/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:41:14[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_7baff049d49b] context loaded for session session_req_7baff049d49b[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 48.15 ms[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 17.53 ms[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 320.44 ms[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:41:15[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:41:15[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1946.592s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:41:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:41:17[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:41:17[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.758)[0m
+[32m2026-06-07 11:41:17[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:41:17[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 15/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:41:32[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_e90c17011dd2] context loaded for session session_req_e90c17011dd2[0m
+[32m2026-06-07 11:41:32[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.63 ms[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 14.51 ms[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 309.93 ms[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:41:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:41:33[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1991.52s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:41:34[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:41:34[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:41:34[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.807)[0m
+[32m2026-06-07 11:41:34[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:41:35[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:41:35[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 16/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:41:50[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_c56fb5aa0b67] context loaded for session session_req_c56fb5aa0b67[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 30.34 ms[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 11.21 ms[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 264.45 ms[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:41:50[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:41:50[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1977.696s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:41:51[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:41:52[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:41:52[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.757)[0m
+[32m2026-06-07 11:41:52[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:41:52[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:41:52[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 17/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:42:07[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_3e48b0c5f2ab] context loaded for session session_req_3e48b0c5f2ab[0m
+[32m2026-06-07 11:42:07[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:42:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 29.26 ms[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 12.22 ms[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 282.09 ms[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:42:08[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1933.632s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:42:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:42:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:42:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.927)[0m
+[32m2026-06-07 11:42:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:42:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:42:09[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 18/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:42:24[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_c88a084c186a] context loaded for session session_req_c88a084c186a[0m
+[32m2026-06-07 11:42:24[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:42:24[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.54 ms[0m
+[32m2026-06-07 11:42:24[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 23.01 ms[0m
+[32m2026-06-07 11:42:24[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:42:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 253.44 ms[0m
+[32m2026-06-07 11:42:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:42:25[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:42:25[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1798.848s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:42:25[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:42:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:42:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.991)[0m
+[32m2026-06-07 11:42:26[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:42:26[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:42:26[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 19/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:42:41[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_48942c39f985] context loaded for session session_req_48942c39f985[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 36.91 ms[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 17.06 ms[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 279.7 ms[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:42:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:42:42[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1962.144s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:42:52[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:42:52[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:42:52[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.971)[0m
+[32m2026-06-07 11:42:52[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:42:52[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:42:52[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 20/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:43:07[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_9e61d0a34a5c] context loaded for session session_req_9e61d0a34a5c[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 32.86 ms[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 21.82 ms[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 300.6 ms[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:43:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:43:08[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1747.872s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:43:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:43:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:43:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.985)[0m
+[32m2026-06-07 11:43:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:43:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:43:09[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 21/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:43:24[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_4ae216f38f8c] context loaded for session session_req_4ae216f38f8c[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.85 ms[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 11.78 ms[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 264.89 ms[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:43:25[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:43:25[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1817.856s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:43:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:43:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:43:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.936)[0m
+[32m2026-06-07 11:43:26[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:43:26[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:43:26[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 22/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:43:41[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_86d6702b82be] context loaded for session session_req_86d6702b82be[0m
+[32m2026-06-07 11:43:41[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 46.11 ms[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 20.0 ms[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 266.16 ms[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:43:42[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1816.992s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:43:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:43:43[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:43:43[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.998)[0m
+[32m2026-06-07 11:43:43[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:43:43[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:43:43[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 23/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:43:58[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_ea75ea87570e] context loaded for session session_req_ea75ea87570e[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.68 ms[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 14.94 ms[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 269.04 ms[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:43:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:43:59[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1855.871999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:44:08[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:44:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:44:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.992)[0m
+[32m2026-06-07 11:44:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:44:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:44:09[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 24/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:44:24[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_1107917cb089] context loaded for session session_req_1107917cb089[0m
+[32m2026-06-07 11:44:25[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:44:29[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:44:29[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:44:29[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:44:29[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3583.008s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:44:49[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:44:51[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.6[0m
+[32m2026-06-07 11:44:51[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_1107917cb089] retry 1/2[0m
+[32m2026-06-07 11:44:51[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:44:51[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3590.784s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:45:17[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:45:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:45:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.88)[0m
+[32m2026-06-07 11:45:22[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:45:22[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 25/49: route=web_research status=abstained[0m
+[32m2026-06-07 11:45:37[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_6ebaf2bd24f3] context loaded for session session_req_6ebaf2bd24f3[0m
+[32m2026-06-07 11:45:38[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:45:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 63.08 ms[0m
+[32m2026-06-07 11:45:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.01 ms[0m
+[32m2026-06-07 11:45:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:45:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 891.29 ms[0m
+[32m2026-06-07 11:45:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:45:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:45:39[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2033.855999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:45:48[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:45:49[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:45:49[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.601)[0m
+[32m2026-06-07 11:45:49[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:45:49[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 26/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:46:04[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_67e61e42cac6] context loaded for session session_req_67e61e42cac6[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 79.61 ms[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 24.9 ms[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 468.59 ms[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:46:04[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:46:05[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1825.632s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:46:05[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:46:06[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:46:06[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.6)[0m
+[32m2026-06-07 11:46:06[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:46:06[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 27/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:46:21[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_33f6160cb9a5] context loaded for session session_req_33f6160cb9a5[0m
+[32m2026-06-07 11:46:22[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:46:22[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 707.616s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:46:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:46:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.1)[0m
+[32m2026-06-07 11:46:22[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:46:22[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:46:22[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 28/49: route=direct_generation status=success[0m
+[32m2026-06-07 11:46:37[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_c91bfbaf3d8a] context loaded for session session_req_c91bfbaf3d8a[0m
+[32m2026-06-07 11:46:37[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:46:38[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 689.472s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:46:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:46:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.1)[0m
+[32m2026-06-07 11:46:38[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:46:38[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:46:38[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 29/49: route=direct_generation status=success[0m
+[32m2026-06-07 11:46:53[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_4763dcf65cc0] context loaded for session session_req_4763dcf65cc0[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: memory[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:46:53[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 685.151999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.1)[0m
+[32m2026-06-07 11:46:53[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:46:54[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:46:54[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 30/49: route=memory status=success[0m
+[32m2026-06-07 11:47:09[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_7d19d206c494] context loaded for session session_req_7d19d206c494[0m
+[32m2026-06-07 11:47:09[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:47:09[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 55.01 ms[0m
+[32m2026-06-07 11:47:09[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 34.22 ms[0m
+[32m2026-06-07 11:47:09[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 386.11 ms[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:47:10[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1435.967999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.6)[0m
+[32m2026-06-07 11:47:10[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:47:10[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 31/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:47:25[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_2c6a84e1a562] context loaded for session session_req_2c6a84e1a562[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 54.43 ms[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 51.36 ms[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 310.34 ms[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:47:26[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:47:26[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1537.92s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:47:27[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:47:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:47:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.604)[0m
+[32m2026-06-07 11:47:28[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:47:28[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 32/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:47:43[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_fbb69b7ed155] context loaded for session session_req_fbb69b7ed155[0m
+[32m2026-06-07 11:47:43[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: web_research[0m
+[32m2026-06-07 11:47:45[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:47:45[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:47:45[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:47:45[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2341.44s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:47:45[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:47:46[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:47:46[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.828)[0m
+[32m2026-06-07 11:47:46[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:47:46[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 33/49: route=web_research status=abstained[0m
+[32m2026-06-07 11:48:01[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_520564f56e20] context loaded for session session_req_520564f56e20[0m
+[32m2026-06-07 11:48:01[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: direct_generation[0m
+[32m2026-06-07 11:48:02[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 612.576s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:48:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:48:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.1)[0m
+[32m2026-06-07 11:48:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:48:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:48:03[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 34/49: route=direct_generation status=success[0m
+[32m2026-06-07 11:48:18[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_28b5f1fc3f60] context loaded for session session_req_28b5f1fc3f60[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 45.86 ms[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 62.92 ms[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 40.14 ms[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 15.83 ms[0m
+[32m2026-06-07 11:48:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 55.9 ms[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 31.19 ms[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 33.68 ms[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.5 ms[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 810.1 ms[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:48:19[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 3 sub-queries[0m
+[32m2026-06-07 11:48:19[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:48:19[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1536.192s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:48:21[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:48:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:48:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.812)[0m
+[32m2026-06-07 11:48:22[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:48:22[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:48:22[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 35/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:48:37[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_b33da2919019] context loaded for session session_req_b33da2919019[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 49.91 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 75.27 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 46.86 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 41.22 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 53.45 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 38.6 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.59 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 37.4 ms[0m
+[32m2026-06-07 11:48:38[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:48:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 509.39 ms[0m
+[32m2026-06-07 11:48:39[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:48:39[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 3 sub-queries[0m
+[32m2026-06-07 11:48:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:48:39[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1542.24s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:48:40[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:48:44[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.75[0m
+[32m2026-06-07 11:48:44[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_b33da2919019] retry 1/2[0m
+[32m2026-06-07 11:48:44[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:48:44[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1566.432s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:48:45[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:48:46[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:48:46[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.956)[0m
+[32m2026-06-07 11:48:46[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:48:46[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:48:46[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 36/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:49:01[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_26054b7e65a1] context loaded for session session_req_26054b7e65a1[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 56.42 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 64.67 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.04 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 28.62 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 36.51 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 25.29 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.6 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 30.65 ms[0m
+[32m2026-06-07 11:49:02[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:03[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 792.83 ms[0m
+[32m2026-06-07 11:49:03[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:49:03[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 3 sub-queries[0m
+[32m2026-06-07 11:49:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:49:03[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1429.056s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:49:04[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:49:05[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=0.95[0m
+[32m2026-06-07 11:49:05[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.921)[0m
+[32m2026-06-07 11:49:05[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:49:06[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:49:06[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 37/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:49:21[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_d2996a56f20d] context loaded for session session_req_d2996a56f20d[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 51.98 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 73.79 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 33.49 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 18.63 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 32.37 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 25.76 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 47.55 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 27.31 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.04 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 29.74 ms[0m
+[32m2026-06-07 11:49:21[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:49:22[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 898.69 ms[0m
+[32m2026-06-07 11:49:22[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:49:22[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 4 sub-queries[0m
+[32m2026-06-07 11:49:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:49:22[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1493.856s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:49:23[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:49:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.6[0m
+[32m2026-06-07 11:49:28[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_d2996a56f20d] retry 1/2[0m
+[32m2026-06-07 11:49:28[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:49:28[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1518.048s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:49:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:49:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:49:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=abstained, confidence=0.791)[0m
+[32m2026-06-07 11:49:59[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:49:59[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 38/49: route=internal_rag status=abstained[0m
+[32m2026-06-07 11:50:14[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_97c5c805f090] context loaded for session session_req_97c5c805f090[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 52.47 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 87.9 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 35.09 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.54 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.63 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 28.23 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.04 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 29.89 ms[0m
+[32m2026-06-07 11:50:14[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 36.62 ms[0m
+[32m2026-06-07 11:50:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 30.57 ms[0m
+[32m2026-06-07 11:50:15[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:16[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 1359.27 ms[0m
+[32m2026-06-07 11:50:16[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:50:16[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 4 sub-queries[0m
+[32m2026-06-07 11:50:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:50:16[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1423.872s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:50:17[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:50:19[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:50:19[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.898)[0m
+[32m2026-06-07 11:50:19[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:50:19[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:50:19[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 39/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:50:34[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_5aae506493cd] context loaded for session session_req_5aae506493cd[0m
+[32m2026-06-07 11:50:35[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:50:35[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 54.08 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 90.57 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 39.29 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 37.21 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.61 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 31.08 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 33.52 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 32.26 ms[0m
+[32m2026-06-07 11:50:36[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 1138.31 ms[0m
+[32m2026-06-07 11:50:37[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:50:37[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 3 sub-queries[0m
+[32m2026-06-07 11:50:37[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:50:37[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1335.744s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:50:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:50:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:50:39[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.726)[0m
+[32m2026-06-07 11:50:39[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:50:40[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:50:40[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 40/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:50:55[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_1c0af31a3015] context loaded for session session_req_1c0af31a3015[0m
+[32m2026-06-07 11:50:55[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:50:55[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 63.69 ms[0m
+[32m2026-06-07 11:50:55[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 140.75 ms[0m
+[32m2026-06-07 11:50:55[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:50:56[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 424.34 ms[0m
+[32m2026-06-07 11:50:56[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:50:59[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:50:59[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:50:59[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:50:59[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:50:59[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:51:00[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2153.088s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:51:01[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:51:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=0.85[0m
+[32m2026-06-07 11:51:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.852)[0m
+[32m2026-06-07 11:51:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:51:03[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:51:03[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 41/49: route=hybrid status=success[0m
+[32m2026-06-07 11:51:18[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_1ee129ebe6a6] context loaded for session session_req_1ee129ebe6a6[0m
+[32m2026-06-07 11:51:18[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:51:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 65.99 ms[0m
+[32m2026-06-07 11:51:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 87.82 ms[0m
+[32m2026-06-07 11:51:18[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 460.83 ms[0m
+[32m2026-06-07 11:51:19[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:51:19[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:51:19[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1391.904s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:51:22[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:51:24[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=0.8[0m
+[32m2026-06-07 11:51:24[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.775)[0m
+[32m2026-06-07 11:51:24[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:51:25[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:51:25[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 42/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:51:40[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_1ae62603358e] context loaded for session session_req_1ae62603358e[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 49.78 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 81.18 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.04 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 26.5 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 37.2 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 22.02 ms[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:40[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 39.15 ms[0m
+[32m2026-06-07 11:51:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 35.84 ms[0m
+[32m2026-06-07 11:51:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 44.15 ms[0m
+[32m2026-06-07 11:51:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 17.22 ms[0m
+[32m2026-06-07 11:51:41[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:51:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 1011.82 ms[0m
+[32m2026-06-07 11:51:42[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:51:42[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 4 sub-queries[0m
+[32m2026-06-07 11:51:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:51:42[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1416.095999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:51:43[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:51:48[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.8[0m
+[32m2026-06-07 11:51:48[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_1ae62603358e] retry 1/2[0m
+[32m2026-06-07 11:51:48[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:51:48[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1439.424s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:52:03[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:52:14[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:52:14[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.847)[0m
+[32m2026-06-07 11:52:14[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:52:14[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:52:14[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 43/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:52:29[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_f9d1e9d9e561] context loaded for session session_req_f9d1e9d9e561[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 55.09 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 90.59 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 41.24 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 38.83 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 43.52 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 24.43 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 45.77 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 25.24 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 43.53 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 31.39 ms[0m
+[32m2026-06-07 11:52:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 1452.68 ms[0m
+[32m2026-06-07 11:52:31[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:52:31[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 4 sub-queries[0m
+[32m2026-06-07 11:52:31[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:52:32[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 1309.824s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:52:32[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:52:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:52:33[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.924)[0m
+[32m2026-06-07 11:52:33[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:52:33[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:52:33[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 44/49: route=internal_rag status=success[0m
+[32m2026-06-07 11:52:48[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_aee305d94428] context loaded for session session_req_aee305d94428[0m
+[32m2026-06-07 11:52:49[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:52:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 42.66 ms[0m
+[32m2026-06-07 11:52:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 63.67 ms[0m
+[32m2026-06-07 11:52:49[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:52:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 343.81 ms[0m
+[32m2026-06-07 11:52:50[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:52:54[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:52:54[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:52:54[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:52:54[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:52:54[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:52:54[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2843.424s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:53:00[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:53:14[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:53:14[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.886)[0m
+[32m2026-06-07 11:53:14[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:53:14[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:53:14[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 45/49: route=hybrid status=success[0m
+[32m2026-06-07 11:53:29[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_87e07b2b661a] context loaded for session session_req_87e07b2b661a[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 44.03 ms[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 52.96 ms[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 286.46 ms[0m
+[32m2026-06-07 11:53:30[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:53:32[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:53:32[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:53:32[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:53:32[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:53:32[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:53:32[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 2818.368s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:53:50[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:53:51[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:53:51[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.897)[0m
+[32m2026-06-07 11:53:51[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:53:51[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:53:51[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 46/49: route=hybrid status=success[0m
+[32m2026-06-07 11:54:06[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_bfa6d337a3cf] context loaded for session session_req_bfa6d337a3cf[0m
+[32m2026-06-07 11:54:06[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:54:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 52.17 ms[0m
+[32m2026-06-07 11:54:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 59.11 ms[0m
+[32m2026-06-07 11:54:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:54:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 321.06 ms[0m
+[32m2026-06-07 11:54:07[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:54:09[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:54:09[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:54:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:54:09[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:54:09[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:54:09[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3249.504s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:54:38[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:54:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.9[0m
+[32m2026-06-07 11:54:42[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_bfa6d337a3cf] retry 1/2[0m
+[32m2026-06-07 11:54:42[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:54:42[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3245.184s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:55:20[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:55:31[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=1.0[0m
+[32m2026-06-07 11:55:31[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.926)[0m
+[32m2026-06-07 11:55:31[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:55:32[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:55:32[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 47/49: route=hybrid status=success[0m
+[32m2026-06-07 11:55:47[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_078d1cc6a203] context loaded for session session_req_078d1cc6a203[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: hybrid[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 38.24 ms[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 56.2 ms[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 321.77 ms[0m
+[32m2026-06-07 11:55:47[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:55:50[0m | [32m[1mSUCCESS[0m | [36msrc.web.search[0m:[36msearch[0m - [32m[1mRetrieved 5 web results[0m
+[32m2026-06-07 11:55:50[0m | [32m[1mSUCCESS[0m | [36msrc.web.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 web evidence items[0m
+[32m2026-06-07 11:55:50[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mretrieve_memory[0m - [32m[1mRetrieved 0 semantic memories[0m
+[32m2026-06-07 11:55:50[0m | [32m[1mSUCCESS[0m | [36msrc.memory.retriever[0m:[36mretrieve_context[0m - [32m[1mUnified memory retrieved[0m
+[32m2026-06-07 11:55:50[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:55:50[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3319.488s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:56:00[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:56:29[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.75[0m
+[32m2026-06-07 11:56:29[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_078d1cc6a203] retry 1/2[0m
+[32m2026-06-07 11:56:29[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:56:30[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3309.12s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:56:43[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:57:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.85[0m
+[32m2026-06-07 11:57:16[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_078d1cc6a203] retry 2/2[0m
+[32m2026-06-07 11:57:16[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:57:16[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 3262.464s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:57:21[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:58:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=0.9[0m
+[32m2026-06-07 11:58:10[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.727)[0m
+[32m2026-06-07 11:58:10[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:58:10[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:58:10[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 48/49: route=hybrid status=success[0m
+[32m2026-06-07 11:58:25[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mcontext_loader_node[0m - [1m[req_2acf2b4f5973] context loaded for session session_req_2acf2b4f5973[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.planner.planner[0m:[36m_llm_plan[0m - [32m[1mPlanner (LLM) selected route: internal_rag[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 42.4 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 67.98 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 34.56 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 19.37 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 27.53 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 17.86 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.dense[0m:[36mretrieve[0m - [32m[1mDense retrieval returned 20 chunks in 31.45 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.sparse[0m:[36mretrieve[0m - [32m[1mSparse retrieval returned 20 chunks in 25.2 ms[0m
+[32m2026-06-07 11:58:26[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.hybrid[0m:[36mretrieve[0m - [32m[1mHybrid retrieval (weighted) returned 10 chunks[0m
+[32m2026-06-07 11:58:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.reranker[0m:[36mrerank[0m - [32m[1mReranked 5 chunks in 1165.75 ms[0m
+[32m2026-06-07 11:58:27[0m | [32m[1mSUCCESS[0m | [36msrc.retrieval.evidence[0m:[36mbuild[0m - [32m[1mBuilt 5 evidence items[0m
+[32m2026-06-07 11:58:27[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36minternal_retrieval_node[0m - [1mDecomposed retrieval: 3 sub-queries[0m
+[32m2026-06-07 11:58:27[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:58:27[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 915.84s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:58:29[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:58:30[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=False score=0.75[0m
+[32m2026-06-07 11:58:30[0m | [1mINFO[0m | [36msrc.graph.nodes[0m:[36mretry_node[0m - [1m[req_2acf2b4f5973] retry 1/2[0m
+[32m2026-06-07 11:58:30[0m | [32m[1mSUCCESS[0m | [36msrc.generation.prompt_builder[0m:[36mbuild_prompt[0m - [32m[1mUnified grounded prompt built[0m
+[32m2026-06-07 11:58:30[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on llama-3.3-70b-versatile (suggested wait 942.623999999s); falling back to llama-3.1-8b-instant[0m
+[32m2026-06-07 11:58:31[0m | [32m[1mSUCCESS[0m | [36msrc.generation.generator[0m:[36mgenerate[0m - [32m[1mAnswer generated[0m
+[32m2026-06-07 11:58:51[0m | [33m[1mWARNING[0m | [36msrc.models.groq_provider[0m:[36m_call_with_retry[0m - [33m[1mRate limited on qwen/qwen3-32b; retrying in 2.6s (attempt 1/3)[0m
+[32m2026-06-07 11:58:55[0m | [32m[1mSUCCESS[0m | [36msrc.generation.verifier[0m:[36mverify[0m - [32m[1mVerifier verdict: grounded=True score=0.8[0m
+[32m2026-06-07 11:58:55[0m | [32m[1mSUCCESS[0m | [36msrc.generation.response_builder[0m:[36mbuild[0m - [32m[1mFinal response built (status=success, confidence=0.692)[0m
+[32m2026-06-07 11:58:55[0m | [32m[1mSUCCESS[0m | [36msrc.memory.store[0m:[36msave_interaction[0m - [32m[1mInteraction saved[0m
+[32m2026-06-07 11:58:55[0m | [32m[1mSUCCESS[0m | [36msrc.memory.semantic[0m:[36mstore_memory[0m - [32m[1mSemantic memory stored[0m
+[32m2026-06-07 11:58:55[0m | [1mINFO[0m | [36mevaluation.pipeline_exec[0m:[36mexecute_dataset[0m - [1mEval 49/49: route=internal_rag status=success[0m
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5942.89it/s]
+[32m2026-06-07 11:59:06[0m | [32m[1mSUCCESS[0m | [36mevaluation.generation_eval[0m:[36mevaluate[0m - [32m[1mPlane 2 generation evaluation complete[0m
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5109.49it/s]
+[32m2026-06-07 11:59:15[0m | [32m[1mSUCCESS[0m | [36mevaluation.system_eval[0m:[36mevaluate[0m - [32m[1mPlane 3 system evaluation complete[0m
+[32m2026-06-07 11:59:15[0m | [32m[1mSUCCESS[0m | [36m__main__[0m:[36m_save_report[0m - [32m[1mSaved benchmark report: evaluation\reports\dynamic_rag_20260607_062915.json[0m
+[32m2026-06-07 11:59:15[0m | [32m[1mSUCCESS[0m | [36m__main__[0m:[36mrun[0m - [32m[1mBenchmark complete[0m
+{
+  "experiment_name": "dynamic_rag",
+  "timestamp": "2026-06-07T06:29:15.943996",
+  "dataset": "evaluation/data/test_set.json",
+  "plane_1_retrieval": {
+    "Recall@K": 0.8658,
+    "MRR": 1.0,
+    "NDCG@K": 0.9063,
+    "Hit Rate": 1.0,
+    "Context Precision": 0.8513,
+    "Context Recall": 0.8658
+  },
+  "gate_c_routing": {
+    "Route Accuracy": 0.7143,
+    "Per-Class Accuracy": {
+      "internal_rag": 0.8462,
+      "web_research": 0.2
+    },
+    "Confusion Matrix": {
+      "internal_rag": {
+        "internal_rag": 33,
+        "web_research": 1,
+        "hybrid": 5
+      },
+      "web_research": {
+        "web_research": 2,
+        "internal_rag": 4,
+        "direct_generation": 3,
+        "memory": 1
+      }
+    },
+    "Total Queries": 49
+  },
+  "plane_2_generation": {
+    "Faithfulness": 0.9821,
+    "Groundedness": 1.0,
+    "Answer Relevance": 0.8314,
+    "Completeness": 0.8462,
+    "Citation Accuracy": 0.991,
+    "Evaluated (answerable)": 39
+  },
+  "plane_3_system": {
+    "Mean Latency (ms)": 13834.0,
+    "P95 Latency (ms)": 69694.57,
+    "End-to-End Accuracy": 0.8124,
+    "Rejection Rate": 0.6,
+    "Estimated Cost / Query": 0.0,
+    "Failure Count": 0
+  }
+}

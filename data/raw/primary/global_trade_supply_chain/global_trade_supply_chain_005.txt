@@ -1,0 +1,25 @@
+SUEZ CANAL BLOCKAGE: THE EVER GIVEN INCIDENT AND SUPPLY CHAIN LESSONS
+
+OVERVIEW
+
+On March 23, 2021, the container ship Ever Given—one of the largest vessels ever built, stretching 400 meters and capable of carrying over 20,000 twenty-foot equivalent units—ran aground in the Suez Canal, blocking the waterway for six days until it was refloated on March 29. The incident halted approximately $9.6 billion in daily trade, stranded over 400 vessels at both ends of the canal, and sent ripple effects through supply chains weeks and months after the physical obstruction was cleared. Though resolved relatively quickly, the Ever Given incident became a defining case study in supply chain fragility, revealing how a single point of failure in maritime infrastructure could cascade across global trade.
+
+THE INCIDENT AND IMMEDIATE IMPACT
+
+The Ever Given, operated by Evergreen Marine and owned by Shoei Kisen Kaisha, was transiting the canal from the Red Sea toward the Mediterranean when high winds and a suspected sandstorm caused the vessel to veer off course, becoming diagonally lodged bank-to-bank in the southern section of the waterway. The Suez Canal Authority, Egyptian salvage teams, and international assistance worked for six days to dislodge the ship using tugboats and dredging equipment. During this period, an estimated $400 million per hour in trade was delayed. Vessels carrying consumer electronics, petroleum, livestock, raw materials, and manufactured goods were stranded or rerouted around the Cape of Good Hope, adding approximately ten to fourteen days to voyage times and significant fuel costs.
+
+SUPPLY CHAIN CASCADES
+
+The blockage's effects extended far beyond the six-day stoppage. Containerized cargo that missed connections at European and Asian ports created scheduling disruptions lasting weeks. Container imbalances—empty boxes stranded at wrong locations—compounded existing port congestion problems that had developed during the COVID-19 pandemic. Specific industries were acutely affected: European manufacturers waiting for Asian-produced components experienced production stoppages, livestock ships carrying tens of thousands of cattle faced welfare emergencies as feed supplies ran low, and petroleum tankers saw spot prices spike as supply uncertainty grew. Just-in-time manufacturers with thin inventory buffers experienced the most acute pain, as even brief delays exhausted their supply cushions.
+
+LESSONS FOR SUPPLY CHAIN RESILIENCE
+
+The Ever Given incident crystallized several pre-existing supply chain vulnerabilities. First, single-point-of-failure chokepoints—whether a canal, a port, a factory, or a supplier—represent systemic risks that are not adequately priced into normal operations. Second, the just-in-time inventory model, optimized for cost efficiency, sacrifices resilience. Companies holding minimal buffer stock have no margin for disruptions. Third, the incident demonstrated that maritime logistics networks are tightly coupled: a disruption to one vessel or one waterway creates congestion effects throughout the system due to vessel scheduling interdependencies. Fourth, the concentration of global container shipping on a small number of mega-vessels amplifies the impact of individual incidents—the same cargo that once traveled on ten medium ships now travels on one giant ship, magnifying single-point failure.
+
+REGULATORY AND OPERATIONAL RESPONSES
+
+In the aftermath, the Suez Canal Authority launched a $300 million project to widen and deepen the southern section of the canal where the Ever Given grounded. New escort and convoy protocols were established for vessels in high-wind conditions. Insurance underwriters re-evaluated contingency clauses for canal blockages, and freight rates for Cape of Good Hope rerouting were reassessed. More broadly, the incident contributed to a growing corporate discourse on supply chain resilience, with major manufacturers and retailers accelerating reviews of their single-source dependencies, inventory strategies, and geographic diversification. The Ever Given became a symbol—alongside COVID-19 disruptions—of the era's supply chain reckoning.
+
+CONCLUSION
+
+The Ever Given blockage was, in the grand sweep of global trade, a brief and ultimately limited disruption. But its visibility, its economic quantification, and its timing—during the COVID-19 supply chain stress period—made it a watershed moment in corporate and policy awareness of maritime chokepoint vulnerability. The lessons it demonstrated remain highly relevant as geopolitical tensions threaten more sustained disruptions to key waterways.

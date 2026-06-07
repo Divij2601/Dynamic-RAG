@@ -13,6 +13,13 @@ import json
 import time
 from typing import List, Dict, Any
 
+# Free-tier Groq TPM limit: 6,000 tokens/minute.
+# Each pipeline query uses ~1,000-2,500 tokens across
+# planner + generator + verifier (3 LLM calls).
+# 15s gap ≈ 4 queries/min ≈ 4,000-6,000 tokens/min —
+# safely under the limit without triggering fallback.
+INTER_QUERY_DELAY_SECONDS = 15.0
+
 from src.graph.graph_builder import run_query
 from src.observability.logger import app_logger
 
@@ -79,5 +86,10 @@ def execute_dataset(
             f"status="
             f"{getattr(response, 'status', 'error')}"
         )
+
+        # Pace requests to stay within Groq's
+        # per-minute token limit on the free tier.
+        if i < len(dataset):
+            time.sleep(INTER_QUERY_DELAY_SECONDS)
 
     return results

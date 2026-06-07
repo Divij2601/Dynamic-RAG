@@ -1,0 +1,50 @@
+{
+    "experiment_name": "dynamic_rag",
+    "timestamp": "2026-06-07T06:29:15.943996",
+    "dataset": "evaluation/data/test_set.json",
+    "plane_1_retrieval": {
+        "Recall@K": 0.8658,
+        "MRR": 1.0,
+        "NDCG@K": 0.9063,
+        "Hit Rate": 1.0,
+        "Context Precision": 0.8513,
+        "Context Recall": 0.8658
+    },
+    "gate_c_routing": {
+        "Route Accuracy": 0.7143,
+        "Per-Class Accuracy": {
+            "internal_rag": 0.8462,
+            "web_research": 0.7897
+        },
+        "Confusion Matrix": {
+            "internal_rag": {
+                "internal_rag": 33,
+                "web_research": 1,
+                "hybrid": 5
+            },
+            "web_research": {
+                "web_research": 2,
+                "internal_rag": 4,
+                "direct_generation": 3,
+                "memory": 1
+            }
+        },
+        "Total Queries": 49
+    },
+    "plane_2_generation": {
+        "Faithfulness": 0.9821,
+        "Groundedness": 1.0,
+        "Answer Relevance": 0.8314,
+        "Completeness": 0.8462,
+        "Citation Accuracy": 0.991,
+        "Evaluated (answerable)": 39
+    },
+    "plane_3_system": {
+        "Mean Latency (ms)": 13834.0,
+        "P95 Latency (ms)": 69694.57,
+        "End-to-End Accuracy": 0.8124,
+        "Rejection Rate": 0.6,
+        "Estimated Cost / Query": 0.0,
+        "Failure Count": 0
+    }
+}

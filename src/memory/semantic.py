@@ -165,6 +165,12 @@ Assistant:
             )
         )
 
+        from qdrant_client.models import (
+            Filter,
+            FieldCondition,
+            MatchValue
+        )
+
         results = (
             self.client.query_points(
                 collection_name=(
@@ -172,6 +178,20 @@ Assistant:
                 ),
 
                 query=embedding,
+
+                # Filter at DB level — not in Python
+                # — so top_k is correctly scoped to
+                # this session only.
+                query_filter=Filter(
+                    must=[
+                        FieldCondition(
+                            key="session_id",
+                            match=MatchValue(
+                                value=session_id
+                            )
+                        )
+                    ]
+                ),
 
                 limit=top_k,
 
@@ -181,28 +201,13 @@ Assistant:
 
         memories = []
 
-        for point in (
-            results.points
-        ):
+        for point in results.points:
 
-            payload = (
-                point.payload
+            payload = point.payload
+
+            memories.append(
+                payload.get("text", "")
             )
-
-            if (
-                payload.get(
-                    "session_id"
-                )
-                ==
-                session_id
-            ):
-
-                memories.append(
-                    payload.get(
-                        "text",
-                        ""
-                    )
-                )
 
         context = "\n\n".join(
             memories

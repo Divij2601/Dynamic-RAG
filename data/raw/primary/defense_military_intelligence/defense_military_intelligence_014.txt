@@ -1,0 +1,27 @@
+CYBER WARFARE AND MILITARY DOCTRINE
+
+OVERVIEW
+
+Cyber warfare has evolved from a specialized intelligence discipline into a recognized domain of military operations with dedicated commands, doctrine, and force structures. Nation-states now routinely conduct offensive cyber operations as instruments of coercion, espionage, and conflict preparation, while defending their own critical infrastructure and military networks against adversary intrusion. The integration of cyber into broader military doctrine — alongside conventional, nuclear, space, and information operations — represents one of the most significant doctrinal developments of the past two decades.
+
+MAJOR CYBER INCIDENTS AND STATE ACTORS
+
+The history of cyber operations in geopolitical conflict begins with the Stuxnet worm (2010), attributed to the US and Israel, which physically damaged Iranian centrifuges at the Natanz enrichment facility. It demonstrated that cyber tools could produce kinetic physical effects, crossing a threshold that reshaped global thinking about cyber weapons. Subsequent major incidents include the Sony Pictures hack attributed to North Korea (2014), the OPM breach attributed to China (2015, compromising 21 million US government personnel records), the NotPetya attack attributed to Russia's Sandworm unit (2017, causing $10 billion in global damage), and the SolarWinds supply chain compromise attributed to Russia's SVR (2020, penetrating 18,000 organizations including US government agencies).
+
+In Ukraine, Russian cyber operations preceded and accompanied kinetic attacks. The January 2022 "WhisperGate" wiper malware targeted Ukrainian government websites days before the invasion. Russian efforts to disable Ukrainian command and control, communications, and financial systems largely failed, partly due to Ukrainian preparation with Western assistance and partly due to the resilience of Starlink and cloud-based infrastructure.
+
+US CYBER COMMAND AND DOCTRINE
+
+US Cyber Command (USCYBERCOM), established in 2010 and elevated to a unified combatant command in 2018, conducts operations across three missions: defending DoD networks (Defend the Nation), supporting combatant commanders, and conducting offensive operations (Offensive Cyber Operations/OCO). The doctrine of "persistent engagement" — maintaining continuous presence in adversary networks to understand and disrupt malicious activity — replaced a more reactive posture.
+
+"Hunt Forward" operations, where USCYBERCOM deploys teams to partner nation networks with host-country permission to identify adversary malware and share threat intelligence, have operated in Ukraine, the Baltic states, North Macedonia, and other countries. These operations provided direct intelligence on Russian and other adversary cyber tradecraft.
+
+DOCTRINE ACROSS MAJOR POWERS
+
+China's cyber doctrine is integrated into the PLA's broader concept of "informatized warfare," which views cyber operations as essential to achieving information superiority before and during kinetic conflict. The People's Liberation Army's cyberforces, primarily under the former SSF Network Systems Department, conduct persistent espionage, pre-position in critical infrastructure, and develop tools for disruptive attacks.
+
+Russia's cyber doctrine sits within a broader "information confrontation" framework that blends cyber, electronic warfare, and psychological operations. Russian cyber groups — including Sandworm (GRU), Cozy Bear (SVR), and Fancy Bear (GRU APT28) — have demonstrated sophisticated, persistent capabilities across espionage and sabotage missions.
+
+ESCALATION RISKS AND NORMS
+
+A key challenge is the absence of clearly established norms for when cyber operations constitute an act of war warranting kinetic response. The Tallinn Manual, a non-binding academic legal analysis, provides frameworks for applying international law to cyber operations but lacks official state endorsement. The risk of unintended escalation — particularly through collateral damage from cyber operations designed to be geographically or functionally contained — remains a significant stability concern.

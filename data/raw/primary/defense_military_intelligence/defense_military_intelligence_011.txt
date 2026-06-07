@@ -1,0 +1,25 @@
+ARTIFICIAL INTELLIGENCE IN MILITARY APPLICATIONS
+
+OVERVIEW
+
+Artificial intelligence is transforming military operations across every domain — from predictive maintenance and logistics optimization to battlefield decision support, target recognition, and autonomous weapons systems. All major military powers are investing heavily in AI-enabled capabilities, generating significant shifts in doctrine, organization, and procurement priorities. The speed at which AI is being incorporated into defense systems has outpaced the development of ethical frameworks, accountability mechanisms, and arms control regimes designed to govern its use.
+
+INTELLIGENCE, SURVEILLANCE, AND RECONNAISSANCE
+
+AI applications in ISR are among the most mature and widely deployed. Machine learning algorithms process satellite imagery at scales impossible for human analysts, detecting changes in adversary force posture, infrastructure construction, and equipment deployment patterns. Commercial AI tools have been used by open-source intelligence analysts to identify Russian unit locations from geotagged social media posts and satellite imagery analysis.
+
+The US intelligence community's Project Maven, which drew controversy in 2018 when Google employees protested their company's participation, demonstrated AI-assisted video analysis for drone surveillance footage. By 2024, AI-assisted ISR processing had become standard across US and NATO intelligence architectures. Israel's use of AI targeting systems — including the reported "Lavender" and "Gospel" systems in Gaza — highlighted both the tactical effectiveness and the serious ethical and legal questions raised by AI-assisted targeting.
+
+COMMAND AND CONTROL
+
+AI-enabled command and control systems promise faster decision cycles, better information fusion across sensors and sources, and enhanced predictive analytics for anticipating adversary intentions. DARPA's Mosaic Warfare concept and the Joint All-Domain Command and Control (JADC2) initiative envision networks that can automatically route information, prioritize threats, and suggest courses of action, allowing commanders to operate at machine speed. The challenge is ensuring human oversight and accountability remain meaningful when decision cycles shrink to seconds.
+
+China's military doctrine explicitly embraces "intelligentization" — the application of AI across all military domains — as the defining feature of future warfare. The PLA is investing in AI-enabled drone swarm control, automated logistics, and predictive battlefield analytics. Russian AI development lags behind China and the US but Russian doctrine conceptually embraces autonomous systems and AI-enabled EW.
+
+AUTONOMOUS WEAPONS AND TARGET ENGAGEMENT
+
+The application of AI to weapons systems raises the most acute ethical and legal questions. Lethal autonomous weapons systems (LAWS) that can identify and engage targets without human intervention exist on a spectrum from partially to fully autonomous. Current US policy requires "meaningful human control" over lethal force decisions, but the operational pressure to remove humans from the loop — or place them in a supervisory rather than decision role — is intense in time-critical scenarios like defeating drone swarms or responding to hypersonic threats.
+
+RISKS AND GOVERNANCE
+
+Key risks include algorithm bias in target recognition leading to civilian casualties, adversary exploitation through deception or data poisoning, escalation due to misinterpretation of AI-driven behavior, and loss of human judgment in complex situations. International efforts to develop norms and potentially binding rules for military AI have progressed slowly, with disagreements between the US, China, and Russia on fundamental questions of definition and verification. The UN Group of Governmental Experts has discussed LAWS since 2014 but has not produced binding constraints, leaving a significant governance gap as AI military applications accelerate.
