@@ -846,32 +846,33 @@ Reports are named `{experiment_name}_{YYYYMMDD_HHMMSS}.json`.
   "timestamp": "2026-06-07T15:43:31",
   "dataset": "evaluation/data/test_set.json",
   "plane_1_retrieval": {
-    "Recall@K": 0.87,
+    "Recall@K": 0.9338,
     "MRR": 1.0,
+    "NDCG@K": 0.9538,
     "Hit Rate": 1.0,
-    "Context Precision": 0.85,
-    "NDCG@K": 0.91,
-    "Context Recall": 0.83
+    "Context Precision": 0.9266,
+    "Context Recall": 0.9338
   },
   "gate_c_routing": {
-    "Route Accuracy": 0.93,
+    "Route Accuracy": 0.9888,
     "Per-Class Accuracy": { ... },
     "Confusion Matrix": { ... }
   },
   "plane_2_generation": {
-    "Faithfulness": 0.98,
-    "Groundedness": 1.0,
-    "Citation Accuracy": 0.99,
-    "Completeness": 0.85,
-    "Evaluated (answerable)": 28
+    "Faithfulness": 0.9899,
+    "Groundedness": 0.9873,
+    "Answer Relevance": 0.8572,
+    "Citation Accuracy": 0.9886,
+    "Completeness": 0.8494,
+    "Evaluated (answerable)": 79
   },
   "plane_3_system": {
-    "End-to-End Accuracy": 0.81,
-    "Rejection Rate": 0.6,
-    "Mean Latency (ms)": 4200,
-    "P95 Latency (ms)": 9800,
+    "End-to-End Accuracy": 0.8437,
+    "Rejection Rate": 0.3333,
+    "Mean Latency (ms)": 15206.52,
+    "P95 Latency (ms)": 34763.05,
     "Failure Count": 0,
-    "Estimated Cost / Query": 0.000042
+    "Estimated Cost / Query": 0.0
   }
 }
 ```

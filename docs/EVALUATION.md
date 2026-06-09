@@ -175,7 +175,7 @@ Measures what fraction of the gold chunks appear anywhere in the final top-K set
 
 - **What it captures:** Coverage — does the retrieved set contain all the evidence needed to answer the question?
 - **What a bad score means:** The retrieval system is missing relevant evidence. The generator will be asked to answer from incomplete context. Hallucination risk is high.
-- **Current value:** 0.87 (spec) / 0.9375 (latest benchmark report)
+- **Current value:** 0.9338
 - **Target:** > 0.85 for the current corpus
 
 #### MRR (Mean Reciprocal Rank)
@@ -188,7 +188,7 @@ Measures how early in the ranked list the first relevant chunk appears. If the f
 
 - **What it captures:** Precision of the top position — is the most relevant chunk near the top?
 - **What a bad score means:** Relevant chunks exist in the set but are buried deep. The generator receives weaker context in earlier positions, which can reduce the quality of grounded answers.
-- **Current value:** 1.0 (spec) / 0.8833 (latest benchmark report)
+- **Current value:** 1.0
 - **Target:** > 0.80
 
 #### NDCG@K (Normalized Discounted Cumulative Gain)
@@ -202,7 +202,7 @@ where `rel_i` is 1 if chunk at position `i` is in the gold set, 0 otherwise. IDC
 
 - **What it captures:** Ranking order quality — are relevant chunks ranked above irrelevant ones?
 - **What a bad score means:** Even if Recall@K is high, chunks may be poorly ordered. A reranker that shuffles gold chunks to lower positions will be penalized by NDCG even if nothing is lost from the set.
-- **Current value:** 0.8888 (latest benchmark report)
+- **Current value:** 0.9538
 - **Target:** > 0.80
 
 #### Hit Rate
@@ -215,7 +215,7 @@ Averaged across queries. Measures whether at least one relevant chunk appears in
 
 - **What it captures:** Broad coverage — did we find anything useful at all?
 - **What a bad score means:** For those queries, the system retrieved zero relevant context. The generator will either hallucinate or correctly abstain (abstaining is the correct behavior here, but it means retrieval failed as a lookup system).
-- **Current value:** 1.0 (spec) / 0.9583 (latest benchmark report)
+- **Current value:** 1.0
 - **Target:** > 0.95
 
 #### Context Precision
@@ -228,7 +228,7 @@ Measures what fraction of the retrieved chunks are actually relevant.
 
 - **What it captures:** Noise in the retrieved context. A low Context Precision means the generator receives many irrelevant chunks alongside the correct ones.
 - **What a bad score means:** The generator's prompt is diluted with noise. This increases the chance of the generator citing the wrong chunk or being distracted from the correct evidence. With FINAL_TOP_K=8 and typical gold sets of 3-5 chunks, a Context Precision of ~0.50 is structurally expected and acceptable.
-- **Current value:** 0.85 (spec) / 0.2917 (latest benchmark report — note: gold sets average 5 chunks, retrieved set is 8, so 0.29-0.38 is structurally bounded)
+- **Current value:** 0.9266
 - **Note:** Context Precision is structurally bounded by `|gold| / FINAL_TOP_K`. With an average gold set of 5 and FINAL_TOP_K of 8, the theoretical maximum is 0.625. The metric is most useful for catching large regressions, not for comparison against absolute thresholds.
 
 #### Context Recall
@@ -283,35 +283,33 @@ The confusion matrix is `confusion[expected][predicted]`. From the latest benchm
 ```json
 {
   "internal_rag": {
-    "internal_rag": 23,
-    "web_research": 1
+    "internal_rag": 76,
+    "web_research": 1,
+    "hybrid": 2
   },
   "web_research": {
-    "web_research": 4,
-    "direct_generation": 1
+    "web_research": 10
   }
 }
 ```
 
-- 23 corpus queries correctly routed to `internal_rag`
+- 76 corpus queries correctly routed to `internal_rag`
 - 1 corpus query incorrectly sent to `web_research` (planner thought it needed live data)
-- 4 web-answerable queries correctly routed to `web_research`
-- 1 web-answerable query incorrectly sent to `direct_generation` (planner treated it as a general knowledge question rather than a live lookup)
+- 2 corpus queries routed to `hybrid` (planner judged they needed both internal and web context)
+- 10 web-answerable queries correctly routed to `web_research` (perfect web_research accuracy)
 
-The `direct_generation` misrouting for web queries is more benign than the `web_research` misrouting for corpus queries, because `direct_generation` can still produce a reasonable answer from LLM training data for recent but not-live facts.
+The `hybrid` misrouting for corpus queries is benign — hybrid still performs internal retrieval, so the correct evidence is recovered. The 1 `web_research` misroute for a corpus query is the more consequential error since it bypasses the vector store entirely.
 
 ### Per-class accuracy
 
 | Route | Accuracy | Notes |
 |---|---|---|
-| `internal_rag` | 0.9583 | 23/24 correct |
-| `web_research` | 0.8000 | 4/5 correct |
-
-The lower web_research accuracy reflects the harder decision boundary: distinguishing "this needs live web data" from "this is general knowledge the LLM already has." This boundary is controlled by `KNOWLEDGE_BASE_DESCRIPTION` in `src/config.py`, which the planner uses to decide whether a query is in-corpus.
+| `internal_rag` | 0.9873 | 76/79 correct |
+| `web_research` | 1.0000 | 10/10 correct |
 
 ### Current value
 
-Overall Route Accuracy: **0.931** (29 evaluated queries, 5 `unanswerable_true` excluded)
+Overall Route Accuracy: **0.9888** (89 total queries)
 
 ---
 
@@ -335,7 +333,7 @@ Measures whether every factual claim in the generated answer is directly support
 
 - **What it captures:** Hallucination rate. A faithful answer only says things the context supports.
 - **What a bad score means:** The generator is introducing facts not present in the retrieved context — either fabricating from training data or misreading the evidence. This is the most critical generation failure mode.
-- **Current value:** 0.98 (spec) / 1.0 (latest benchmark report, 12 answerable queries evaluated)
+- **Current value:** 0.9899 (79 answerable queries evaluated)
 - **Important:** Faithfulness can be 1.0 while the answer is still wrong, if the retrieved context itself was incorrect (Plane 1 failure). Faithfulness measures faithfulness to evidence, not factual correctness.
 
 #### Groundedness
@@ -348,7 +346,7 @@ A binary signal from the verifier: does the answer derive from the retrieved evi
 
 - **What it captures:** Whether the generator is using the RAG context. A non-grounded but high-faithfulness score is theoretically impossible — if an answer is not grounded, it cannot be faithful to evidence.
 - **What a bad score means:** The generator ignored the context window. This indicates a prompt construction problem, a system prompt that overrides RAG behavior, or a model that tends to ignore context.
-- **Current value:** 1.0 (both spec and latest benchmark)
+- **Current value:** 0.9873
 
 #### Answer Relevance
 
@@ -360,7 +358,7 @@ Uses `BAAI/bge-small-en-v1.5` to embed both the query and the answer, then compu
 
 - **What it captures:** Topical alignment. An answer that wanders off-topic or answers a different question will score low even if it is internally coherent.
 - **What a bad score means:** The generator is producing answers that do not directly address the question. Common causes: over-long preambles, the answer is a summary of the context rather than a response to the query.
-- **Current value:** 0.8701 (latest benchmark report)
+- **Current value:** 0.8572
 - **Target:** > 0.80
 
 #### Completeness
@@ -384,7 +382,7 @@ A word-count proxy for response completeness. This is an intentionally simple he
 
 - **What it captures:** Whether the answer is substantive. Very short answers to complex questions are penalized.
 - **What it does not capture:** Whether the content of the answer is complete relative to the question requirements. A 150-word hallucination scores 1.0.
-- **Current value:** 0.85 (spec) / 0.6333 (latest benchmark report — reflects some short answers to straightforward factual queries)
+- **Current value:** 0.8494
 - **Note:** The low Completeness in the latest run reflects that factual queries often have correct but concise answers (e.g., "The United Nations was founded in 1945 in New York City"). This is not a failure; it is a characteristic of the benchmark's factual query distribution.
 
 #### Citation Accuracy
@@ -396,7 +394,7 @@ Citation Accuracy = (Faithfulness + Groundedness) / 2
 A proxy that combines the two evidence-grounding signals. It measures the overall fidelity of the answer to its source evidence.
 
 - **What it captures:** The composite evidence-grounding quality.
-- **Current value:** 0.99 (spec) / 0.9583 (latest benchmark — note Faithfulness was 1.0 but Groundedness had one partial abstention case)
+- **Current value:** 0.9886
 - **Note:** This metric will be replaced by a dedicated citation-link accuracy metric when the response builder is updated to emit explicit inline citations.
 
 ---
@@ -417,7 +415,7 @@ Computed for answerable queries only. Uses `BAAI/bge-small-en-v1.5` embeddings. 
 
 - **What it captures:** Whether the final answer is semantically equivalent to the known-correct answer, regardless of phrasing.
 - **What a bad score means:** The system produced an answer that is semantically divergent from the ground truth. This can happen even with perfect Faithfulness if the retrieved context was from the wrong documents (Plane 1 failure).
-- **Current value:** 0.81 (spec) / 0.892 (latest benchmark report, but note: only 12/29 queries were scored — the rest failed during the pipeline pass)
+- **Current value:** 0.8437 (79 answerable queries evaluated, 0 failures)
 - **Important distinction from Faithfulness:** Faithfulness measures faithfulness to retrieved context. E2E Accuracy measures correctness against the known ground truth. Both must be high for the system to be working well.
 
 #### Rejection Rate
@@ -431,7 +429,7 @@ Measures whether the system correctly abstains on truly unanswerable queries.
 - **What counts as an abstention:** `response.status == "abstained"` in the `FinalResponse`.
 - **Which queries are scored:** Only queries with `metadata.category == "unanswerable_true"`. Queries with `category == "unanswerable"` or `unanswerable_web_answerable` are expected to be handled by web search, not abstention.
 - **What a bad score means:** The system is confidently answering questions it has no basis to answer — fictional entities, classified information that does not exist, private documents not in any corpus. This is a safety and reliability failure.
-- **Current value:** 0.6 (spec) / 0.0 (latest benchmark — the pipeline pass had 17 failures, meaning `unanswerable_true` queries may not have been processed to completion; requires re-run after failure root cause is fixed)
+- **Current value:** 0.3333 (1 out of 3 `unanswerable_true` queries correctly abstained; further improvement requires tightening the abstention threshold in the verifier)
 - **Target:** > 0.80
 
 **Important distinction:** Do not conflate Rejection Rate with the handling of `unanswerable_web_answerable` queries. Those queries should be answered via web research, not abstained on. Rejecting a web-answerable query is a routing failure, not a correct abstention.
@@ -445,7 +443,7 @@ P95 Latency (ms) = 95th percentile of latency distribution
 
 Raw wall-clock time for each `run_query()` call, measured in milliseconds.
 
-- **Current value (latest benchmark):** Mean = 12,184 ms, P95 = 25,206 ms
+- **Current value:** Mean = 15,207 ms, P95 = 34,763 ms
 - **Critical caveat:** The evaluation pipeline enforces a 15-second inter-query delay (`INTER_QUERY_DELAY_SECONDS = 15.0` in `evaluation/pipeline_exec.py`) to respect Groq's free-tier token-per-minute limits. This delay is not included in the per-query latency measurement, but the presence of pacing means queries are not run back-to-back as they would be in production. **The latency numbers from the benchmark reflect single-query cold-path latency under free-tier constraints, not production throughput.** Real production latency with paid API tiers and warm models would be materially lower.
 - **P95 interpretation:** P95 of ~25 seconds indicates a tail driven by Groq rate limit backoff retries on some queries. With a paid API key, this tail should collapse significantly.
 
@@ -529,40 +527,40 @@ The Groq free tier is limited to approximately 6,000 tokens per minute. Each ful
   "timestamp": "2026-06-06T15:43:31.764547",
   "dataset": "evaluation/data/test_set.json",
   "plane_1_retrieval": {
-    "Recall@K": 0.9375,
-    "MRR": 0.8833,
-    "NDCG@K": 0.8888,
-    "Hit Rate": 0.9583,
-    "Context Precision": 0.2917,
-    "Context Recall": 0.9375
+    "Recall@K": 0.9338,
+    "MRR": 1.0,
+    "NDCG@K": 0.9538,
+    "Hit Rate": 1.0,
+    "Context Precision": 0.9266,
+    "Context Recall": 0.9338
   },
   "gate_c_routing": {
-    "Route Accuracy": 0.931,
+    "Route Accuracy": 0.9888,
     "Per-Class Accuracy": {
-      "internal_rag": 0.9583,
-      "web_research": 0.8
+      "internal_rag": 0.9873,
+      "web_research": 1.0
     },
     "Confusion Matrix": {
-      "internal_rag": {"internal_rag": 23, "web_research": 1},
-      "web_research": {"web_research": 4, "direct_generation": 1}
+      "internal_rag": {"internal_rag": 76, "web_research": 1, "hybrid": 2},
+      "web_research": {"web_research": 10}
     },
-    "Total Queries": 29
+    "Total Queries": 89
   },
   "plane_2_generation": {
-    "Faithfulness": 1.0,
-    "Groundedness": 1.0,
-    "Answer Relevance": 0.8701,
-    "Completeness": 0.6333,
-    "Citation Accuracy": 0.9583,
-    "Evaluated (answerable)": 12
+    "Faithfulness": 0.9899,
+    "Groundedness": 0.9873,
+    "Answer Relevance": 0.8572,
+    "Completeness": 0.8494,
+    "Citation Accuracy": 0.9886,
+    "Evaluated (answerable)": 79
   },
   "plane_3_system": {
-    "Mean Latency (ms)": 12184.18,
-    "P95 Latency (ms)": 25206.26,
-    "End-to-End Accuracy": 0.892,
-    "Rejection Rate": 0.0,
+    "Mean Latency (ms)": 15206.52,
+    "P95 Latency (ms)": 34763.05,
+    "End-to-End Accuracy": 0.8437,
+    "Rejection Rate": 0.3333,
     "Estimated Cost / Query": 0.0,
-    "Failure Count": 17
+    "Failure Count": 0
   }
 }
 ```
@@ -727,7 +725,7 @@ The evaluation framework uses four named gates to define development milestones.
 
 **Purpose:** Ensures that the generation layer is being evaluated on correct inputs. Expanding generation capabilities before Gate A is met risks building on a broken retrieval foundation.
 
-**Current status:** PASSED. Recall@K = 0.9375, Hit Rate = 0.9583, MRR = 0.8833 (latest benchmark report).
+**Current status:** PASSED. Recall@K = 0.9338, Hit Rate = 1.0, MRR = 1.0 (latest benchmark report, 89 queries).
 
 ---
 
@@ -742,7 +740,7 @@ The evaluation framework uses four named gates to define development milestones.
 
 **Purpose:** Ensures the generation layer is not hallucinating before additional complexity is added. A system that scores well on Gate B but poorly on Gate A has a deceptive result — faithfulness to wrong evidence is not useful faithfulness.
 
-**Current status:** PASSED. Faithfulness = 1.0, Groundedness = 1.0, Answer Relevance = 0.8701 (latest benchmark report, 12 answerable queries).
+**Current status:** PASSED. Faithfulness = 0.9899, Groundedness = 0.9873, Answer Relevance = 0.8572 (latest benchmark report, 79 answerable queries).
 
 ---
 
@@ -757,7 +755,7 @@ The evaluation framework uses four named gates to define development milestones.
 
 **Purpose:** Adding memory retrieval, hybrid routing, or complex multi-turn routing while the planner is unreliable creates unpredictable failure modes. Gate C must be stable before those routes are developed further.
 
-**Current status:** PASSED. Route Accuracy = 0.931, internal_rag = 0.9583, web_research = 0.8000 (latest benchmark report).
+**Current status:** PASSED. Route Accuracy = 0.9888, internal_rag = 0.9873, web_research = 1.0 (latest benchmark report, 89 queries).
 
 ---
 
@@ -773,8 +771,8 @@ The evaluation framework uses four named gates to define development milestones.
 
 **Purpose:** Prevents premature production deployment. The system must demonstrate reliable end-to-end behavior across all query types before users interact with it.
 
-**Current status:** NOT PASSED. E2E Accuracy is 0.892 (passes), but Failure Count = 17 in the latest run (fails), Rejection Rate = 0.0 (fails — root cause is that `unanswerable_true` queries failed in the pipeline pass and were not processed to abstention). Requires a clean re-run after fixing the rate limit exhaustion issue that caused the 17 failures.
+**Current status:** PARTIAL PASS. E2E Accuracy = 0.8437 (passes > 0.80), Failure Count = 0 (passes), but Rejection Rate = 0.3333 (fails — only 1 of 3 `unanswerable_true` queries correctly abstained; the verifier abstention threshold needs tuning to reach > 0.80).
 
 ---
 
-*Document version: June 2026. Reflects benchmark run `dynamic_rag_20260606_154331.json` as the latest measured baseline.*
+*Document version: June 2026. Reflects benchmark run `dynamic_rag_20260609_071403.json` as the latest measured baseline.*

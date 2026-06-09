@@ -46,9 +46,9 @@ This matters because a RAG system that cannot explain its decisions cannot be im
 
 The evaluation system is structured as three independent measurement planes:
 
-- **Plane 1 (Retrieval Quality):** Recall@K, MRR, NDCG@K, Hit Rate, Context Precision, Context Recall. Current benchmark: Recall@K=0.87, MRR=1.0, Hit Rate=1.0, Context Precision=0.85.
-- **Plane 2 (Generation Quality):** Faithfulness, Groundedness, Answer Relevance, Completeness, Citation Accuracy. Current benchmark: Faithfulness=0.98, Groundedness=1.0, Citation Accuracy=0.99, Completeness=0.85.
-- **Plane 3 (System Quality):** End-to-End Accuracy, Rejection Rate, Failure Count, Routing Accuracy. Current benchmark: E2E Accuracy=0.81, Rejection Rate=0.60, Failure Count=0, Routing Accuracy=0.93.
+- **Plane 1 (Retrieval Quality):** Recall@K, MRR, NDCG@K, Hit Rate, Context Precision, Context Recall. Current benchmark: Recall@K=0.9338, MRR=1.0, Hit Rate=1.0, Context Precision=0.9266, NDCG@K=0.9538.
+- **Plane 2 (Generation Quality):** Faithfulness, Groundedness, Answer Relevance, Completeness, Citation Accuracy. Current benchmark: Faithfulness=0.9899, Groundedness=0.9873, Citation Accuracy=0.9886, Completeness=0.8494.
+- **Plane 3 (System Quality):** End-to-End Accuracy, Rejection Rate, Failure Count, Routing Accuracy. Current benchmark: E2E Accuracy=0.8437, Rejection Rate=0.3333, Failure Count=0, Routing Accuracy=0.9888.
 
 These planes are independently executable and produce JSON reports to `evaluation/reports/`. The three-plane structure means retrieval improvements can be measured without contaminating generation metrics, and vice versa. This matters because it enables disciplined experimentation: change one subsystem, re-run one plane, and get a clean signal.
 

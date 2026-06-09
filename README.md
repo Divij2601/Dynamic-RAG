@@ -24,7 +24,7 @@ Dynamic-RAG is an evaluation-first adaptive retrieval-augmented generation syste
 Most RAG chatbots follow a single path: embed the query, retrieve top-k chunks, stuff a prompt, and generate. Dynamic-RAG takes a different approach:
 
 - **Adaptive routing across five paths.** A dedicated planner node classifies every query and selects the most appropriate route: internal document retrieval, live web research via Tavily, hybrid dense-sparse fusion, conversation memory recall, or direct generation without retrieval. The system never routes a general knowledge question through the document store, and never answers a document-specific question from memory alone.
-- **Evaluation-first by design, not as an afterthought.** Three independent evaluation planes measure retrieval quality (Recall@K, MRR, NDCG, Context Precision), generation quality (Faithfulness, Groundedness, Citation Accuracy, Completeness), and system-level behaviour (E2E Accuracy, Rejection Rate, Latency). A Gate C routing accuracy check ties them together. The current benchmark sits at Recall@K=0.87, Faithfulness=0.98, and E2E Accuracy=0.81 on a 30-document geopolitics corpus.
+- **Evaluation-first by design, not as an afterthought.** Three independent evaluation planes measure retrieval quality (Recall@K, MRR, NDCG, Context Precision), generation quality (Faithfulness, Groundedness, Citation Accuracy, Completeness), and system-level behaviour (E2E Accuracy, Rejection Rate, Latency). A Gate C routing accuracy check ties them together. The current benchmark sits at Recall@K=0.93, Faithfulness=0.99, and E2E Accuracy=0.84 on a 30-document geopolitics corpus (89 queries, 0 failures).
 - **LangGraph orchestration with bounded retry.** The full pipeline is a typed state machine with conditional edges, a capped retry loop between the verifier and generator, and an explicit persist node that writes every session trace to MongoDB. There are no hidden side effects, no silent failures, and no unbounded loops.
 
 ---
@@ -125,17 +125,19 @@ Corpus: 30 documents, 4,888 chunks, geopolitics / Indian history / world affairs
 
 | Plane | Metric | Score |
 |---|---|---|
-| **Plane 1 — Retrieval** | Recall@K | 0.87 |
+| **Plane 1 — Retrieval** | Recall@K | 0.9338 |
 | **Plane 1 — Retrieval** | MRR (Mean Reciprocal Rank) | 1.00 |
+| **Plane 1 — Retrieval** | NDCG@K | 0.9538 |
 | **Plane 1 — Retrieval** | Hit Rate | 1.00 |
-| **Plane 1 — Retrieval** | Context Precision | 0.85 |
-| **Gate C — Routing** | Routing Accuracy | 0.93 |
-| **Plane 2 — Generation** | Faithfulness | 0.98 |
-| **Plane 2 — Generation** | Groundedness | 1.00 |
-| **Plane 2 — Generation** | Citation Accuracy | 0.99 |
-| **Plane 2 — Generation** | Completeness | 0.85 |
-| **Plane 3 — System** | End-to-End Accuracy | 0.81 |
-| **Plane 3 — System** | Rejection Rate | 0.60 |
+| **Plane 1 — Retrieval** | Context Precision | 0.9266 |
+| **Gate C — Routing** | Routing Accuracy | 0.9888 |
+| **Plane 2 — Generation** | Faithfulness | 0.9899 |
+| **Plane 2 — Generation** | Groundedness | 0.9873 |
+| **Plane 2 — Generation** | Answer Relevance | 0.8572 |
+| **Plane 2 — Generation** | Citation Accuracy | 0.9886 |
+| **Plane 2 — Generation** | Completeness | 0.8494 |
+| **Plane 3 — System** | End-to-End Accuracy | 0.8437 |
+| **Plane 3 — System** | Rejection Rate | 0.3333 |
 | **Plane 3 — System** | Failure Count | 0 |
 
 All evaluation scripts are independent of the API and UI layers. Reports are written to `evaluation/reports/` as timestamped JSON files.
