@@ -7,6 +7,9 @@ accuracy, rejection (abstention) rate on unanswerable
 queries, retry frequency and failure count.
 """
 
+import re
+import string
+from collections import Counter
 from statistics import mean
 
 import numpy as np
@@ -131,6 +134,18 @@ class SystemEvaluator:
         answer: str,
         ground_truth: str
     ) -> float:
+        """
+        Combined accuracy: 0.6 × semantic cosine
+        similarity + 0.4 × token recall.
+
+        Cosine sim captures semantic equivalence.
+        Token recall measures "what fraction of the
+        ground-truth key tokens appear in the answer?"
+        — it rewards completeness without penalising
+        verbosity (unlike F1, which tanks on verbose
+        generative answers vs short ground truths).
+        No extra API calls.
+        """
 
         if not ground_truth:
             return 1.0
@@ -138,14 +153,72 @@ class SystemEvaluator:
         if not (answer or "").strip():
             return 0.0
 
-        model = self._model()
+        sem = self._cosine_sim(answer, ground_truth)
+        tok = self._token_recall(answer, ground_truth)
 
+        return round(0.6 * sem + 0.4 * tok, 4)
+
+    def _cosine_sim(
+        self,
+        answer: str,
+        ground_truth: str
+    ) -> float:
+
+        model = self._model()
         gt = model.encode(ground_truth)
         ans = model.encode(answer)
-
         return float(
             cosine_similarity([gt], [ans])[0][0]
         )
+
+    @staticmethod
+    def _token_recall(
+        prediction: str,
+        ground_truth: str
+    ) -> float:
+        """
+        Token recall: what fraction of ground-truth
+        tokens appear in the prediction?
+
+        Normalise both strings (lowercase, strip
+        punctuation), then compute:
+            recall = matched_gt_tokens / total_gt_tokens
+
+        Unlike F1, this does NOT penalise the model
+        for producing a more complete/verbose answer
+        than the ground truth — which is the correct
+        behaviour for generative QA where GT summaries
+        are intentionally shorter than full answers.
+        """
+
+        def _normalise(text: str):
+            text = text.lower()
+            text = text.translate(
+                str.maketrans(
+                    "",
+                    "",
+                    string.punctuation
+                )
+            )
+            return text.split()
+
+        pred_tokens = _normalise(prediction)
+        gt_tokens = _normalise(ground_truth)
+
+        if not gt_tokens:
+            return 1.0
+
+        if not pred_tokens:
+            return 0.0
+
+        pred_counts = Counter(pred_tokens)
+        gt_counts = Counter(gt_tokens)
+
+        common = sum(
+            (pred_counts & gt_counts).values()
+        )
+
+        return common / len(gt_tokens)
 
 
 system_evaluator = SystemEvaluator()

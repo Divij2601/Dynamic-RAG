@@ -155,17 +155,21 @@ def planner_node(
 # Evidence-gathering routes
 # ----------------------------------------------------
 
-def _retrieve_internal(query: str):
+def _retrieve_internal(query: str, top_k: int = 0):
     """
     Hybrid retrieve -> rerank -> evidence.
-    Retrieves a wider candidate pool
-    (RERANK_TOP_K) before reranking down to
-    FINAL_TOP_K so the reranker has real choices.
+    Retrieves a wider candidate pool before reranking
+    so the reranker has real choices.
+
+    top_k: candidate pool size. Defaults to
+    settings.RERANK_TOP_K when 0 or not provided.
     """
+
+    pool = top_k if top_k > 0 else settings.RERANK_TOP_K
 
     retrieval = hybrid_retriever.retrieve(
         query,
-        top_k=settings.RERANK_TOP_K
+        top_k=pool
     )
 
     reranked = reranker.rerank(
@@ -178,23 +182,43 @@ def _retrieve_internal(query: str):
     )
 
 
+def _complex_top_k(planner) -> int:
+    """
+    Return a larger candidate pool for high-complexity
+    queries (complex_multihop needs more chunks from
+    more documents). Falls back to the default when
+    the planner gives no complexity signal.
+    """
+    if planner and getattr(planner, "complexity", None) == "high":
+        # 2× pool gives the reranker more cross-document
+        # candidates for multi-hop synthesis.
+        return settings.RERANK_TOP_K * 2
+    return settings.RERANK_TOP_K
+
+
 def _retrieve_with_decomposition(
     primary_query: str,
-    subqueries: list
+    subqueries: list,
+    top_k: int = 0
 ) -> list:
     """
     Multi-hop retrieval: retrieve independently
     for the primary query and each sub-query,
     then merge, deduplicate by chunk_id, and
     rerank the merged pool against the primary.
+
+    top_k: candidate pool per sub-query. Defaults
+    to settings.RERANK_TOP_K when 0.
     """
+
+    pool = top_k if top_k > 0 else settings.RERANK_TOP_K
 
     all_chunks: dict = {}
 
     # Primary query first
     r = hybrid_retriever.retrieve(
         primary_query,
-        top_k=settings.RERANK_TOP_K
+        top_k=pool
     )
     for c in r["results"]:
         all_chunks[c["chunk_id"]] = c
@@ -205,7 +229,7 @@ def _retrieve_with_decomposition(
             continue
         r = hybrid_retriever.retrieve(
             sq,
-            top_k=settings.RERANK_TOP_K
+            top_k=pool
         )
         for c in r["results"]:
             cid = c["chunk_id"]
@@ -259,6 +283,7 @@ def internal_retrieval_node(
 
     planner = state.planner_output
     query = _effective_query(state)
+    top_k = _complex_top_k(planner)
 
     if (
         planner
@@ -267,14 +292,20 @@ def internal_retrieval_node(
     ):
         evidence = _retrieve_with_decomposition(
             primary_query=query,
-            subqueries=planner.subqueries
+            subqueries=planner.subqueries,
+            top_k=top_k
         )
         app_logger.info(
             f"Decomposed retrieval: "
-            f"{len(planner.subqueries)} sub-queries"
+            f"{len(planner.subqueries)} sub-queries, "
+            f"pool={top_k}"
         )
     else:
-        evidence = _retrieve_internal(query)
+        evidence = _retrieve_internal(query, top_k=top_k)
+        app_logger.info(
+            f"Retrieval pool={top_k} "
+            f"(complexity={getattr(planner, 'complexity', 'unknown')})"
+        )
 
     latency = round(
         (time.perf_counter() - start) * 1000,
@@ -354,8 +385,11 @@ def hybrid_node(
 
     start = time.perf_counter()
     query = _effective_query(state)
+    top_k = _complex_top_k(state.planner_output)
 
-    internal_evidence = _retrieve_internal(query)
+    internal_evidence = _retrieve_internal(
+        query, top_k=top_k
+    )
 
     try:
         web_results = web_search_agent.search(query)

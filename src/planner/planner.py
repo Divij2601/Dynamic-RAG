@@ -267,23 +267,74 @@ KNOWLEDGE BASE CONTENTS:
 RECENT CONVERSATION HISTORY:
 {history_section}
 
-ROUTES (choose exactly one):
-- "internal_rag": answerable from the knowledge base \
-(facts, history, concepts, definitions within that domain).
-- "web_research": needs current/real-time data the \
-knowledge base cannot contain — live prices, sports \
-results, today's news, current population figures, \
-weather, recent elections, stock data, business \
-leadership (CEO/CFO), or any fact that changes over \
-time and is not covered by the knowledge base.
-- "hybrid": needs BOTH the knowledge base AND fresh \
-web information.
-- "memory": refers to the earlier conversation \
-(e.g. "what did we discuss", "you said", "earlier", \
-"previously").
-- "direct_generation": a general language task with \
-no retrieval needed (rewrite, summarize, translate, \
-explain a concept, casual chat).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROUTING DECISION — apply these rules IN ORDER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1 — MEMORY
+If the query explicitly references the current \
+conversation ("what did you say", "earlier you \
+mentioned", "what did we discuss", "you said") \
+→ route = "memory"
+
+STEP 2 — DIRECT GENERATION
+If the task is a pure LANGUAGE OPERATION that \
+requires NO external facts — rewrite, translate, \
+summarise a provided text, fix grammar, explain \
+a general abstract concept, perform arithmetic, \
+write code, or casual chitchat:
+→ route = "direct_generation"
+IMPORTANT: A factual question about the real world \
+is NEVER direct_generation, even if it sounds simple.
+
+STEP 3 — INTERNAL RAG
+If the query is a factual, analytical, or conceptual \
+question whose answer is COVERED IN THE KNOWLEDGE \
+BASE above (geopolitics, country profiles, \
+international organizations, treaties, major wars, \
+Cold War, decolonization, BRICS, NATO, UN, NPT, \
+Paris Agreement, sovereignty, soft power, deterrence, \
+global affairs up to 2026):
+→ route = "internal_rag"
+
+STEP 4 — WEB RESEARCH
+If the query asks for information that is LIVE, \
+REAL-TIME, or OUTSIDE THE CORPUS — use this route \
+even when the answer sounds simple:
+
+  • Cryptocurrency / stock / commodity prices \
+("price of Bitcoin", "gold price today")
+  • Sports results, scores, standings, winners \
+("who won the World Cup", "current league table")
+  • Current population, census, demographic stats \
+("population of Tokyo", "GDP of Germany 2025")
+  • Company or organisation leadership that \
+changes over time ("CEO of Tesla", "chairman of \
+Apple", "president of FIFA")
+  • Medical / scientific facts outside the corpus \
+("side effects of ibuprofen", "COVID vaccine schedule")
+  • Current weather, traffic, flight status
+  • Any event, result, or data NOT in the \
+knowledge base description above
+
+→ route = "web_research"
+
+STEP 5 — HYBRID
+If the query genuinely needs BOTH corpus knowledge \
+AND current web data (e.g. "How did Russia's 2024 \
+domestic politics affect its BRICS strategy?"):
+→ route = "hybrid"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CRITICAL RULES:
+• "direct_generation" is ONLY for language tasks, \
+  NEVER for real-world factual questions.
+• If a factual question is NOT covered by the \
+  knowledge base, use "web_research" — not \
+  "direct_generation" or "internal_rag".
+• When unsure between internal_rag and web_research, \
+  ask: "Is this in the knowledge base?" If no → web.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 {followup_instruction}
 

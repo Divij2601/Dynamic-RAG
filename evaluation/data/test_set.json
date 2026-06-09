@@ -487,7 +487,7 @@
   },
   {
     "query": "How did the Cold War's nuclear arms race shape the doctrine of mutual deterrence, and what role did the Cuban Missile Crisis play in demonstrating those stakes? What lasting institutions and agreements resulted from that crisis?",
-    "ground_truth_answer": "The Cold War arms race produced the doctrine of mutually assured destruction, in which both superpowers built arsenals so large that any nuclear attack would annihilate both sides. The Cuban Missile Crisis of October 1962 brought that logic to its sharpest test: the Soviet placement of missiles in Cuba, Kennedy's naval quarantine, and thirteen days of brinkmanship showed how close the doctrine could bring the world to actual war. The crisis's resolution \u2014 the Soviets removed the missiles in exchange for a US non-invasion pledge and secret withdrawal of Jupiter missiles from Turkey \u2014 directly produced the Washington-Moscow hotline and contributed to the 1963 Partial Nuclear Test Ban Treaty.",
+    "ground_truth_answer": "The Cold War arms race produced the doctrine of mutually assured destruction, in which both superpowers built arsenals so large that any nuclear attack would annihilate both sides. The Cuban Missile Crisis of October 1962 brought that logic to its sharpest test: the Soviet placement of missiles in Cuba, Kennedy's naval quarantine, and thirteen days of brinkmanship showed how close the doctrine could bring the world to actual war. The crisis's resolution — the Soviets removed the missiles in exchange for a US non-invasion pledge and secret withdrawal of Jupiter missiles from Turkey — directly produced the Washington-Moscow hotline and contributed to the 1963 Partial Nuclear Test Ban Treaty.",
     "relevant_chunk_ids": [
       "chunk_d1bb99ba104a",
       "chunk_f31915534af3",
@@ -508,7 +508,7 @@
   },
   {
     "query": "Compare the institutional design of the United Nations Security Council with that of the League of Nations. What specific structural weaknesses caused the League to fail, and how did the UN's designers try to correct them?",
-    "ground_truth_answer": "The League of Nations required unanimity for major decisions, lacked its own military force, depended entirely on unwilling member states for enforcement, and \u2014 critically \u2014 never included the United States because the Senate refused to ratify the Versailles Treaty. This left it unable to stop Japanese aggression in Manchuria (1931), the Italian invasion of Ethiopia (1935), or Hitler's rearmament. The UN's designers corrected these flaws by creating the Security Council with five permanent members holding veto power but capable of authorizing binding resolutions, giving the body real authority to act. The UN also sought the participation of all major powers from the outset. The tradeoff was that the veto could paralyze the Council when great-power interests conflicted \u2014 a known limitation accepted as the price of great-power buy-in.",
+    "ground_truth_answer": "The League of Nations required unanimity for major decisions, lacked its own military force, depended entirely on unwilling member states for enforcement, and — critically — never included the United States because the Senate refused to ratify the Versailles Treaty. This left it unable to stop Japanese aggression in Manchuria (1931), the Italian invasion of Ethiopia (1935), or Hitler's rearmament. The UN's designers corrected these flaws by creating the Security Council with five permanent members holding veto power but capable of authorizing binding resolutions, giving the body real authority to act. The UN also sought the participation of all major powers from the outset. The tradeoff was that the veto could paralyze the Council when great-power interests conflicted — a known limitation accepted as the price of great-power buy-in.",
     "relevant_chunk_ids": [
       "chunk_b532bd950362",
       "chunk_fed91a24c784",
@@ -529,7 +529,7 @@
   },
   {
     "query": "Trace the origins of the current international order. How did the Westphalian concept of sovereignty become the foundation of international law, and how is it reflected in both the United Nations system and the modern concepts of balance of power and non-interference?",
-    "ground_truth_answer": "The Peace of Westphalia (1648) ended the Thirty Years' War and established the principles that states hold supreme authority within their territory, are legally equal regardless of size, and should not interfere in each other's internal affairs \u2014 the Westphalian system. These principles became the foundation of modern international law and diplomacy over the following centuries. The United Nations Charter, signed in 1945, embeds Westphalian sovereignty in its equal-representation General Assembly and in norms against intervention. The concept of balance of power \u2014 preventing any single state from dominating others \u2014 is a direct application of the same logic, and geopolitical concepts like spheres of influence, non-interference, and state equality all derive from the Westphalian framework.",
+    "ground_truth_answer": "The Peace of Westphalia (1648) ended the Thirty Years' War and established the principles that states hold supreme authority within their territory, are legally equal regardless of size, and should not interfere in each other's internal affairs — the Westphalian system. These principles became the foundation of modern international law and diplomacy over the following centuries. The United Nations Charter, signed in 1945, embeds Westphalian sovereignty in its equal-representation General Assembly and in norms against intervention. The concept of balance of power — preventing any single state from dominating others — is a direct application of the same logic, and geopolitical concepts like spheres of influence, non-interference, and state equality all derive from the Westphalian framework.",
     "relevant_chunk_ids": [
       "chunk_da17df9eb999",
       "chunk_c40acf765532",
@@ -551,7 +551,7 @@
   },
   {
     "query": "What were the root causes of World War II, how do they connect to the unresolved legacy of World War I and the Treaty of Versailles, and what were the war's main turning points in both European and Pacific theaters?",
-    "ground_truth_answer": "World War II's causes were rooted in the unresolved tensions of WWI: the Versailles Treaty imposed harsh reparations and territorial losses on Germany that fueled economic hardship and nationalist resentment, which Hitler and the Nazi Party exploited after taking power in 1933. The global economic crisis of the Great Depression accelerated political extremism. Italy and Japan pursued parallel expansionism. Britain and France's appeasement policy allowed German annexations without resistance. The war began September 1, 1939 when Germany invaded Poland. Key turning points included: in Europe, the Battle of Stalingrad (1942\u201343) reversing the Eastern Front, and D-Day (June 6, 1944) opening a Western Front; in the Pacific, the Battle of Midway (1942) halting Japanese expansion. The war ended with Germany's surrender on May 8, 1945 and Japan's after atomic bombs fell on Hiroshima and Nagasaki in August 1945.",
+    "ground_truth_answer": "World War II's causes were rooted in the unresolved tensions of WWI: the Versailles Treaty imposed harsh reparations and territorial losses on Germany that fueled economic hardship and nationalist resentment, which Hitler and the Nazi Party exploited after taking power in 1933. The global economic crisis of the Great Depression accelerated political extremism. Italy and Japan pursued parallel expansionism. Britain and France's appeasement policy allowed German annexations without resistance. The war began September 1, 1939 when Germany invaded Poland. Key turning points included: in Europe, the Battle of Stalingrad (1942–43) reversing the Eastern Front, and D-Day (June 6, 1944) opening a Western Front; in the Pacific, the Battle of Midway (1942) halting Japanese expansion. The war ended with Germany's surrender on May 8, 1945 and Japan's after atomic bombs fell on Hiroshima and Nagasaki in August 1945.",
     "relevant_chunk_ids": [
       "chunk_8662d84d44a3",
       "chunk_5540805acad0",
@@ -572,7 +572,7 @@
   },
   {
     "query": "Russia is described as both a permanent UN Security Council member and a leading force in BRICS. How does Russia's role in these two bodies reflect its broader foreign policy goals, and how has the war in Ukraine affected its position in each?",
-    "ground_truth_answer": "Russia uses its permanent UN Security Council seat and veto power to block Western-backed resolutions \u2014 especially those condemning its actions in Ukraine \u2014 preserving great-power status and preventing collective legitimization of Western responses. In BRICS, Russia co-leads a grouping explicitly designed to challenge Western-dominated institutions and advance a multipolar order; the group's expansion to eleven members (2024\u201326) strengthens this multipolar framing and gives Russia credible non-Western alignment. The Ukraine war deepened both dynamics: Russia faced near-isolation in Western institutions but accelerated its BRICS engagement and deepened the Russia-China 'no limits' strategic partnership. BRICS members India, China, and others largely abstained from UN votes condemning Russia, reflecting the group's deliberate non-alignment with Western positions.",
+    "ground_truth_answer": "Russia uses its permanent UN Security Council seat and veto power to block Western-backed resolutions — especially those condemning its actions in Ukraine — preserving great-power status and preventing collective legitimization of Western responses. In BRICS, Russia co-leads a grouping explicitly designed to challenge Western-dominated institutions and advance a multipolar order; the group's expansion to eleven members (2024–26) strengthens this multipolar framing and gives Russia credible non-Western alignment. The Ukraine war deepened both dynamics: Russia faced near-isolation in Western institutions but accelerated its BRICS engagement and deepened the Russia-China 'no limits' strategic partnership. BRICS members India, China, and others largely abstained from UN votes condemning Russia, reflecting the group's deliberate non-alignment with Western positions.",
     "relevant_chunk_ids": [
       "chunk_86045478c7b4",
       "chunk_94320bc53b6a",
@@ -593,8 +593,8 @@
     }
   },
   {
-    "query": "The European Union emerged from post-WWII reconciliation efforts and now faces pressures from within and without. Trace its origins, explain the significance of Brexit, and describe the specific geopolitical challenges \u2014 including Russia's war in Ukraine and internal divisions \u2014 that it faces in the 2020s.",
-    "ground_truth_answer": "The EU's origins lie in the 1951 European Coal and Steel Community, designed to bind former enemies economically and prevent future war. The Treaty of Rome (1957) created the European Economic Community; the Maastricht Treaty (1992) formally established the EU and laid the groundwork for the euro; the 2004 enlargement brought in former Soviet-bloc states. Brexit \u2014 the UK's 2016 vote to leave and 2020 withdrawal \u2014 was the first departure from the Union. In the 2020s the EU faces: Russian aggression in Ukraine (prompting unprecedented coordination on sanctions, energy independence, and military aid); internal political divisions (far-right parties, Hungary's democratic backsliding and Russia accommodation); migration pressures; energy security after losing Russian gas; and debates over further enlargement toward Ukraine, Moldova, and the Western Balkans.",
+    "query": "The European Union emerged from post-WWII reconciliation efforts and now faces pressures from within and without. Trace its origins, explain the significance of Brexit, and describe the specific geopolitical challenges — including Russia's war in Ukraine and internal divisions — that it faces in the 2020s.",
+    "ground_truth_answer": "The EU's origins lie in the 1951 European Coal and Steel Community, designed to bind former enemies economically and prevent future war. The Treaty of Rome (1957) created the European Economic Community; the Maastricht Treaty (1992) formally established the EU and laid the groundwork for the euro; the 2004 enlargement brought in former Soviet-bloc states. Brexit — the UK's 2016 vote to leave and 2020 withdrawal — was the first departure from the Union. In the 2020s the EU faces: Russian aggression in Ukraine (prompting unprecedented coordination on sanctions, energy independence, and military aid); internal political divisions (far-right parties, Hungary's democratic backsliding and Russia accommodation); migration pressures; energy security after losing Russian gas; and debates over further enlargement toward Ukraine, Moldova, and the Western Balkans.",
     "relevant_chunk_ids": [
       "chunk_1f1feb1b364e",
       "chunk_e2dc9196ea1f",
@@ -613,8 +613,8 @@
     }
   },
   {
-    "query": "Explain how India navigates its relationships with the United States, Russia, and China simultaneously. What is the historical basis of its strategic autonomy doctrine, and how have specific recent events \u2014 including the 2020 Himalayan clashes, the 2025 India-Pakistan exchange, and India's membership in both BRICS and the Quad \u2014 tested that balance?",
-    "ground_truth_answer": "India's foreign policy of strategic autonomy is rooted in the Non-Aligned Movement that it helped found at the 1955 Bandung Conference \u2014 refusing alignment with either Cold War superpower. Today it maintains this via membership in both BRICS (alongside Russia and China) and the Quad (alongside the US, Japan, Australia), longstanding defense ties with Russia, while also deepening strategic partnership with the United States. The 2020 Himalayan border clashes with China strained relations, while India's nuclear tests in 1974 and 1998 underscored independence. India's participation in the Quad signals a hedge against Chinese power in the Indo-Pacific. The mid-2020s exchange of fire with Pakistan \u2014 described as their worst in decades \u2014 illustrates the persistent regional tension India must manage across all these relationships simultaneously.",
+    "query": "Explain how India navigates its relationships with the United States, Russia, and China simultaneously. What is the historical basis of its strategic autonomy doctrine, and how have specific recent events — including the 2020 Himalayan clashes, the 2025 India-Pakistan exchange, and India's membership in both BRICS and the Quad — tested that balance?",
+    "ground_truth_answer": "India's foreign policy of strategic autonomy is rooted in the Non-Aligned Movement that it helped found at the 1955 Bandung Conference — refusing alignment with either Cold War superpower. Today it maintains this via membership in both BRICS (alongside Russia and China) and the Quad (alongside the US, Japan, Australia), longstanding defense ties with Russia, while also deepening strategic partnership with the United States. The 2020 Himalayan border clashes with China strained relations, while India's nuclear tests in 1974 and 1998 underscored independence. India's participation in the Quad signals a hedge against Chinese power in the Indo-Pacific. The mid-2020s exchange of fire with Pakistan — described as their worst in decades — illustrates the persistent regional tension India must manage across all these relationships simultaneously.",
     "relevant_chunk_ids": [
       "chunk_005b69dafba7",
       "chunk_801da6a4dd62",
@@ -635,7 +635,7 @@
   },
   {
     "query": "How do the concepts of hard power, soft power, and deterrence interact in shaping a state's geopolitical strategy? Provide concrete examples from the current international system involving at least three different states.",
-    "ground_truth_answer": "Hard power \u2014 military force and economic coercion \u2014 sets the floor of a state's influence; soft power \u2014 the attraction of culture, values, and policies \u2014 extends it without coercion. Joseph Nye, who coined 'soft power,' identified 'smart power' as combining both. Deterrence, particularly nuclear deterrence, is a form of hard power designed not to be used: it works by making the cost of aggression too high. In practice: the United States combines enormous military hard power (global bases, the world's strongest military) with cultural soft power (technology, entertainment, universities) and nuclear deterrence to anchor Western alliances. China uses economic hard power (trade, Belt and Road infrastructure investment) and is building military hard power (world's largest standing army, naval expansion, missile forces) while its authoritarian model limits soft power among democracies. Russia relies primarily on military hard power and nuclear deterrence \u2014 its soft power having largely collapsed after 2022 \u2014 to project influence. India balances strategic autonomy through soft power (diaspora, democratic identity, Bollywood) combined with a nuclear deterrent and a large military.",
+    "ground_truth_answer": "Hard power — military force and economic coercion — sets the floor of a state's influence; soft power — the attraction of culture, values, and policies — extends it without coercion. Joseph Nye, who coined 'soft power,' identified 'smart power' as combining both. Deterrence, particularly nuclear deterrence, is a form of hard power designed not to be used: it works by making the cost of aggression too high. In practice: the United States combines enormous military hard power (global bases, the world's strongest military) with cultural soft power (technology, entertainment, universities) and nuclear deterrence to anchor Western alliances. China uses economic hard power (trade, Belt and Road infrastructure investment) and is building military hard power (world's largest standing army, naval expansion, missile forces) while its authoritarian model limits soft power among democracies. Russia relies primarily on military hard power and nuclear deterrence — its soft power having largely collapsed after 2022 — to project influence. India balances strategic autonomy through soft power (diaspora, democratic identity, Bollywood) combined with a nuclear deterrent and a large military.",
     "relevant_chunk_ids": [
       "chunk_1b5fc328f875",
       "chunk_a60b5e34611a",
@@ -655,7 +655,7 @@
   },
   {
     "query": "The NPT rests on a 'central bargain.' What are the three pillars of that bargain, which states are notably outside the treaty, and how do the five NPT nuclear-weapon states overlap with the UN Security Council's permanent members? What are the current challenges threatening the treaty?",
-    "ground_truth_answer": "The NPT's central bargain has three pillars: (1) non-proliferation \u2014 non-nuclear states forgo nuclear weapons; (2) disarmament \u2014 nuclear-weapon states commit to pursue elimination in good faith; (3) peaceful use \u2014 all parties may develop nuclear energy for peaceful purposes under IAEA safeguards. The five recognized nuclear-weapon states \u2014 the US, Russia, the UK, France, and China \u2014 are defined as those that detonated a weapon before January 1, 1967, and they are identical to the five permanent UN Security Council members. States outside the treaty include India, Pakistan, and Israel (never joined) and North Korea (announced withdrawal in 2003). Current challenges include: the slow pace of disarmament by nuclear states; North Korea's continued weapons development; concerns over Iran's program; and the existence of nuclear-armed states outside the treaty framework.",
+    "ground_truth_answer": "The NPT's central bargain has three pillars: (1) non-proliferation — non-nuclear states forgo nuclear weapons; (2) disarmament — nuclear-weapon states commit to pursue elimination in good faith; (3) peaceful use — all parties may develop nuclear energy for peaceful purposes under IAEA safeguards. The five recognized nuclear-weapon states — the US, Russia, the UK, France, and China — are defined as those that detonated a weapon before January 1, 1967, and they are identical to the five permanent UN Security Council members. States outside the treaty include India, Pakistan, and Israel (never joined) and North Korea (announced withdrawal in 2003). Current challenges include: the slow pace of disarmament by nuclear states; North Korea's continued weapons development; concerns over Iran's program; and the existence of nuclear-armed states outside the treaty framework.",
     "relevant_chunk_ids": [
       "chunk_f22357f7ddcf",
       "chunk_d70b882848a2",
@@ -676,7 +676,7 @@
   },
   {
     "query": "How did decolonization change the international system after World War II? What caused it, what were the major regional patterns, and how did the Non-Aligned Movement emerge from it? How do those legacies shape today's Global South politics?",
-    "ground_truth_answer": "Decolonization between 1945\u20131975 fundamentally transformed the international system, roughly tripling UN membership as dozens of Asian and African nations gained independence. Causes included: WWII weakening European colonial powers, Japanese victories undermining European prestige in Asia, the rise of nationalist movements demanding self-determination (a principle enshrined in the UN Charter and Atlantic Charter), and opposition to colonialism from both superpowers. India gained independence in 1947 (accompanied by the traumatic partition into India and Pakistan). 1960 \u2014 the 'Year of Africa' \u2014 saw seventeen African nations become independent. The Bandung Conference (1955) led to the Non-Aligned Movement (formally 1961), in which newly independent states refused Cold War alignment and sought an independent path. These legacies shape today's Global South politics through: continued advocacy for multipolar institutions, BRICS membership as an alternative to Western-dominated bodies, demands for equitable climate finance, and framing of Western sanctions as neo-colonial.",
+    "ground_truth_answer": "Decolonization between 1945–1975 fundamentally transformed the international system, roughly tripling UN membership as dozens of Asian and African nations gained independence. Causes included: WWII weakening European colonial powers, Japanese victories undermining European prestige in Asia, the rise of nationalist movements demanding self-determination (a principle enshrined in the UN Charter and Atlantic Charter), and opposition to colonialism from both superpowers. India gained independence in 1947 (accompanied by the traumatic partition into India and Pakistan). 1960 — the 'Year of Africa' — saw seventeen African nations become independent. The Bandung Conference (1955) led to the Non-Aligned Movement (formally 1961), in which newly independent states refused Cold War alignment and sought an independent path. These legacies shape today's Global South politics through: continued advocacy for multipolar institutions, BRICS membership as an alternative to Western-dominated bodies, demands for equitable climate finance, and framing of Western sanctions as neo-colonial.",
     "relevant_chunk_ids": [
       "chunk_76aa15f259a4",
       "chunk_276cac15372b",
@@ -696,7 +696,7 @@
   },
   {
     "query": "In the mid-2020s, what are the main active conflicts shaping global affairs, who are the principal world leaders, and how has the expansion of BRICS reflected the shift toward multipolarity? Synthesize the current state of the world as of 2026.",
-    "ground_truth_answer": "As of 2026, the world's principal leaders are Donald Trump (US, second non-consecutive term), Xi Jinping (China), Vladimir Putin (Russia), and Narendra Modi (India, most popular elected leader), with Charles III as UK head of state. Active conflicts include: the Russia-Ukraine war (largest European conflict since WWII, with massive casualties, Russian strikes on Ukrainian cities, and the war having driven Finland and Sweden into NATO); Gaza (ceasefire brokered October 2025 leaving much of Gaza under Israeli control, though fragile); a June 2025 twelve-day Israel-Iran war in which the US struck Iranian nuclear facilities; Sudan's civil war (400,000 dead, 11 million displaced, RSF capturing El Fasher in 2025); and Myanmar's fragmented civil war. BRICS expanded to eleven full members by 2026 (adding Indonesia, Egypt, Ethiopia, Iran, Saudi Arabia, UAE) \u2014 symbolizing the shift from US-led unipolarity toward multipolarity and Global South assertiveness.",
+    "ground_truth_answer": "As of 2026, the world's principal leaders are Donald Trump (US, second non-consecutive term), Xi Jinping (China), Vladimir Putin (Russia), and Narendra Modi (India, most popular elected leader), with Charles III as UK head of state. Active conflicts include: the Russia-Ukraine war (largest European conflict since WWII, with massive casualties, Russian strikes on Ukrainian cities, and the war having driven Finland and Sweden into NATO); Gaza (ceasefire brokered October 2025 leaving much of Gaza under Israeli control, though fragile); a June 2025 twelve-day Israel-Iran war in which the US struck Iranian nuclear facilities; Sudan's civil war (400,000 dead, 11 million displaced, RSF capturing El Fasher in 2025); and Myanmar's fragmented civil war. BRICS expanded to eleven full members by 2026 (adding Indonesia, Egypt, Ethiopia, Iran, Saudi Arabia, UAE) — symbolizing the shift from US-led unipolarity toward multipolarity and Global South assertiveness.",
     "relevant_chunk_ids": [
       "chunk_3f58fe9493a7",
       "chunk_3e0063c09eee",
@@ -717,7 +717,7 @@
   },
   {
     "query": "How does the Paris Agreement differ from the Kyoto Protocol in its approach to binding commitments and participation? What structural innovation did Paris introduce, and why has US participation been inconsistent?",
-    "ground_truth_answer": "The Kyoto Protocol (adopted 1997, entered force 2005) used a top-down approach: legally binding emission reduction targets only for developed countries, with developing countries \u2014 including major emitters China and India \u2014 exempt under the principle of common but differentiated responsibilities. The US signed but never ratified; Canada later withdrew. The Paris Agreement (adopted December 12, 2015 at COP21, entered force November 4, 2016) replaced this with a bottom-up approach: every country sets its own 'nationally determined contributions' (NDCs) \u2014 voluntary targets updated over time. This secured near-universal participation (most of the world joined) at the cost of enforceability. US participation has fluctuated with each administration \u2014 joining, withdrawing, rejoining, then again moving to withdraw \u2014 reflecting deep domestic political division over climate policy. The goal: limit global warming to well below 2\u00b0C, pursuing 1.5\u00b0C above pre-industrial levels.",
+    "ground_truth_answer": "The Kyoto Protocol (adopted 1997, entered force 2005) used a top-down approach: legally binding emission reduction targets only for developed countries, with developing countries — including major emitters China and India — exempt under the principle of common but differentiated responsibilities. The US signed but never ratified; Canada later withdrew. The Paris Agreement (adopted December 12, 2015 at COP21, entered force November 4, 2016) replaced this with a bottom-up approach: every country sets its own 'nationally determined contributions' (NDCs) — voluntary targets updated over time. This secured near-universal participation (most of the world joined) at the cost of enforceability. US participation has fluctuated with each administration — joining, withdrawing, rejoining, then again moving to withdraw — reflecting deep domestic political division over climate policy. The goal: limit global warming to well below 2°C, pursuing 1.5°C above pre-industrial levels.",
     "relevant_chunk_ids": [
       "chunk_e92862478c88",
       "chunk_da2e90be52d1",
@@ -738,7 +738,7 @@
   },
   {
     "query": "NATO was created in 1949 to counter the Soviet Union. How did the alliance adapt after the Cold War ended, and how has Russia's invasion of Ukraine in 2022 affected NATO's membership, strategic posture, and internal debates?",
-    "ground_truth_answer": "NATO was founded April 4, 1949 by twelve Western nations to provide collective security against the Soviet Union, with Article 5 \u2014 one for all, all for one \u2014 as its cornerstone. After the Soviet Union dissolved in 1991 and the Warsaw Pact disbanded, NATO redefined its purpose and expanded eastward, admitting Poland, Czech Republic, and Hungary in 1999, and Baltic states and others in 2004. NATO also ran out-of-area operations in the Balkans and Afghanistan. The 2022 Russian invasion of Ukraine revitalized the alliance's core mission. Historically neutral Finland (2023) and Sweden (2024) joined \u2014 dramatically extending NATO's border with Russia. Member states increased defense spending and reinforced the eastern flank. Internal debates center on burden-sharing (whether all members spend 2% of GDP on defense), the long-term US commitment to European defense, and the appropriate level of support to Ukraine.",
+    "ground_truth_answer": "NATO was founded April 4, 1949 by twelve Western nations to provide collective security against the Soviet Union, with Article 5 — one for all, all for one — as its cornerstone. After the Soviet Union dissolved in 1991 and the Warsaw Pact disbanded, NATO redefined its purpose and expanded eastward, admitting Poland, Czech Republic, and Hungary in 1999, and Baltic states and others in 2004. NATO also ran out-of-area operations in the Balkans and Afghanistan. The 2022 Russian invasion of Ukraine revitalized the alliance's core mission. Historically neutral Finland (2023) and Sweden (2024) joined — dramatically extending NATO's border with Russia. Member states increased defense spending and reinforced the eastern flank. Internal debates center on burden-sharing (whether all members spend 2% of GDP on defense), the long-term US commitment to European defense, and the appropriate level of support to Ukraine.",
     "relevant_chunk_ids": [
       "chunk_29535ab1d95e",
       "chunk_c5251dd4c721",
@@ -758,7 +758,7 @@
   },
   {
     "query": "How does China's political system, economic model, and foreign policy combine to position it as the principal challenger to American global primacy? Compare its Belt and Road Initiative as a geopolitical tool with its military modernization and its role in BRICS.",
-    "ground_truth_answer": "China is a one-party state under the CCP; Xi Jinping has centralized authority since 2012 and removed presidential term limits in 2018. Its economy \u2014 reformed under Deng Xiaoping from 1978 \u2014 is the world's second-largest by nominal GDP and largest by PPP, making it the world's biggest exporter and the factory of the world. The Belt and Road Initiative (launched 2013) is a vast infrastructure and investment program spanning Asia, Africa, Europe, and Latin America, extending economic and geopolitical influence through port access, debt leverage, and political ties. Militarily, China maintains the world's largest standing army (PLA), has rapidly modernized its naval and missile forces, and claims sovereignty over Taiwan and extensive South China Sea territory. In BRICS, China anchors the group's push for a multipolar order and hosts the New Development Bank. Together these combine to create a comprehensive, long-range challenge to US primacy \u2014 economic (trade dependency), military (Indo-Pacific), institutional (BRICS, BRI), and technological (AI, EV, solar dominance).",
+    "ground_truth_answer": "China is a one-party state under the CCP; Xi Jinping has centralized authority since 2012 and removed presidential term limits in 2018. Its economy — reformed under Deng Xiaoping from 1978 — is the world's second-largest by nominal GDP and largest by PPP, making it the world's biggest exporter and the factory of the world. The Belt and Road Initiative (launched 2013) is a vast infrastructure and investment program spanning Asia, Africa, Europe, and Latin America, extending economic and geopolitical influence through port access, debt leverage, and political ties. Militarily, China maintains the world's largest standing army (PLA), has rapidly modernized its naval and missile forces, and claims sovereignty over Taiwan and extensive South China Sea territory. In BRICS, China anchors the group's push for a multipolar order and hosts the New Development Bank. Together these combine to create a comprehensive, long-range challenge to US primacy — economic (trade dependency), military (Indo-Pacific), institutional (BRICS, BRI), and technological (AI, EV, solar dominance).",
     "relevant_chunk_ids": [
       "chunk_dd8f15e561b5",
       "chunk_0ad34b97e417",
@@ -779,7 +779,7 @@
   },
   {
     "query": "The United States is described as both a founding NATO member and a permanent UN Security Council member, yet its foreign policy shifts between multilateral engagement and unilateral restraint. How do the country's political system, economic power, and historical role since WWII explain this tension, and how does it manifest in the 2020s?",
-    "ground_truth_answer": "The US has a constitutional presidential system with two-year election cycles, a president limited to two terms, and power divided among executive, legislative, and judicial branches \u2014 meaning foreign policy can shift sharply between administrations, as the Paris Agreement participation illustrates (joined, withdrawn, rejoined, withdrawn again). Economically, the US dollar is the world's primary reserve currency, giving it structural financial leverage. Its participation in both WWII and post-war institution-building established it as the architect of the multilateral rules-based order (founding the UN, NATO, Bretton Woods institutions). The tension between multilateralism and unilateralism is structural: presidents face domestic political pressures (tariffs, immigration, burden-sharing) that conflict with alliance commitments. In the 2020s under Trump (returning in 2024), debates over trade tariffs, NATO spending burdens, immigration, and the scope of American global commitments are central domestic political issues.",
+    "ground_truth_answer": "The US has a constitutional presidential system with two-year election cycles, a president limited to two terms, and power divided among executive, legislative, and judicial branches — meaning foreign policy can shift sharply between administrations, as the Paris Agreement participation illustrates (joined, withdrawn, rejoined, withdrawn again). Economically, the US dollar is the world's primary reserve currency, giving it structural financial leverage. Its participation in both WWII and post-war institution-building established it as the architect of the multilateral rules-based order (founding the UN, NATO, Bretton Woods institutions). The tension between multilateralism and unilateralism is structural: presidents face domestic political pressures (tariffs, immigration, burden-sharing) that conflict with alliance commitments. In the 2020s under Trump (returning in 2024), debates over trade tariffs, NATO spending burdens, immigration, and the scope of American global commitments are central domestic political issues.",
     "relevant_chunk_ids": [
       "chunk_36c8839f0c85",
       "chunk_190985a622f0",
@@ -795,6 +795,696 @@
       "documents": [
         "united_states_profile"
       ]
+    }
+  },
+  {
+    "query": "What does NATO stand for?",
+    "ground_truth_answer": "NATO stands for the North Atlantic Treaty Organization.",
+    "relevant_chunk_ids": [
+      "chunk_dde27d3af983",
+      "chunk_a0629c8cb3bc",
+      "chunk_f4460c14d39a",
+      "chunk_c5251dd4c721",
+      "chunk_bc998626eda8"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "nato"
+    }
+  },
+  {
+    "query": "In what year was the United Nations founded?",
+    "ground_truth_answer": "The United Nations was founded in 1945.",
+    "relevant_chunk_ids": [
+      "chunk_8fa6662296e4",
+      "chunk_e981a1be118a",
+      "chunk_e69c85507dff",
+      "chunk_040f524ef7a6",
+      "chunk_fa297658ca73"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "united_nations"
+    }
+  },
+  {
+    "query": "What is the veto power in the UN Security Council?",
+    "ground_truth_answer": "The five permanent members of the UN Security Council each hold veto power, meaning any one of them can block a substantive resolution.",
+    "relevant_chunk_ids": [
+      "chunk_311c71686658",
+      "chunk_b532bd950362",
+      "chunk_8443876b3054",
+      "chunk_ac96ebf760b5",
+      "chunk_600e638ec29c"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "united_nations"
+    }
+  },
+  {
+    "query": "What does BRICS stand for?",
+    "ground_truth_answer": "BRICS originally stood for Brazil, Russia, India, China, and South Africa.",
+    "relevant_chunk_ids": [
+      "chunk_3eef16418b99",
+      "chunk_798a5eb0a792",
+      "chunk_f4c040e820c4",
+      "chunk_c2c34da87944",
+      "chunk_e9f30e6f1866"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "brics"
+    }
+  },
+  {
+    "query": "Which country has the world's largest standing army?",
+    "ground_truth_answer": "China has the world's largest standing army.",
+    "relevant_chunk_ids": [
+      "chunk_0ad34b97e417",
+      "chunk_dd8f15e561b5",
+      "chunk_451ea7602f19",
+      "chunk_94320bc53b6a",
+      "chunk_e5a1a19a49aa"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "china"
+    }
+  },
+  {
+    "query": "What was the Cold War?",
+    "ground_truth_answer": "The Cold War was a period of geopolitical tension between the United States and the Soviet Union from roughly 1947 to 1991, characterized by ideological rivalry, arms races, and proxy conflicts rather than direct military confrontation.",
+    "relevant_chunk_ids": [
+      "chunk_dde00a4173c5",
+      "chunk_70a6502e78b2",
+      "chunk_d6b4ce5f3b51",
+      "chunk_fa297658ca73",
+      "chunk_d1bb99ba104a"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "cold_war"
+    }
+  },
+  {
+    "query": "When was NATO founded?",
+    "ground_truth_answer": "NATO was founded on April 4, 1949.",
+    "relevant_chunk_ids": [
+      "chunk_a0629c8cb3bc",
+      "chunk_dde27d3af983",
+      "chunk_29535ab1d95e",
+      "chunk_77b9f17b6b9d",
+      "chunk_659ad5b32287"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "nato"
+    }
+  },
+  {
+    "query": "What is the Belt and Road Initiative?",
+    "ground_truth_answer": "The Belt and Road Initiative, launched by China in 2013, is a vast infrastructure and investment program spanning Asia, Africa, Europe, and Latin America, designed to extend China's economic and geopolitical influence.",
+    "relevant_chunk_ids": [
+      "chunk_6e81e79095a6",
+      "chunk_2c060f3168ec",
+      "chunk_dd8f15e561b5",
+      "chunk_357bbb659b50",
+      "chunk_eea14ce2d572"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "china"
+    }
+  },
+  {
+    "query": "What is the NPT?",
+    "ground_truth_answer": "The NPT, or Nuclear Non-Proliferation Treaty, is an international treaty whose goal is to prevent the spread of nuclear weapons, promote disarmament, and facilitate the peaceful use of nuclear energy.",
+    "relevant_chunk_ids": [
+      "chunk_553c78414d88",
+      "chunk_f22357f7ddcf",
+      "chunk_64a7e6e64b1b",
+      "chunk_310f0331e93a",
+      "chunk_ac25b223e263"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "npt"
+    }
+  },
+  {
+    "query": "Where is the UN headquartered?",
+    "ground_truth_answer": "The United Nations is headquartered in New York City.",
+    "relevant_chunk_ids": [
+      "chunk_8fa6662296e4",
+      "chunk_48efc582d2c6",
+      "chunk_36c8839f0c85",
+      "chunk_e981a1be118a",
+      "chunk_ef53969beb4c"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "united_nations"
+    }
+  },
+  {
+    "query": "What is balance of power in international relations?",
+    "ground_truth_answer": "Balance of power is a geopolitical concept referring to a distribution of power among states such that no single state can dominate or impose its will on all others, thereby promoting stability in the international system.",
+    "relevant_chunk_ids": [
+      "chunk_e0c9c6685116",
+      "chunk_1b5fc328f875",
+      "chunk_8a7484de95d5",
+      "chunk_d0789e764d1b",
+      "chunk_7b8ffa6c5b2d"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "geopolitical_concepts"
+    }
+  },
+  {
+    "query": "What was the Kyoto Protocol?",
+    "ground_truth_answer": "The Kyoto Protocol was an international climate agreement adopted in 1997 that set legally binding emission reduction targets for developed countries. It entered into force in 2005.",
+    "relevant_chunk_ids": [
+      "chunk_da2e90be52d1",
+      "chunk_b2f87a27cbe1",
+      "chunk_154c8cfaff43",
+      "chunk_7e4a8f76a6d9",
+      "chunk_e92862478c88"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "kyoto_protocol"
+    }
+  },
+  {
+    "query": "Who coined the term soft power?",
+    "ground_truth_answer": "The term soft power was coined by Joseph Nye.",
+    "relevant_chunk_ids": [
+      "chunk_1b5fc328f875",
+      "chunk_075c8dd68b5d",
+      "chunk_29139c915446",
+      "chunk_3fdd9e9e21ea",
+      "chunk_7d3884ef867a"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "soft_power"
+    }
+  },
+  {
+    "query": "What year did the Berlin Wall fall?",
+    "ground_truth_answer": "The Berlin Wall fell in 1989.",
+    "relevant_chunk_ids": [
+      "chunk_273b5efc9311",
+      "chunk_03985af6ccd6",
+      "chunk_81edc089bd7f",
+      "chunk_1cfae1983206",
+      "chunk_00b6d436993c"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "cold_war"
+    }
+  },
+  {
+    "query": "What is the Quad?",
+    "ground_truth_answer": "The Quad is a strategic security dialogue between the United States, India, Japan, and Australia, focused on maintaining a free and open Indo-Pacific.",
+    "relevant_chunk_ids": [
+      "chunk_226bb7875660",
+      "chunk_8950b0c0e954",
+      "chunk_3ffc2abe312a",
+      "chunk_be65c00826c7",
+      "chunk_3e7595321f12"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "india"
+    }
+  },
+  {
+    "query": "When did China's one-child policy begin?",
+    "ground_truth_answer": "China's one-child policy was introduced in 1980.",
+    "relevant_chunk_ids": [
+      "chunk_dd8f15e561b5",
+      "chunk_87d925f04ba4",
+      "chunk_b552d94c7e74",
+      "chunk_40d8cf480a6e",
+      "chunk_0572c9de7cc5"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "china"
+    }
+  },
+  {
+    "query": "What is deterrence in military strategy?",
+    "ground_truth_answer": "Deterrence is a strategy that prevents an adversary from taking an action by threatening unacceptable costs in retaliation. Nuclear deterrence specifically relies on the threat of massive nuclear retaliation to dissuade a nuclear attack.",
+    "relevant_chunk_ids": [
+      "chunk_891948a86150",
+      "chunk_3c4e5e530830",
+      "chunk_1b5fc328f875",
+      "chunk_f523f44edadf",
+      "chunk_c1690174fca1"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "deterrence"
+    }
+  },
+  {
+    "query": "What caused the 2022 Russian invasion of Ukraine?",
+    "ground_truth_answer": "Russia invaded Ukraine in February 2022, citing NATO's eastward expansion, Ukraine's western orientation, and the stated goal of demilitarising and denazifying Ukraine. It became the largest conventional war in Europe since World War II.",
+    "relevant_chunk_ids": [
+      "chunk_7f83bbdf70e5",
+      "chunk_199bfba3a232",
+      "chunk_8bbfd2a55e28",
+      "chunk_1418cdf22c87",
+      "chunk_4c6fe89ccd6a"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "ukraine_war"
+    }
+  },
+  {
+    "query": "What is the Non-Aligned Movement?",
+    "ground_truth_answer": "The Non-Aligned Movement is a group of states that chose not to formally align with either the United States or the Soviet Union during the Cold War. It was formally established in 1961 and grew from the 1955 Bandung Conference.",
+    "relevant_chunk_ids": [
+      "chunk_94c25d3088b4",
+      "chunk_422d400e6a52",
+      "chunk_07cfe3630ecb",
+      "chunk_0fd672036890",
+      "chunk_18113c87a163"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "decolonization"
+    }
+  },
+  {
+    "query": "What is Mutually Assured Destruction?",
+    "ground_truth_answer": "Mutually Assured Destruction (MAD) is a Cold War doctrine in which both superpowers possessed nuclear arsenals large enough to annihilate each other, so any nuclear first strike would guarantee the attacker's own destruction.",
+    "relevant_chunk_ids": [
+      "chunk_891948a86150",
+      "chunk_c1690174fca1",
+      "chunk_e93fd8b9872c",
+      "chunk_b6b1543fddee",
+      "chunk_c283a5215596"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "deterrence"
+    }
+  },
+  {
+    "query": "What country did Germany first invade to start World War II?",
+    "ground_truth_answer": "Germany first invaded Poland on September 1, 1939, triggering the start of World War II.",
+    "relevant_chunk_ids": [
+      "chunk_af327550a45c",
+      "chunk_fd74e65a8bf8",
+      "chunk_8662d84d44a3",
+      "chunk_87422cda4d2b",
+      "chunk_9831621315ed"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "world_war_two"
+    }
+  },
+  {
+    "query": "What is India's foreign policy doctrine called?",
+    "ground_truth_answer": "India's foreign policy is based on strategic autonomy, a doctrine rooted in non-alignment that seeks to preserve independence from any single great power bloc.",
+    "relevant_chunk_ids": [
+      "chunk_8a83f488f79f",
+      "chunk_183348f39589",
+      "chunk_984971bf5016",
+      "chunk_5a529ab49931",
+      "chunk_97007a9e4d61"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "india"
+    }
+  },
+  {
+    "query": "What was the Bandung Conference?",
+    "ground_truth_answer": "The Bandung Conference was a 1955 meeting of newly independent Asian and African states in Bandung, Indonesia, which led to the formation of the Non-Aligned Movement.",
+    "relevant_chunk_ids": [
+      "chunk_422d400e6a52",
+      "chunk_919c61443532",
+      "chunk_166e473d85f5",
+      "chunk_9d23993052bc",
+      "chunk_c1ac91495fb7"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "decolonization"
+    }
+  },
+  {
+    "query": "What is Xi Jinping's position in China?",
+    "ground_truth_answer": "Xi Jinping is the General Secretary of the Chinese Communist Party and the President of China, having consolidated authority since 2012 and removed presidential term limits in 2018.",
+    "relevant_chunk_ids": [
+      "chunk_0572c9de7cc5",
+      "chunk_c0511c4e512a",
+      "chunk_fe9173310637",
+      "chunk_43ca5ccd4778",
+      "chunk_40d8cf480a6e"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "china"
+    }
+  },
+  {
+    "query": "What is the SCO?",
+    "ground_truth_answer": "The Shanghai Cooperation Organisation (SCO) is a Eurasian political, economic, and security organization founded in 2001, led primarily by China and Russia.",
+    "relevant_chunk_ids": [
+      "chunk_17f01a2df840",
+      "chunk_dca8ccec8c8c",
+      "chunk_a03d4062dd78",
+      "chunk_46523dcc5456",
+      "chunk_2934b1c356af"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "sco"
+    }
+  },
+  {
+    "query": "When did Finland join NATO?",
+    "ground_truth_answer": "Finland joined NATO in 2023, following Russia's 2022 invasion of Ukraine which prompted Finland to abandon its decades-long policy of military non-alignment.",
+    "relevant_chunk_ids": [
+      "chunk_dde27d3af983",
+      "chunk_b1b4fe1252c3",
+      "chunk_f4460c14d39a",
+      "chunk_54de706c6081",
+      "chunk_29535ab1d95e"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "nato"
+    }
+  },
+  {
+    "query": "What was the Marshall Plan?",
+    "ground_truth_answer": "The Marshall Plan was a US programme launched in 1948 to provide economic assistance to rebuild Western European economies after World War II, also serving as a bulwark against Soviet influence.",
+    "relevant_chunk_ids": [
+      "chunk_0c478a7703ff",
+      "chunk_079c246183e0",
+      "chunk_00b6d436993c",
+      "chunk_8301356696b1",
+      "chunk_9322c02e9f25"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "cold_war"
+    }
+  },
+  {
+    "query": "What is the difference between hard power and soft power?",
+    "ground_truth_answer": "Hard power relies on military force and economic coercion to influence other states, while soft power achieves influence through attraction — culture, values, and policies that others voluntarily emulate. The term soft power was coined by Joseph Nye.",
+    "relevant_chunk_ids": [
+      "chunk_1b5fc328f875",
+      "chunk_7d3884ef867a",
+      "chunk_d450e24ac407",
+      "chunk_47fa652b363d",
+      "chunk_3fdd9e9e21ea"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "soft_power"
+    }
+  },
+  {
+    "query": "Which two cities were struck by atomic bombs in 1945?",
+    "ground_truth_answer": "Hiroshima and Nagasaki were struck by atomic bombs in August 1945.",
+    "relevant_chunk_ids": [
+      "chunk_1cfae1983206",
+      "chunk_fa297658ca73",
+      "chunk_c6bfa5f52504",
+      "chunk_8662d84d44a3",
+      "chunk_3570dc2a56a5"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "world_war_two"
+    }
+  },
+  {
+    "query": "What is the New Development Bank?",
+    "ground_truth_answer": "The New Development Bank (NDB) is a multilateral development bank established by the BRICS nations in 2014 to fund infrastructure and sustainable development projects in emerging economies.",
+    "relevant_chunk_ids": [
+      "chunk_6d60b8ac9e9a",
+      "chunk_c8b51c383b9f",
+      "chunk_d056699c75e7",
+      "chunk_d197d308958a",
+      "chunk_c2c34da87944"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "brics"
+    }
+  },
+  {
+    "query": "What was D-Day?",
+    "ground_truth_answer": "D-Day refers to June 6, 1944, when Allied forces launched the largest seaborne invasion in history on the beaches of Normandy, France, opening a Western Front against Nazi Germany.",
+    "relevant_chunk_ids": [
+      "chunk_3570dc2a56a5",
+      "chunk_e981a1be118a",
+      "chunk_ca1d972dc078",
+      "chunk_c4c38206c67d",
+      "chunk_4e8c122cbd54"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "world_war_two"
+    }
+  },
+  {
+    "query": "When did Sweden join NATO?",
+    "ground_truth_answer": "Sweden joined NATO in 2024, following a historic shift away from its long-standing policy of military neutrality, prompted by Russia's invasion of Ukraine.",
+    "relevant_chunk_ids": [
+      "chunk_dde27d3af983",
+      "chunk_b1b4fe1252c3",
+      "chunk_f4460c14d39a",
+      "chunk_54de706c6081",
+      "chunk_29535ab1d95e"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "nato"
+    }
+  },
+  {
+    "query": "What is the EU's Common Foreign and Security Policy?",
+    "ground_truth_answer": "The Common Foreign and Security Policy (CFSP) is the framework through which European Union member states coordinate their foreign policy and security stances, though major decisions require unanimity among members.",
+    "relevant_chunk_ids": [
+      "chunk_0d552da80152",
+      "chunk_453f5be83449",
+      "chunk_5119d24c92dc",
+      "chunk_d9e19c26cdcf",
+      "chunk_bb5fae16d902"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "european_union"
+    }
+  },
+  {
+    "query": "What was the Treaty of Versailles?",
+    "ground_truth_answer": "The Treaty of Versailles, signed in 1919, ended World War I. It imposed heavy reparations and territorial losses on Germany, disarmed it, and placed sole war guilt on Germany — conditions that fuelled economic hardship and nationalist resentment that contributed to the rise of the Nazi Party.",
+    "relevant_chunk_ids": [
+      "chunk_ca1d972dc078",
+      "chunk_9831621315ed",
+      "chunk_c4c38206c67d",
+      "chunk_4a50f0be7b2a",
+      "chunk_e69c85507dff"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "world_war_one"
+    }
+  },
+  {
+    "query": "What is decolonization?",
+    "ground_truth_answer": "Decolonization is the process by which colonized territories gained independence from European colonial powers, occurring primarily between 1945 and 1975, and fundamentally reshaping the international system by roughly tripling UN membership.",
+    "relevant_chunk_ids": [
+      "chunk_76aa15f259a4",
+      "chunk_d65ddec052a2",
+      "chunk_85dfd893a4b8",
+      "chunk_985418828de0",
+      "chunk_276cac15372b"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "decolonization"
+    }
+  },
+  {
+    "query": "What is Russia's permanent seat in the UN Security Council?",
+    "ground_truth_answer": "Russia holds one of the five permanent seats on the UN Security Council, inherited from the Soviet Union upon the USSR's dissolution in 1991, giving it veto power over Security Council resolutions.",
+    "relevant_chunk_ids": [
+      "chunk_47c55b29d2d8",
+      "chunk_8f0c22927c79",
+      "chunk_3e6850593a7f",
+      "chunk_ef53969beb4c",
+      "chunk_fd472a8e2f8c"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "russia"
+    }
+  },
+  {
+    "query": "What is the Truman Doctrine?",
+    "ground_truth_answer": "The Truman Doctrine, announced in 1947, was a US foreign policy committing to support free peoples resisting subjugation by armed minorities or outside pressures, effectively pledging US opposition to Soviet expansion globally.",
+    "relevant_chunk_ids": [
+      "chunk_00b6d436993c",
+      "chunk_d6b4ce5f3b51",
+      "chunk_b6b1543fddee",
+      "chunk_891948a86150",
+      "chunk_bea3baf94391"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "cold_war"
+    }
+  },
+  {
+    "query": "How many countries are in the G7?",
+    "ground_truth_answer": "The G7 consists of seven major advanced economies: the United States, United Kingdom, France, Germany, Italy, Japan, and Canada, plus the European Union as a non-enumerated member.",
+    "relevant_chunk_ids": [
+      "chunk_900b1204e93d",
+      "chunk_e5a1a19a49aa",
+      "chunk_77c82f250f5b",
+      "chunk_439570254149",
+      "chunk_a87ed2d61ef2"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "international_organizations"
+    }
+  },
+  {
+    "query": "What was the Prague Spring?",
+    "ground_truth_answer": "The Prague Spring was a period of political liberalization in Czechoslovakia in 1968. It was crushed when Warsaw Pact troops invaded, with the Soviet Union justifying intervention under the Brezhnev Doctrine.",
+    "relevant_chunk_ids": [
+      "chunk_5e4e53171dce",
+      "chunk_326d3dda6b79",
+      "chunk_862a184d0292",
+      "chunk_8953c9833ab8",
+      "chunk_00b6d436993c"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_factual",
+      "topic": "cold_war"
+    }
+  },
+  {
+    "query": "What is the Washington Consensus?",
+    "ground_truth_answer": "The Washington Consensus refers to a set of free-market economic policy prescriptions promoted by the IMF, World Bank, and US Treasury in the 1980s-90s for developing economies, including privatization, liberalization, and fiscal austerity.",
+    "relevant_chunk_ids": [
+      "chunk_649fa529ee17",
+      "chunk_6a59fe29b24a",
+      "chunk_1179fac713c7",
+      "chunk_aa45e0add052",
+      "chunk_ed4a00d6ff6b"
+    ],
+    "answerable": true,
+    "metadata": {
+      "category": "simple_conceptual",
+      "topic": "geopolitical_concepts"
+    }
+  },
+  {
+    "query": "What is the current price of gold?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {
+      "category": "unanswerable",
+      "topic": "out_of_scope"
+    }
+  },
+  {
+    "query": "What is the unemployment rate in the United States right now?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {
+      "category": "unanswerable",
+      "topic": "out_of_scope"
+    }
+  },
+  {
+    "query": "Who is the current Prime Minister of the United Kingdom?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {
+      "category": "unanswerable",
+      "topic": "out_of_scope"
+    }
+  },
+  {
+    "query": "What is the latest iPhone model?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {
+      "category": "unanswerable",
+      "topic": "out_of_scope"
+    }
+  },
+  {
+    "query": "How many medals did the United States win at the 2024 Paris Olympics?",
+    "ground_truth_answer": "",
+    "relevant_chunk_ids": [],
+    "answerable": false,
+    "metadata": {
+      "category": "unanswerable",
+      "topic": "out_of_scope"
     }
   }
 ]

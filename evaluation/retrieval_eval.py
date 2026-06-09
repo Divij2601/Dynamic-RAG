@@ -63,15 +63,17 @@ class RetrievalEvaluator:
             if not example.get("answerable", True):
                 continue
 
-            query = (
-                example["query"]
+            # Skip entries whose chunk labels have not
+            # been verified yet (empty relevant_chunk_ids
+            # would return a trivial Recall=1.0 that
+            # inflates the metric).
+            gold_chunks = example.get(
+                "relevant_chunk_ids", []
             )
+            if not gold_chunks:
+                continue
 
-            gold_chunks = (
-                example[
-                    "relevant_chunk_ids"
-                ]
-            )
+            query = example["query"]
 
             retrieval = (
                 hybrid_retriever
